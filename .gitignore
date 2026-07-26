@@ -1,0 +1,5 @@
+build/
+dist/index.html.part
+*.o
+*.so
+.vercel
