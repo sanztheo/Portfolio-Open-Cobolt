@@ -36,6 +36,11 @@
        01  WS-VALEUR         PIC X(700) VALUE SPACES.
        01  WS-CODE           PIC 9(2)   VALUE ZERO.
       *
+      *    ----- MATERIEL POUR RENDER -----
+       01  WS-LIGNE-IN       PIC X(2000) VALUE SPACES.
+       01  WS-LIGNE-OUT      PIC X(6000) VALUE SPACES.
+       01  WS-CLE-FAUTIVE    PIC X(40)   VALUE SPACES.
+      *
        PROCEDURE DIVISION.
       *
        PRINCIPAL.
@@ -47,6 +52,10 @@
            PERFORM TEST-DICT-CLE-CONNUE
            PERFORM TEST-DICT-CLE-INCONNUE
            PERFORM TEST-DICT-PORTEE-LOCALE
+           PERFORM TEST-RENDER-ECHAPPE-ET-BRUT
+           PERFORM TEST-RENDER-SANS-MARQUEUR
+           PERFORM TEST-RENDER-DEUX-MARQUEURS
+           PERFORM TEST-RENDER-CLE-INCONNUE
            PERFORM AFFICHER-BILAN
            IF WS-NB-KO > ZERO
                STOP RUN RETURNING 1
@@ -155,6 +164,67 @@
                DISPLAY "  ECHEC portee : obtenu ["
                        FUNCTION TRIM(WS-VALEUR) "]"
            END-IF.
+      *
+      ******************************************************************
+      *  RENDER                                                        *
+      ******************************************************************
+       TEST-RENDER-ECHAPPE-ET-BRUT.
+           MOVE "Salut {{NOM}}, voici {{&FRAGMENT}}" TO WS-LIGNE-IN
+           PERFORM APPELER-RENDER
+           IF WS-CODE = ZERO AND FUNCTION TRIM(WS-LIGNE-OUT) =
+               "Salut Theo, voici <b>gras</b>"
+               PERFORM COMPTER-OK
+               DISPLAY "  OK   marqueur echappe et marqueur brut"
+           ELSE
+               PERFORM COMPTER-KO
+               DISPLAY "  ECHEC rendu mixte : ["
+                       FUNCTION TRIM(WS-LIGNE-OUT) "]"
+           END-IF.
+      *
+       TEST-RENDER-SANS-MARQUEUR.
+           MOVE "<p>Ligne ordinaire</p>" TO WS-LIGNE-IN
+           PERFORM APPELER-RENDER
+           IF WS-CODE = ZERO AND FUNCTION TRIM(WS-LIGNE-OUT) =
+               "<p>Ligne ordinaire</p>"
+               PERFORM COMPTER-OK
+               DISPLAY "  OK   ligne sans marqueur recopiee"
+           ELSE
+               PERFORM COMPTER-KO
+               DISPLAY "  ECHEC ligne sans marqueur alteree"
+           END-IF.
+      *
+       TEST-RENDER-DEUX-MARQUEURS.
+           MOVE "{{NOM}}-{{NOM}}" TO WS-LIGNE-IN
+           PERFORM APPELER-RENDER
+           IF WS-CODE = ZERO AND FUNCTION TRIM(WS-LIGNE-OUT) =
+               "Theo-Theo"
+               PERFORM COMPTER-OK
+               DISPLAY "  OK   deux marqueurs sur la meme ligne"
+           ELSE
+               PERFORM COMPTER-KO
+               DISPLAY "  ECHEC deux marqueurs : ["
+                       FUNCTION TRIM(WS-LIGNE-OUT) "]"
+           END-IF.
+      *
+       TEST-RENDER-CLE-INCONNUE.
+           MOVE "Bonjour {{FANTOME}}" TO WS-LIGNE-IN
+           PERFORM APPELER-RENDER
+           IF WS-CODE = 99
+                   AND FUNCTION TRIM(WS-CLE-FAUTIVE) = "FANTOME"
+               PERFORM COMPTER-OK
+               DISPLAY "  OK   cle absente refusee et nommee"
+           ELSE
+               PERFORM COMPTER-KO
+               DISPLAY "  ECHEC cle absente : code " WS-CODE
+           END-IF.
+      *
+       APPELER-RENDER.
+           MOVE SPACES TO WS-LIGNE-OUT
+           MOVE SPACES TO WS-CLE-FAUTIVE
+           CALL "RENDER" USING WS-NB-ENTREES DICT-TABLE
+                               WS-LIGNE-IN WS-LIGNE-OUT
+                               WS-CODE WS-CLE-FAUTIVE
+           MOVE SPACES TO WS-LIGNE-IN.
       *
       ******************************************************************
       *  COMPTAGE ET BILAN                                             *
