@@ -29,6 +29,13 @@
            05  FILLER        PIC X(2) VALUE X"C3A9".
            05  FILLER        PIC X(3) VALUE "def".
       *
+      *    ----- MATERIEL PARTAGE DICTGET / RENDER -----
+       01  WS-NB-ENTREES     PIC 9(4) VALUE ZERO.
+       COPY "dicttab.cpy".
+       01  WS-CLE            PIC X(40)  VALUE SPACES.
+       01  WS-VALEUR         PIC X(700) VALUE SPACES.
+       01  WS-CODE           PIC 9(2)   VALUE ZERO.
+      *
        PROCEDURE DIVISION.
       *
        PRINCIPAL.
@@ -36,6 +43,10 @@
            PERFORM TEST-ESC-CARACTERES-SPECIAUX
            PERFORM TEST-ESC-UTF8-INTACT
            PERFORM TEST-ESC-CHAINE-VIDE
+           PERFORM PREPARER-DICTIONNAIRE
+           PERFORM TEST-DICT-CLE-CONNUE
+           PERFORM TEST-DICT-CLE-INCONNUE
+           PERFORM TEST-DICT-PORTEE-LOCALE
            PERFORM AFFICHER-BILAN
            IF WS-NB-KO > ZERO
                STOP RUN RETURNING 1
@@ -86,6 +97,64 @@
                DISPLAY "  ECHEC chaine vide : sortie non blanchie"
            END-IF.
       *
+      ******************************************************************
+      *  DICTGET                                                       *
+      ******************************************************************
+      *    LA DISPOSITION IMITE CELLE DE BUILDSITE : LES EMPLACEMENTS
+      *    LOCAUX D ABORD, LES GLOBAUX ENSUITE. LA CLE "TITRE" EXISTE
+      *    DANS LES DEUX PORTEES, EXPRES.
+       PREPARER-DICTIONNAIRE.
+           MOVE SPACES TO DICT-TABLE
+           MOVE "TITRE"       TO DICT-CLE(1)
+           MOVE "Local"       TO DICT-VALEUR(1)
+           MOVE "NOM"         TO DICT-CLE(41)
+           MOVE "Theo"        TO DICT-VALEUR(41)
+           MOVE "FRAGMENT"    TO DICT-CLE(42)
+           MOVE "<b>gras</b>" TO DICT-VALEUR(42)
+           MOVE "TITRE"       TO DICT-CLE(43)
+           MOVE "Global"      TO DICT-VALEUR(43)
+           MOVE 43 TO WS-NB-ENTREES.
+      *
+       TEST-DICT-CLE-CONNUE.
+           MOVE "NOM" TO WS-CLE
+           CALL "DICTGET" USING WS-NB-ENTREES DICT-TABLE WS-CLE
+                                WS-VALEUR WS-CODE
+           IF WS-CODE = ZERO AND FUNCTION TRIM(WS-VALEUR) = "Theo"
+               PERFORM COMPTER-OK
+               DISPLAY "  OK   resolution d une cle connue"
+           ELSE
+               PERFORM COMPTER-KO
+               DISPLAY "  ECHEC cle connue : code " WS-CODE
+           END-IF.
+      *
+       TEST-DICT-CLE-INCONNUE.
+           MOVE "ABSENTE" TO WS-CLE
+           CALL "DICTGET" USING WS-NB-ENTREES DICT-TABLE WS-CLE
+                                WS-VALEUR WS-CODE
+           IF WS-CODE = 99
+               PERFORM COMPTER-OK
+               DISPLAY "  OK   cle inconnue signalee"
+           ELSE
+               PERFORM COMPTER-KO
+               DISPLAY "  ECHEC cle inconnue : code " WS-CODE
+           END-IF.
+      *
+      *    LA REGLE DE PORTEE DU GENERATEUR TIENT ENTIEREMENT A CE QUE
+      *    DICTGET RETIENNE LA PREMIERE CORRESPONDANCE. CE TEST LA
+      *    VERROUILLE : SANS LUI, UNE OPTIMISATION DE LA BOUCLE
+      *    POURRAIT INVERSER LA PRIORITE SANS RIEN CASSER D AUTRE.
+       TEST-DICT-PORTEE-LOCALE.
+           MOVE "TITRE" TO WS-CLE
+           CALL "DICTGET" USING WS-NB-ENTREES DICT-TABLE WS-CLE
+                                WS-VALEUR WS-CODE
+           IF WS-CODE = ZERO AND FUNCTION TRIM(WS-VALEUR) = "Local"
+               PERFORM COMPTER-OK
+               DISPLAY "  OK   la cle locale masque la globale"
+           ELSE
+               PERFORM COMPTER-KO
+               DISPLAY "  ECHEC portee : obtenu ["
+                       FUNCTION TRIM(WS-VALEUR) "]"
+           END-IF.
       *
       ******************************************************************
       *  COMPTAGE ET BILAN                                             *
