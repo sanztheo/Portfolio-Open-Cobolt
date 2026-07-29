@@ -10,6 +10,9 @@
       *                                                                *
       *  CODES RETOUR :                                                *
       *    0   SUCCES                                                  *
+      *    96  NOM DE CLE TROP LONG                                    *
+      *    97  NOM DE CLE VIDE                                         *
+      *    98  MARQUEUR OUVERT MAIS JAMAIS FERME                       *
       *    99  CLE ABSENTE DU DICTIONNAIRE                             *
       *                                                                *
       *  PRINCIPE DIRECTEUR : TOUTE ANOMALIE ARRETE LE RENDU ET        *
@@ -48,6 +51,9 @@
        01  LK-LIGNE-SORTIE   PIC X(6000).
        01  LK-CODE-RETOUR    PIC 9(2).
            88  LK-OK              VALUE 0.
+           88  LK-CLE-TROP-LONGUE VALUE 96.
+           88  LK-CLE-VIDE        VALUE 97.
+           88  LK-NON-FERME       VALUE 98.
            88  LK-CLE-INCONNUE    VALUE 99.
        01  LK-CLE-FAUTIVE    PIC X(40).
       *
@@ -94,10 +100,13 @@
        TRAITER-MARQUEUR.
            PERFORM CHERCHER-FERMETURE
            IF WS-POS-FERMETURE = ZERO
-               PERFORM COPIER-CARACTERE
+               SET LK-NON-FERME TO TRUE
                EXIT PARAGRAPH
            END-IF
            PERFORM EXTRAIRE-NOM-CLE
+           IF NOT LK-OK
+               EXIT PARAGRAPH
+           END-IF
            PERFORM RESOUDRE-CLE
            IF NOT LK-OK
                EXIT PARAGRAPH
@@ -129,14 +138,18 @@
                ADD 1 TO WS-DEBUT-CLE
            END-IF
            COMPUTE WS-LG-CLE = WS-POS-FERMETURE - WS-DEBUT-CLE
-           IF WS-LG-CLE > 40
-               MOVE 40 TO WS-LG-CLE
-           END-IF
-           MOVE SPACES TO WS-CLE
-           IF WS-LG-CLE > 0
-               MOVE LK-LIGNE-ENTREE(WS-DEBUT-CLE:WS-LG-CLE)
-                   TO WS-CLE
-           END-IF.
+           EVALUATE TRUE
+               WHEN WS-LG-CLE < 1
+                   SET LK-CLE-VIDE TO TRUE
+               WHEN WS-LG-CLE > 40
+                   SET LK-CLE-TROP-LONGUE TO TRUE
+                   MOVE LK-LIGNE-ENTREE(WS-DEBUT-CLE:40)
+                       TO LK-CLE-FAUTIVE
+               WHEN OTHER
+                   MOVE SPACES TO WS-CLE
+                   MOVE LK-LIGNE-ENTREE(WS-DEBUT-CLE:WS-LG-CLE)
+                       TO WS-CLE
+           END-EVALUATE.
       *
        RESOUDRE-CLE.
            CALL "DICTGET" USING LK-NB-ENTREES DICT-TABLE WS-CLE
