@@ -56,6 +56,9 @@
            PERFORM TEST-RENDER-SANS-MARQUEUR
            PERFORM TEST-RENDER-DEUX-MARQUEURS
            PERFORM TEST-RENDER-CLE-INCONNUE
+           PERFORM TEST-RENDER-MARQUEUR-NON-FERME
+           PERFORM TEST-RENDER-CLE-VIDE
+           PERFORM TEST-RENDER-CLE-TROP-LONGUE
            PERFORM AFFICHER-BILAN
            IF WS-NB-KO > ZERO
                STOP RUN RETURNING 1
@@ -216,6 +219,46 @@
            ELSE
                PERFORM COMPTER-KO
                DISPLAY "  ECHEC cle absente : code " WS-CODE
+           END-IF.
+      *
+      *    UN "{{" SANS FERMETURE EST UNE FAUTE DE FRAPPE DANS UN
+      *    GABARIT. LE LAISSER PASSER EN TEXTE LITTERAL PUBLIERAIT DES
+      *    ACCOLADES EN CLAIR SUR LE SITE.
+       TEST-RENDER-MARQUEUR-NON-FERME.
+           MOVE "Debut {{NOM sans fermeture" TO WS-LIGNE-IN
+           PERFORM APPELER-RENDER
+           IF WS-CODE = 98
+               PERFORM COMPTER-OK
+               DISPLAY "  OK   marqueur non ferme refuse"
+           ELSE
+               PERFORM COMPTER-KO
+               DISPLAY "  ECHEC marqueur non ferme : code " WS-CODE
+           END-IF.
+      *
+       TEST-RENDER-CLE-VIDE.
+           MOVE "Vide {{}} ici" TO WS-LIGNE-IN
+           PERFORM APPELER-RENDER
+           IF WS-CODE = 97
+               PERFORM COMPTER-OK
+               DISPLAY "  OK   nom de cle vide refuse"
+           ELSE
+               PERFORM COMPTER-KO
+               DISPLAY "  ECHEC cle vide : code " WS-CODE
+           END-IF.
+      *
+      *    41 CARACTERES : UN DE PLUS QUE LA TAILLE D UNE CLE. LA
+      *    TRONCATURE SILENCIEUSE CHERCHERAIT UNE AUTRE CLE QUE CELLE
+      *    ECRITE, ET NE LE DIRAIT A PERSONNE.
+       TEST-RENDER-CLE-TROP-LONGUE.
+           MOVE "{{AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDE}}"
+               TO WS-LIGNE-IN
+           PERFORM APPELER-RENDER
+           IF WS-CODE = 96
+               PERFORM COMPTER-OK
+               DISPLAY "  OK   nom de cle trop long refuse"
+           ELSE
+               PERFORM COMPTER-KO
+               DISPLAY "  ECHEC cle trop longue : code " WS-CODE
            END-IF.
       *
        APPELER-RENDER.
