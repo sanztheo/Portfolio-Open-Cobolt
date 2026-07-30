@@ -10,6 +10,7 @@
       *                                                                *
       *  CODES RETOUR :                                                *
       *    0   SUCCES                                                  *
+      *    95  DEBORDEMENT DE LA LIGNE DE SORTIE                       *
       *    96  NOM DE CLE TROP LONG                                    *
       *    97  NOM DE CLE VIDE                                         *
       *    98  MARQUEUR OUVERT MAIS JAMAIS FERME                       *
@@ -51,6 +52,7 @@
        01  LK-LIGNE-SORTIE   PIC X(6000).
        01  LK-CODE-RETOUR    PIC 9(2).
            88  LK-OK              VALUE 0.
+           88  LK-DEBORDEMENT     VALUE 95.
            88  LK-CLE-TROP-LONGUE VALUE 96.
            88  LK-CLE-VIDE        VALUE 97.
            88  LK-NON-FERME       VALUE 98.
@@ -90,6 +92,10 @@
            END-PERFORM.
       *
        COPIER-CARACTERE.
+           IF WS-LG-SORTIE + 1 > 6000
+               SET LK-DEBORDEMENT TO TRUE
+               EXIT PARAGRAPH
+           END-IF
            ADD 1 TO WS-LG-SORTIE
            MOVE LK-LIGNE-ENTREE(WS-POS:1)
                TO LK-LIGNE-SORTIE(WS-LG-SORTIE:1)
@@ -187,12 +193,22 @@
            IF WS-LG-VALEUR = ZERO
                EXIT PARAGRAPH
            END-IF
+           IF WS-LG-SORTIE + WS-LG-VALEUR > 6000
+               SET LK-DEBORDEMENT TO TRUE
+               MOVE WS-CLE TO LK-CLE-FAUTIVE
+               EXIT PARAGRAPH
+           END-IF
            MOVE WS-VALEUR(1:WS-LG-VALEUR)
                TO LK-LIGNE-SORTIE(WS-LG-SORTIE + 1:WS-LG-VALEUR)
            ADD WS-LG-VALEUR TO WS-LG-SORTIE.
       *
        AJOUTER-VALEUR-ECHAPPEE.
            IF WS-LG-VALEUR = ZERO
+               EXIT PARAGRAPH
+           END-IF
+           IF WS-LG-SORTIE + WS-LG-VALEUR > 6000
+               SET LK-DEBORDEMENT TO TRUE
+               MOVE WS-CLE TO LK-CLE-FAUTIVE
                EXIT PARAGRAPH
            END-IF
            MOVE WS-ECHAPPEE(1:WS-LG-VALEUR)
