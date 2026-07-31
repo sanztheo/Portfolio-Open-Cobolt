@@ -1,0 +1,158 @@
+:root{
+  --paper:#EFEFE8;
+  --bar:#D6E3D1;
+  --ink:#1B1F1A;
+  --ink-soft:#4E5A53;
+  --rule:#AEBAA9;
+  --hole:#C6CCC2;
+  --stamp:#A3341F;
+  --pad:1.25rem;
+  --mono:ui-monospace,"SFMono-Regular","SF Mono",Menlo,
+    Consolas,"Liberation Mono",monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font:400 0.9375rem/1.65 var(--mono);
+  font-variant-ligatures:none;
+}
+.sheet{
+  position:relative;
+  max-width:62rem;
+  margin:0 auto;
+  padding:3.5rem var(--pad) 0;
+}
+.sheet::before,.sheet::after{
+  content:"";
+  position:absolute;
+  top:0;bottom:0;width:26px;
+  background-image:radial-gradient(circle at 50% 50%,
+    var(--hole) 0 3px,transparent 3.5px);
+  background-size:26px 26px;
+  pointer-events:none;
+}
+.sheet::before{left:0;border-right:1px dashed var(--rule)}
+.sheet::after{right:0;border-left:1px dashed var(--rule)}
+@media (max-width:800px){
+  .sheet::before,.sheet::after{display:none}
+  .sheet{padding-top:2.25rem}
+}
+@media (min-width:801px){:root{--pad:3.5rem}}
+
+.division{
+  margin:0 0 1.5rem;
+  font-size:0.8125rem;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.division .gloss{
+  letter-spacing:0.04em;
+  font-weight:400;
+  text-transform:none;
+  color:var(--ink-soft);
+}
+.block{padding-bottom:3.25rem}
+.block+.block{border-top:1px solid var(--rule);padding-top:2.5rem}
+
+.row{
+  display:grid;
+  grid-template-columns:2.75rem 1fr;
+  gap:0 0.9rem;
+  padding:0.85rem var(--pad);
+}
+.rows{margin:0 calc(-1 * var(--pad));padding:0;list-style:none}
+.row+.row{border-top:1px solid rgba(174,186,169,0.5)}
+.row:nth-child(odd){background:var(--bar)}
+.lvl{
+  font-weight:700;color:var(--ink-soft);
+  font-size:0.8125rem;padding-top:0.2rem;
+}
+.title-line{display:flex;align-items:baseline;gap:0.6rem}
+.p-name{font-weight:700;font-size:1.0625rem;letter-spacing:-0.01em}
+.leader{
+  flex:1 1 auto;min-width:1.5rem;
+  border-bottom:1px dotted var(--rule);
+  transform:translateY(-0.3em);
+}
+.p-year{font-size:0.8125rem;color:var(--ink-soft);white-space:nowrap}
+.row-body{min-width:0}
+.p-cat{margin:0.4rem 0}
+.tag{
+  display:inline-block;
+  padding:0.15rem 0.5rem;
+  border:1.5px solid currentColor;
+  font-size:0.6875rem;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+}
+.tag-startup{color:#8A3F1F}
+.tag-pro{color:#2C5578}
+.tag-formation{color:#6B5A12}
+.tag-perso{color:#5C3A73}
+.p-desc{margin:0.3rem 0 0.55rem;max-width:62ch}
+.p-tech{
+  margin:0;font-size:0.8125rem;color:var(--ink-soft);
+  letter-spacing:0.02em;
+}
+.p-tech::before{content:"PIC  ";font-weight:700}
+.row a{
+  color:var(--ink);text-decoration-color:var(--rule);
+  text-underline-offset:3px;
+}
+.row a:hover{text-decoration-color:var(--stamp)}
+
+.timeline{margin:0;padding:0;list-style:none}
+.step{display:grid;grid-template-columns:7rem 1fr;gap:0 1.5rem}
+.step+.step{padding-top:1.75rem;border-top:1px dotted var(--rule);margin-top:1.75rem}
+.step-date{font-weight:700;font-size:0.8125rem;color:var(--ink-soft);white-space:nowrap;padding-top:0.1rem}
+.step-body{border-left:2px solid var(--rule);padding-left:1.25rem;min-width:0}
+.step-titre{margin:0 0 0.15rem;font-size:1.0625rem;font-weight:700;letter-spacing:-0.01em}
+.step-lieu{margin:0 0 0.4rem;font-size:0.8125rem;color:var(--ink-soft)}
+.step-desc{margin:0;max-width:62ch}
+@media (max-width:560px){
+  .step{display:block}
+  .step-date{display:block;margin-bottom:0.35rem}
+  .step-body{border-left:2px solid var(--rule);padding-left:1rem}
+}
+
+a:focus-visible,:focus-visible{
+  outline:2px solid var(--stamp);
+  outline-offset:3px;
+}
+
+.colophon{
+  border-top:1px solid var(--rule);
+  padding:1.5rem 0 4rem;
+  font-size:0.8125rem;
+  color:var(--ink-soft);
+}
+.colophon p{max-width:62ch}
+.colophon a{color:var(--ink)}
+.build{margin-top:0.5rem;font-size:0.75rem;color:var(--ink-soft);letter-spacing:0.02em}
+.stamp{
+  display:inline-block;
+  margin-bottom:0.75rem;
+  padding:0.3rem 0.6rem;
+  border:2px solid var(--stamp);
+  color:var(--stamp);
+  font-size:0.6875rem;font-weight:700;
+  letter-spacing:0.16em;text-transform:uppercase;
+  transform:rotate(-1.5deg);
+}
+
+/* Les lignes glissent vers le haut a l'apparition, comme une feuille qui
+   sort d'une imprimante ligne. L'animation ne touche que `transform` :
+   animer `opacity` ferait passer le texte par des etats de faible
+   contraste, que les auditeurs d'accessibilite echantillonnent et
+   signalent en violation WCAG alors que le contraste final est de
+   12,5:1. Le mouvement suffit a l'effet, le fondu ne servait rien. */
+@media (prefers-reduced-motion:no-preference){
+  .row{animation:feed 420ms cubic-bezier(.2,.8,.2,1) backwards}
+  .row{animation-delay:calc(var(--i,0) * 60ms)}
+  .fiche summary::before{transition:transform 160ms ease}
+}
+@keyframes feed{from{transform:translateY(7px)}}
