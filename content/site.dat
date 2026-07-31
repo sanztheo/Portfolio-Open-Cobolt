@@ -1,0 +1,20 @@
+# site.dat - cles globales du site, colonnes fixes 1-40 = cle, 41+ = valeur
+SITE_TITRE                              Theo Sanz — Développeur web & agents IA, Montpellier
+SITE_DESCRIPTION                        Theo Sanz, développeur à Montpellier. Co-fondateur de Solva, agent vocal IA pour la santé, alternant chez Dernier Cri. Projets vérifiés, code en production.
+SITE_URL                                https://portfolio-open.vercel.app/
+NOM                                     Theo Sanz
+ROLE_COURT                              Développeur web & agents IA
+ACCROCHE                                Développeur à Montpellier, co-fondateur de <strong>Solva</strong>, un secrétariat téléphonique IA pour établissements de santé. En alternance chez <strong>Dernier Cri</strong> comme Generative AI Engineer, formé au développement web via OpenClassrooms.
+FAIT_POSTE                              Co-fondateur, Solva
+FAIT_ALTERNANCE                         Dernier Cri, Montpellier
+FAIT_FORMATION                          Développeur web, OpenClassrooms
+FAIT_TERRAIN                            Agents IA, voix temps réel, sécurité
+CONTACT_CHAPO                           Disponible pour échanger sur un poste de développeur, en alternance ou après. Réponse par email ou LinkedIn.
+CONTACT_EMAIL                           sanztheopro@gmail.com
+CONTACT_GITHUB                          https://github.com/sanztheo
+CONTACT_LINKEDIN                        https://www.linkedin.com/in/theo-sanz/
+CONTACT_SOLVA                           https://getsolva.fr
+COLOPHON                                Cette page est produite par un programme <strong>COBOL</strong> qui lit des fichiers de contenu à colonnes fixes et les injecte dans un gabarit HTML — aucun JavaScript, aucun framework côté client. Le moteur de gabarits, le compilateur GnuCOBOL et le contenu source sont dans le dépôt <a href="https://github.com/sanztheo/Portfolio-Open-Cobolt" rel="noopener">Portfolio-Open-Cobolt</a>.
+COLOPHON_BUILD                          GnuCOBOL 3.2 — format fixe, colonnes 8 à 72 — aucune dépendance.
+FAVICON                                 data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2016%2016%22%3E%3Crect%20width=%2216%22%20height=%2216%22%20fill=%22%23EFEFE8%22/%3E%3Crect%20y=%224%22%20width=%2216%22%20height=%224%22%20fill=%22%23D6E3D1%22/%3E%3C/svg%3E
+JSONLD                                  {"@context":"https://schema.org","@type":"Person","name":"Theo Sanz","jobTitle":"Développeur web","url":"https://portfolio-open.vercel.app/","sameAs":["https://github.com/sanztheo","https://www.linkedin.com/in/theo-sanz/"],"address":{"@type":"PostalAddress","addressLocality":"Montpellier","addressCountry":"FR"},"knowsAbout":["TypeScript","Python","Rust","React","Node.js","PostgreSQL","LiveKit","Model Context Protocol"]}
