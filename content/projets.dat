@@ -1,0 +1,49 @@
+# Projets - genere depuis DOSSIER-CONTENU.md section 4
+                                  
+P_RANG                                  01
+P_TITRE                                 Solva
+P_ANNEE                                 2026 —
+P_CATEGORIE                             startup
+P_CATEGORIE_LABEL                       Startup
+P_RESUME                                Secrétariat téléphonique IA pour cabinets de santé : l'agent vocal décroche, vérifie l'identité du patient, détecte les urgences et gère les rendez-vous en français, anglais et allemand. Co-fondé et développé de bout en bout, en production.
+P_STACK                                 Python, LiveKit Agents, Next.js, Prisma, Clerk, Vercel AI SDK, Twilio
+P_CONTEXTE                              Les cabinets et cliniques perdent un temps considérable au téléphone : rendez-vous, urgences, questions administratives. Solva décroche l'appel, qualifie le motif et prend en charge la demande sans humain derrière le combiné.
+P_OBJECTIFS                             Automatiser la prise de rendez-vous et la vérification d'identité patient, détecter les urgences pour les escalader, gérer le multilingue (français, anglais, allemand) et poser des garde-fous stricts sur les données personnelles.
+P_STACK_DETAIL                          Agent vocal : Python 3.12, LiveKit Agents SDK, STT Soniox v4, LLM Gemini 2.5 Flash ou GPT-5.4, TTS Cartesia Sonic/ElevenLabs/Google, VAD Silero, téléphonie Twilio SIP, secrets via Infisical. Dashboard : Next.js 16, React 18, Prisma, Clerk, Vercel AI SDK v6, Pusher, Resend, AWS S3, Radix UI. Déploiement Vercel et Railway.
+P_COMPETENCES                           Routing multi-agent (Triage vers Booking, Management, Patient, FAQ, Reminder), i18n FR/EN/DE, scrub des données personnelles, gestion DTMF, escalade d'urgence, observabilité par shadow judge post-appel, intégration multi-provider LLM interchangeable.
+P_RESULTATS                             En production sur LiveKit Cloud avec environnements dev et prod distincts, CI GitHub Actions, Dockerfile, typage strict (mypy), suite pytest, post-mortems et runbooks d'incident versionnés dans le repo.
+P_PERSPECTIVES                          La couverture de tests reste à élargir et les benchmarks de latence de la chaîne voix à industrialiser pour suivre la montée en charge.
+P_LIENS                                 <a href="https://getsolva.fr">Site du produit</a> <span class="p-nolink">dépôts privés</span>
+P_VISUEL                                <img class="shot" src="img/solva.webp" width="960" height="600" loading="lazy" decoding="async" alt="Page d'accueil de Solva : un telephone affiche un appel patient en cours, pris en charge par l'agent vocal.">
+[ITEM]                                  
+P_RANG                                  02
+P_TITRE                                 Nina Carducci — audit SEO, accessibilité, performance
+P_ANNEE                                 2026
+P_CATEGORIE                             formation
+P_CATEGORIE_LABEL                       Formation
+P_RESUME                                Audit et refonte d'un site vitrine de photographe existant, documentés en deux phases datées avec hash de commit pour chaque correction. Performance, accessibilité et référencement mesurés avant/après avec Lighthouse et WAVE.
+P_STACK                                 HTML5, CSS3, Bootstrap allégé, JS vanilla, jQuery, WebP, Schema.org
+P_CONTEXTE                              Un site vitrine de photographe existant présentait des lacunes de référencement, d'accessibilité et de performance. Le projet consiste à l'auditer puis à corriger chaque point identifié, en traçant chaque correction par un commit daté.
+P_OBJECTIFS                             Faire remonter les scores Lighthouse sur les quatre axes, corriger les erreurs d'accessibilité relevées par WAVE, réduire le poids des ressources chargées et documenter chaque correction dans un rapport technique chiffré.
+P_STACK_DETAIL                          HTML5 sémantique, CSS3 avec Bootstrap allégé, JavaScript vanilla et jQuery pour la galerie interactive, polices auto-hébergées, images converties en WebP, données structurées Schema.org et balises Open Graph.
+P_COMPETENCES                           Audit avec Lighthouse et WAVE, sémantique HTML pour lecteurs d'écran, optimisation d'assets (polices, images), debug de composants interactifs tiers, rédaction d'un rapport technique traçable commit par commit.
+P_RESULTATS                             Performance 67 → 99, Accessibilité 87 → 100, Bonnes pratiques 96 → 100, SEO maintenu à 100. Erreurs WAVE 4 → 0, contraste 2,1:1 → 13,3:1, affichage 6,6 s → 2,0 s, poids de Bootstrap 160 Ko → 10 Ko. 38 commits.
+P_PERSPECTIVES                          jQuery (~59 Ko) reste nécessaire au fonctionnement de la galerie mauGallery et n'a pas pu être retiré. Une réécriture de la galerie sans jQuery est possible mais dépassait le périmètre de l'audit.
+P_LIENS                                 <a href="https://github.com/sanztheo/Nina-Carducci-Dev-master">Code source</a>
+P_VISUEL                                
+[ITEM]                                  
+P_RANG                                  03
+P_TITRE                                 SeeYou — renseignement géospatial temps réel
+P_ANNEE                                 2026
+P_CATEGORIE                             perso
+P_CATEGORIE_LABEL                       Personnel
+P_RESUME                                Globe 3D temps réel agrégeant avions ADS-B, satellites, séismes, feux de forêt, trafic maritime et météo spatiale depuis plus de 25 API publiques gratuites. Backend Rust de 24 crates, frontend React/CesiumJS, prédiction de trajectoire par filtre de Kalman.
+P_STACK                                 React, TypeScript, CesiumJS, Rust, Axum, Redis, WebSocket
+P_CONTEXTE                              Démontrer qu'une architecture temps réel complète — ingestion, cache, diffusion, rendu 3D — peut tenir sans backend tiers payant, en s'appuyant uniquement sur des API publiques gratuites.
+P_OBJECTIFS                             Agréger et normaliser plus de 25 sources de données géospatiales hétérogènes, diffuser les mises à jour en temps réel vers le frontend, et prédire la trajectoire des aéronefs pour lisser les données ADS-B bruitées.
+P_STACK_DETAIL                          Frontend : React 19.2, TypeScript, Vite 7.3, CesiumJS 1.138 via Resium, Tailwind 4.2, Vitest. Backend : workspace Rust de 24 crates (Axum, Tokio, Redis, SurrealDB, rdkafka, geojson), Redis pour le cache, Docker Compose, diffusion WebSocket.
+P_COMPETENCES                           Architecture poll-cache-broadcast pour tenir la charge des API publiques, filtre de Kalman multi-modèle (IMM-EKF) pour la prédiction de trajectoire, shaders GLSL personnalisés (vision nocturne, FLIR, effet CRT).
+P_RESULTATS                             18 étoiles GitHub, 266 commits, 162 fichiers Rust et 174 fichiers TypeScript, 29 fichiers de tests Vitest. Coût d'infrastructure nul, uniquement des API publiques gratuites.
+P_PERSPECTIVES                          Pas de CI configurée : les rapports de test sont pour l'instant conservés et vérifiés manuellement.
+P_LIENS                                 <a href="https://github.com/sanztheo/SeeYou">Code source</a> <a href="https://sanztheo.github.io/SeeYou/">Voir en ligne</a>
+P_VISUEL                                <img class="shot" src="img/seeyou.webp" width="960" height="600" loading="lazy" decoding="async" alt="Ecran d'accueil de SeeYou listant les sources suivies : vols ADS-B, orbites de satellites, cameras, prediction de trajectoire.">

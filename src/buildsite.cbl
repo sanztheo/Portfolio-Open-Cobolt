@@ -8,18 +8,23 @@
       *                                                                *
       *  ENTREES                                                       *
       *    content/site.dat         CLES GLOBALES DU SITE              *
+      *    content/projets.dat      UN ENREGISTREMENT PAR PROJET       *
       *    templates/page.tpl       SQUELETTE DE LA PAGE               *
+      *    templates/projet.tpl     GABARIT D UNE FICHE PROJET         *
       *    src/style.css            FEUILLE DE STYLE, INJECTEE TELLE   *
       *                             QUELLE DANS LE <head>              *
       *  SORTIE                                                        *
       *    dist/index.html                                             *
       *                                                                *
-      *  DIRECTIVE RECONNUE DANS UN GABARIT, SEULE SUR SA LIGNE :      *
+      *  DIRECTIVES RECONNUES DANS UN GABARIT, SEULES SUR LEUR LIGNE : *
+      *    {{@PROJETS}}                                               *
+      *        DEROULENT LA LISTE CORRESPONDANTE.                      *
       *    {{@STYLE}}                                                  *
       *        RECOPIE LA FEUILLE DE STYLE OCTET POUR OCTET.           *
       *                                                                *
-      *  FORMAT DU FICHIER DE CONTENU                                  *
-      *    CHAQUE LIGNE EST UNE PAIRE : LA CLE OCCUPE LES 40           *
+      *  FORMAT DES FICHIERS DE CONTENU                                *
+      *    UNE LIGNE "[ITEM]" OUVRE UN NOUVEL ENREGISTREMENT.          *
+      *    TOUTE AUTRE LIGNE EST UNE PAIRE : LA CLE OCCUPE LES 40      *
       *    PREMIERES COLONNES, LA VALEUR SUIT JUSQU EN FIN DE LIGNE.   *
       *    UNE LIGNE VIDE OU DEBUTANT PAR "#" EST IGNOREE.             *
       *                                                                *
@@ -55,6 +60,12 @@
       *    A LA NORME. GNUCOBOL ACCEPTE UN NOM DE DONNEES A LA PLACE,
       *    MAIS C EST UNE EXTENSION, ET CE PROGRAMME TIENT A COMPILER
       *    SOUS -std=cobol2014 SANS AUCUNE CONCESSION DE DIALECTE.
+           SELECT F-TPL-PRJ ASSIGN TO "templates/projet.tpl"
+               ORGANIZATION IS LINE SEQUENTIAL
+               FILE STATUS  IS WS-ST-TPL.
+           SELECT F-DAT-PRJ ASSIGN TO "content/projets.dat"
+               ORGANIZATION IS LINE SEQUENTIAL
+               FILE STATUS  IS WS-ST-DAT.
       *
        DATA DIVISION.
        FILE SECTION.
@@ -68,6 +79,12 @@
        01  CSS-LIGNE         PIC X(400).
        FD  F-SORTIE.
        01  SORTIE-LIGNE      PIC X(6000).
+       FD  F-TPL-PRJ.
+       01  TPL-PRJ-LIGNE     PIC X(2000).
+       FD  F-DAT-PRJ.
+       01  DAT-PRJ-LIGNE.
+           05  PRJ-CLE       PIC X(40).
+           05  PRJ-VALEUR    PIC X(700).
       *
        WORKING-STORAGE SECTION.
       *
@@ -94,7 +111,10 @@
        01  WS-NB-LOCALES     PIC 9(4) VALUE ZERO.
        01  WS-NB-VISIBLES    PIC 9(4) VALUE ZERO.
       *
-      *    ----- INDICE DE PARCOURS DE LA PORTEE LOCALE -----
+      *    ----- TAMPON DU GABARIT DE BLOC -----
+       01  WS-BLOC.
+           05  WS-BLOC-LIGNE OCCURS 120 TIMES PIC X(2000).
+       01  WS-NB-BLOC        PIC 9(4) VALUE ZERO.
        01  WS-IDX-BLOC       PIC 9(4) VALUE ZERO.
       *
       *    ----- DRAPEAUX DE FIN DE FICHIER -----
@@ -116,6 +136,7 @@
        01  WS-VALEUR-COURANTE PIC X(700) VALUE SPACES.
        01  WS-ENR-OUVERT     PIC X VALUE "N".
            88  WS-DANS-ENR    VALUE "Y".
+       01  WS-NB-PROJETS     PIC 9(4) VALUE ZERO.
       *
        PROCEDURE DIVISION.
       *
@@ -197,6 +218,8 @@
            EVALUATE WS-DIRECTIVE
                WHEN "{{@STYLE}}"
                    PERFORM INJECTER-FEUILLE-DE-STYLE
+               WHEN "{{@PROJETS}}"
+                   PERFORM DEROULER-PROJETS
                WHEN OTHER
                    MOVE PAGE-LIGNE TO WS-LIGNE-RENDUE
                    MOVE "page.tpl" TO WS-SECTION-COUR
@@ -266,6 +289,92 @@
                TO DICT-VALEUR(WS-NB-LOCALES).
       *
       ******************************************************************
+      *  LISTE : LES PROJETS                                           *
+      ******************************************************************
+       DEROULER-PROJETS.
+           MOVE "projets" TO WS-SECTION-COUR
+           PERFORM CHARGER-GABARIT-PROJET
+           MOVE "N" TO WS-FIN-DAT
+           MOVE "N" TO WS-ENR-OUVERT
+           PERFORM VIDER-PORTEE-LOCALE
+           OPEN INPUT F-DAT-PRJ
+           IF WS-ST-DAT NOT = "00"
+               MOVE "content/projets.dat" TO WS-DIRECTIVE
+               PERFORM ARRET-FICHIER-INTROUVABLE
+           END-IF
+           PERFORM UNTIL WS-DAT-FINI
+               READ F-DAT-PRJ
+                   AT END
+                       MOVE "Y" TO WS-FIN-DAT
+                   NOT AT END
+                       PERFORM AIGUILLER-LIGNE-PROJET
+               END-READ
+           END-PERFORM
+           CLOSE F-DAT-PRJ
+           IF WS-DANS-ENR
+               PERFORM RENDRE-BLOC
+               ADD 1 TO WS-NB-PROJETS
+           END-IF
+           PERFORM VIDER-PORTEE-LOCALE
+           MOVE "N" TO WS-FIN-DAT.
+      *
+       AIGUILLER-LIGNE-PROJET.
+           IF DAT-PRJ-LIGNE = SPACES OR PRJ-CLE(1:1) = "#"
+               EXIT PARAGRAPH
+           END-IF
+           IF FUNCTION TRIM(PRJ-CLE) = "[ITEM]"
+               IF WS-DANS-ENR
+                   PERFORM RENDRE-BLOC
+                   ADD 1 TO WS-NB-PROJETS
+               END-IF
+               PERFORM VIDER-PORTEE-LOCALE
+               MOVE "Y" TO WS-ENR-OUVERT
+           ELSE
+               MOVE PRJ-CLE    TO WS-CLE-COURANTE
+               MOVE PRJ-VALEUR TO WS-VALEUR-COURANTE
+               PERFORM RANGER-CLE-LOCALE
+           END-IF.
+      *
+       CHARGER-GABARIT-PROJET.
+           MOVE ZERO TO WS-NB-BLOC
+           MOVE "N" TO WS-FIN-DAT
+           OPEN INPUT F-TPL-PRJ
+           IF WS-ST-TPL NOT = "00"
+               MOVE "templates/projet.tpl" TO WS-DIRECTIVE
+               PERFORM ARRET-FICHIER-INTROUVABLE
+           END-IF
+           PERFORM UNTIL WS-DAT-FINI
+               READ F-TPL-PRJ
+                   AT END
+                       MOVE "Y" TO WS-FIN-DAT
+                   NOT AT END
+                       PERFORM EMPILER-LIGNE-BLOC
+                       MOVE TPL-PRJ-LIGNE
+                           TO WS-BLOC-LIGNE(WS-NB-BLOC)
+               END-READ
+           END-PERFORM
+           CLOSE F-TPL-PRJ
+           MOVE "N" TO WS-FIN-DAT.
+      *
+      ******************************************************************
+      *  RENDU D UN BLOC POUR L ENREGISTREMENT COURANT                 *
+      ******************************************************************
+       EMPILER-LIGNE-BLOC.
+           IF WS-NB-BLOC >= MAX-LIGNES-BLOC
+               DISPLAY "BUILDSITE : GABARIT DE BLOC TROP LONG POUR "
+                       WS-SECTION-COUR
+               STOP RUN RETURNING 5
+           END-IF
+           ADD 1 TO WS-NB-BLOC.
+      *
+       RENDRE-BLOC.
+           PERFORM VARYING WS-IDX-BLOC FROM 1 BY 1
+                   UNTIL WS-IDX-BLOC > WS-NB-BLOC
+               MOVE WS-BLOC-LIGNE(WS-IDX-BLOC) TO WS-LIGNE-RENDUE
+               PERFORM RENDRE-ET-ECRIRE
+           END-PERFORM.
+      *
+      ******************************************************************
       *  ARRETS EXPLICITES                                             *
       ******************************************************************
        ARRET-FICHIER-INTROUVABLE.
@@ -302,4 +411,6 @@
            STOP RUN RETURNING 1.
       *
        AFFICHER-BILAN.
-           DISPLAY "BUILDSITE : " WS-NB-GLOBALES " cles globales.".
+           DISPLAY "BUILDSITE : "
+                   WS-NB-GLOBALES " cles globales, "
+                   WS-NB-PROJETS  " projets.".

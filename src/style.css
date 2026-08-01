@@ -59,6 +59,42 @@ body{
 .block{padding-bottom:3.25rem}
 .block+.block{border-top:1px solid var(--rule);padding-top:2.5rem}
 
+.skip{
+  position:absolute;left:-999px;top:auto;
+  width:1px;height:1px;overflow:hidden;
+}
+.skip:focus{
+  position:fixed;left:1rem;top:1rem;z-index:100;
+  width:auto;height:auto;
+  padding:0.6rem 1rem;
+  background:var(--paper);color:var(--ink);
+  border:2px solid var(--stamp);
+  font-weight:700;
+}
+
+.nav{
+  display:flex;flex-wrap:wrap;
+  align-items:baseline;justify-content:space-between;
+  gap:0.5rem 1.5rem;
+  margin:0 0 0.5rem;
+  padding:0.9rem 0;
+  border-bottom:2px solid var(--ink);
+  font-size:0.8125rem;
+}
+.nav-id{margin:0;display:flex;flex-wrap:wrap;gap:0.6rem;align-items:baseline;font-weight:700}
+.nav-id-name{text-transform:uppercase;letter-spacing:0.04em}
+.nav-id-role{color:var(--ink-soft);font-weight:400}
+.nav-list{
+  display:flex;flex-wrap:wrap;gap:0 1.25rem;
+  margin:0;padding:0;list-style:none;
+}
+.nav-list a{
+  display:inline-flex;align-items:center;min-height:44px;
+  color:var(--ink);text-decoration-color:var(--rule);
+  text-underline-offset:3px;
+}
+.nav-list a:hover{color:var(--stamp);text-decoration-color:var(--stamp)}
+
 .row{
   display:grid;
   grid-template-columns:2.75rem 1fr;

@@ -21,7 +21,20 @@
 </style>
 </head>
 <body>
+<a class="skip" href="#contenu">Aller au contenu</a>
 <div class="sheet">
+
+<nav class="nav" aria-label="Navigation principale">
+<p class="nav-id"><span class="nav-id-name">{{NOM}}</span><span class="nav-id-role">{{ROLE_COURT}}</span></p>
+<ul class="nav-list">
+<li><a href="#profil">Profil</a></li>
+<li><a href="#apropos">À propos</a></li>
+<li><a href="#competences">Compétences</a></li>
+<li><a href="#projets">Projets</a></li>
+<li><a href="#parcours">Parcours</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
 
 <main id="contenu">
 
@@ -36,6 +49,14 @@
 <li><b>Terrain</b> {{FAIT_TERRAIN}}</li>
 </ul>
 </header>
+
+<section class="block" id="projets" aria-labelledby="t-projets">
+<h2 class="division" id="t-projets">DATA DIVISION. <span class="gloss">— ce que j&#39;ai construit</span></h2>
+<p class="lead">{{PROJETS_CHAPO}}</p>
+<ol class="rows">
+{{@PROJETS}}
+</ol>
+</section>
 
 <section class="block" id="contact" aria-labelledby="t-contact">
 <h2 class="division" id="t-contact">STOP RUN. <span class="gloss">— me joindre</span></h2>
