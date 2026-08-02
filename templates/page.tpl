@@ -28,7 +28,6 @@
 <p class="nav-id"><span class="nav-id-name">{{NOM}}</span><span class="nav-id-role">{{ROLE_COURT}}</span></p>
 <ul class="nav-list">
 <li><a href="#profil">Profil</a></li>
-<li><a href="#apropos">À propos</a></li>
 <li><a href="#competences">Compétences</a></li>
 <li><a href="#projets">Projets</a></li>
 <li><a href="#parcours">Parcours</a></li>
@@ -50,11 +49,27 @@
 </ul>
 </header>
 
+<section class="block" id="competences" aria-labelledby="t-competences">
+<h2 class="division" id="t-competences">ENVIRONMENT DIVISION. <span class="gloss">— ce avec quoi je travaille</span></h2>
+<p class="lead">{{COMPETENCES_CHAPO}}</p>
+<dl class="skills">
+{{@COMPETENCES}}
+</dl>
+<p class="note">{{COMPETENCES_NOTE}}</p>
+</section>
+
 <section class="block" id="projets" aria-labelledby="t-projets">
 <h2 class="division" id="t-projets">DATA DIVISION. <span class="gloss">— ce que j&#39;ai construit</span></h2>
 <p class="lead">{{PROJETS_CHAPO}}</p>
 <ol class="rows">
 {{@PROJETS}}
+</ol>
+</section>
+
+<section class="block" id="parcours" aria-labelledby="t-parcours">
+<h2 class="division" id="t-parcours">PROCEDURE DIVISION. <span class="gloss">— comment j&#39;en suis arrivé là</span></h2>
+<ol class="timeline">
+{{@PARCOURS}}
 </ol>
 </section>
 

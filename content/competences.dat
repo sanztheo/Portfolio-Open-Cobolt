@@ -1,0 +1,25 @@
+# Competences - genere depuis DOSSIER-CONTENU.md section 5
+[ITEM]                                  
+C_FAMILLE                               Langages
+C_LISTE                                 TypeScript · Python · Rust · JavaScript · HTML5/CSS3 · SQL · Swift · COBOL
+C_NOTE                                  (TypeScript et Python au quotidien, Rust sur les briques exigeantes, Swift et COBOL plus ponctuels)
+[ITEM]                                  
+C_FAMILLE                               Frontend
+C_LISTE                                 React · Next.js · Vite · Tailwind CSS · SCSS · Radix UI / shadcn · CesiumJS · Astro
+C_NOTE                                  (React et Next.js en production quotidienne, CesiumJS sur le projet SeeYou)
+[ITEM]                                  
+C_FAMILLE                               Backend
+C_LISTE                                 Node.js / Express · API REST · Prisma · PostgreSQL · MongoDB / Mongoose · Redis · Rust / Axum · WebSocket · JWT / bcrypt
+C_NOTE                                  (Node.js/Express et API REST au quotidien, Rust/Axum sur le backend temps réel de SeeYou)
+[ITEM]                                  
+C_FAMILLE                               Data et IA
+C_LISTE                                 LiveKit Agents · Vercel AI SDK · Model Context Protocol (MCP) · RAG avec embeddings pgvector · filtre de Kalman IMM-EKF
+C_NOTE                                  (LiveKit Agents et Vercel AI SDK en production sur Solva, RAG et Kalman sur des projets dédiés)
+[ITEM]                                  
+C_FAMILLE                               Infra et DevOps
+C_LISTE                                 Docker / Compose · GitHub Actions · Vercel · Railway · Twilio · Infisical · monorepo et submodules git
+C_NOTE                                  (Docker, GitHub Actions et Vercel en production sur Solva et les projets de formation)
+[ITEM]                                  
+C_FAMILLE                               Méthodes
+C_LISTE                                 Tests automatisés (Vitest, Jest, pytest, Playwright) · autorisation stricte côté serveur · audit Lighthouse / WAVE · post-mortems et runbooks · divulgation responsable de vulnérabilités
+C_NOTE                                  (pratiques appliquées sur plusieurs projets, dont un audit de vulnérabilités mené en autonomie)

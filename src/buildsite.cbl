@@ -9,15 +9,19 @@
       *  ENTREES                                                       *
       *    content/site.dat         CLES GLOBALES DU SITE              *
       *    content/projets.dat      UN ENREGISTREMENT PAR PROJET       *
+      *    content/competences.dat  UN ENREGISTREMENT PAR FAMILLE      *
+      *    content/parcours.dat     UN ENREGISTREMENT PAR ETAPE        *
       *    templates/page.tpl       SQUELETTE DE LA PAGE               *
       *    templates/projet.tpl     GABARIT D UNE FICHE PROJET         *
+      *    templates/competence.tpl GABARIT D UNE FAMILLE              *
+      *    templates/etape.tpl      GABARIT D UNE ETAPE DE PARCOURS    *
       *    src/style.css            FEUILLE DE STYLE, INJECTEE TELLE   *
       *                             QUELLE DANS LE <head>              *
       *  SORTIE                                                        *
       *    dist/index.html                                             *
       *                                                                *
       *  DIRECTIVES RECONNUES DANS UN GABARIT, SEULES SUR LEUR LIGNE : *
-      *    {{@PROJETS}}                                               *
+      *    {{@PROJETS}} {{@COMPETENCES}} {{@PARCOURS}}                 *
       *        DEROULENT LA LISTE CORRESPONDANTE.                      *
       *    {{@STYLE}}                                                  *
       *        RECOPIE LA FEUILLE DE STYLE OCTET POUR OCTET.           *
@@ -66,6 +70,18 @@
            SELECT F-DAT-PRJ ASSIGN TO "content/projets.dat"
                ORGANIZATION IS LINE SEQUENTIAL
                FILE STATUS  IS WS-ST-DAT.
+           SELECT F-TPL-CMP ASSIGN TO "templates/competence.tpl"
+               ORGANIZATION IS LINE SEQUENTIAL
+               FILE STATUS  IS WS-ST-TPL.
+           SELECT F-DAT-CMP ASSIGN TO "content/competences.dat"
+               ORGANIZATION IS LINE SEQUENTIAL
+               FILE STATUS  IS WS-ST-DAT.
+           SELECT F-TPL-ETP ASSIGN TO "templates/etape.tpl"
+               ORGANIZATION IS LINE SEQUENTIAL
+               FILE STATUS  IS WS-ST-TPL.
+           SELECT F-DAT-ETP ASSIGN TO "content/parcours.dat"
+               ORGANIZATION IS LINE SEQUENTIAL
+               FILE STATUS  IS WS-ST-DAT.
       *
        DATA DIVISION.
        FILE SECTION.
@@ -85,6 +101,18 @@
        01  DAT-PRJ-LIGNE.
            05  PRJ-CLE       PIC X(40).
            05  PRJ-VALEUR    PIC X(700).
+       FD  F-TPL-CMP.
+       01  TPL-CMP-LIGNE     PIC X(2000).
+       FD  F-DAT-CMP.
+       01  DAT-CMP-LIGNE.
+           05  CMP-CLE       PIC X(40).
+           05  CMP-VALEUR    PIC X(700).
+       FD  F-TPL-ETP.
+       01  TPL-ETP-LIGNE     PIC X(2000).
+       FD  F-DAT-ETP.
+       01  DAT-ETP-LIGNE.
+           05  ETP-CLE       PIC X(40).
+           05  ETP-VALEUR    PIC X(700).
       *
        WORKING-STORAGE SECTION.
       *
@@ -137,6 +165,8 @@
        01  WS-ENR-OUVERT     PIC X VALUE "N".
            88  WS-DANS-ENR    VALUE "Y".
        01  WS-NB-PROJETS     PIC 9(4) VALUE ZERO.
+       01  WS-NB-COMPETS     PIC 9(4) VALUE ZERO.
+       01  WS-NB-ETAPES      PIC 9(4) VALUE ZERO.
       *
        PROCEDURE DIVISION.
       *
@@ -220,6 +250,10 @@
                    PERFORM INJECTER-FEUILLE-DE-STYLE
                WHEN "{{@PROJETS}}"
                    PERFORM DEROULER-PROJETS
+               WHEN "{{@COMPETENCES}}"
+                   PERFORM DEROULER-COMPETENCES
+               WHEN "{{@PARCOURS}}"
+                   PERFORM DEROULER-PARCOURS
                WHEN OTHER
                    MOVE PAGE-LIGNE TO WS-LIGNE-RENDUE
                    MOVE "page.tpl" TO WS-SECTION-COUR
@@ -357,6 +391,142 @@
            MOVE "N" TO WS-FIN-DAT.
       *
       ******************************************************************
+      *  LISTE : LES COMPETENCES                                       *
+      ******************************************************************
+       DEROULER-COMPETENCES.
+           MOVE "competences" TO WS-SECTION-COUR
+           PERFORM CHARGER-GABARIT-COMPETENCE
+           MOVE "N" TO WS-FIN-DAT
+           MOVE "N" TO WS-ENR-OUVERT
+           PERFORM VIDER-PORTEE-LOCALE
+           OPEN INPUT F-DAT-CMP
+           IF WS-ST-DAT NOT = "00"
+               MOVE "content/competences.dat" TO WS-DIRECTIVE
+               PERFORM ARRET-FICHIER-INTROUVABLE
+           END-IF
+           PERFORM UNTIL WS-DAT-FINI
+               READ F-DAT-CMP
+                   AT END
+                       MOVE "Y" TO WS-FIN-DAT
+                   NOT AT END
+                       PERFORM AIGUILLER-LIGNE-COMPETENCE
+               END-READ
+           END-PERFORM
+           CLOSE F-DAT-CMP
+           IF WS-DANS-ENR
+               PERFORM RENDRE-BLOC
+               ADD 1 TO WS-NB-COMPETS
+           END-IF
+           PERFORM VIDER-PORTEE-LOCALE
+           MOVE "N" TO WS-FIN-DAT.
+      *
+       AIGUILLER-LIGNE-COMPETENCE.
+           IF DAT-CMP-LIGNE = SPACES OR CMP-CLE(1:1) = "#"
+               EXIT PARAGRAPH
+           END-IF
+           IF FUNCTION TRIM(CMP-CLE) = "[ITEM]"
+               IF WS-DANS-ENR
+                   PERFORM RENDRE-BLOC
+                   ADD 1 TO WS-NB-COMPETS
+               END-IF
+               PERFORM VIDER-PORTEE-LOCALE
+               MOVE "Y" TO WS-ENR-OUVERT
+           ELSE
+               MOVE CMP-CLE    TO WS-CLE-COURANTE
+               MOVE CMP-VALEUR TO WS-VALEUR-COURANTE
+               PERFORM RANGER-CLE-LOCALE
+           END-IF.
+      *
+       CHARGER-GABARIT-COMPETENCE.
+           MOVE ZERO TO WS-NB-BLOC
+           MOVE "N" TO WS-FIN-DAT
+           OPEN INPUT F-TPL-CMP
+           IF WS-ST-TPL NOT = "00"
+               MOVE "templates/competence.tpl" TO WS-DIRECTIVE
+               PERFORM ARRET-FICHIER-INTROUVABLE
+           END-IF
+           PERFORM UNTIL WS-DAT-FINI
+               READ F-TPL-CMP
+                   AT END
+                       MOVE "Y" TO WS-FIN-DAT
+                   NOT AT END
+                       PERFORM EMPILER-LIGNE-BLOC
+                       MOVE TPL-CMP-LIGNE
+                           TO WS-BLOC-LIGNE(WS-NB-BLOC)
+               END-READ
+           END-PERFORM
+           CLOSE F-TPL-CMP
+           MOVE "N" TO WS-FIN-DAT.
+      *
+      ******************************************************************
+      *  LISTE : LE PARCOURS                                           *
+      ******************************************************************
+       DEROULER-PARCOURS.
+           MOVE "parcours" TO WS-SECTION-COUR
+           PERFORM CHARGER-GABARIT-ETAPE
+           MOVE "N" TO WS-FIN-DAT
+           MOVE "N" TO WS-ENR-OUVERT
+           PERFORM VIDER-PORTEE-LOCALE
+           OPEN INPUT F-DAT-ETP
+           IF WS-ST-DAT NOT = "00"
+               MOVE "content/parcours.dat" TO WS-DIRECTIVE
+               PERFORM ARRET-FICHIER-INTROUVABLE
+           END-IF
+           PERFORM UNTIL WS-DAT-FINI
+               READ F-DAT-ETP
+                   AT END
+                       MOVE "Y" TO WS-FIN-DAT
+                   NOT AT END
+                       PERFORM AIGUILLER-LIGNE-ETAPE
+               END-READ
+           END-PERFORM
+           CLOSE F-DAT-ETP
+           IF WS-DANS-ENR
+               PERFORM RENDRE-BLOC
+               ADD 1 TO WS-NB-ETAPES
+           END-IF
+           PERFORM VIDER-PORTEE-LOCALE
+           MOVE "N" TO WS-FIN-DAT.
+      *
+       AIGUILLER-LIGNE-ETAPE.
+           IF DAT-ETP-LIGNE = SPACES OR ETP-CLE(1:1) = "#"
+               EXIT PARAGRAPH
+           END-IF
+           IF FUNCTION TRIM(ETP-CLE) = "[ITEM]"
+               IF WS-DANS-ENR
+                   PERFORM RENDRE-BLOC
+                   ADD 1 TO WS-NB-ETAPES
+               END-IF
+               PERFORM VIDER-PORTEE-LOCALE
+               MOVE "Y" TO WS-ENR-OUVERT
+           ELSE
+               MOVE ETP-CLE    TO WS-CLE-COURANTE
+               MOVE ETP-VALEUR TO WS-VALEUR-COURANTE
+               PERFORM RANGER-CLE-LOCALE
+           END-IF.
+      *
+       CHARGER-GABARIT-ETAPE.
+           MOVE ZERO TO WS-NB-BLOC
+           MOVE "N" TO WS-FIN-DAT
+           OPEN INPUT F-TPL-ETP
+           IF WS-ST-TPL NOT = "00"
+               MOVE "templates/etape.tpl" TO WS-DIRECTIVE
+               PERFORM ARRET-FICHIER-INTROUVABLE
+           END-IF
+           PERFORM UNTIL WS-DAT-FINI
+               READ F-TPL-ETP
+                   AT END
+                       MOVE "Y" TO WS-FIN-DAT
+                   NOT AT END
+                       PERFORM EMPILER-LIGNE-BLOC
+                       MOVE TPL-ETP-LIGNE
+                           TO WS-BLOC-LIGNE(WS-NB-BLOC)
+               END-READ
+           END-PERFORM
+           CLOSE F-TPL-ETP
+           MOVE "N" TO WS-FIN-DAT.
+      *
+      ******************************************************************
       *  RENDU D UN BLOC POUR L ENREGISTREMENT COURANT                 *
       ******************************************************************
        EMPILER-LIGNE-BLOC.
@@ -413,4 +583,6 @@
        AFFICHER-BILAN.
            DISPLAY "BUILDSITE : "
                    WS-NB-GLOBALES " cles globales, "
-                   WS-NB-PROJETS  " projets.".
+                   WS-NB-PROJETS  " projets, "
+                   WS-NB-COMPETS  " familles de competences, "
+                   WS-NB-ETAPES   " etapes de parcours.".
