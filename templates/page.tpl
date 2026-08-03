@@ -28,6 +28,7 @@
 <p class="nav-id"><span class="nav-id-name">{{NOM}}</span><span class="nav-id-role">{{ROLE_COURT}}</span></p>
 <ul class="nav-list">
 <li><a href="#profil">Profil</a></li>
+<li><a href="#apropos">À propos</a></li>
 <li><a href="#competences">Compétences</a></li>
 <li><a href="#projets">Projets</a></li>
 <li><a href="#parcours">Parcours</a></li>
@@ -48,6 +49,18 @@
 <li><b>Terrain</b> {{FAIT_TERRAIN}}</li>
 </ul>
 </header>
+
+<section class="block" id="apropos" aria-labelledby="t-apropos">
+<h2 class="division" id="t-apropos">01 &nbsp;À propos <span class="gloss">— qui je suis, en six temps</span></h2>
+<ol class="pitch">
+<li><h3>{{PITCH_1_TITRE}}</h3><p>{{PITCH_1_TEXTE}}</p></li>
+<li><h3>{{PITCH_2_TITRE}}</h3><p>{{PITCH_2_TEXTE}}</p></li>
+<li><h3>{{PITCH_3_TITRE}}</h3><p>{{PITCH_3_TEXTE}}</p></li>
+<li><h3>{{PITCH_4_TITRE}}</h3><p>{{PITCH_4_TEXTE}}</p></li>
+<li><h3>{{PITCH_5_TITRE}}</h3><p>{{PITCH_5_TEXTE}}</p></li>
+<li><h3>{{PITCH_6_TITRE}}</h3><p>{{PITCH_6_TEXTE}}</p></li>
+</ol>
+</section>
 
 <section class="block" id="competences" aria-labelledby="t-competences">
 <h2 class="division" id="t-competences">ENVIRONMENT DIVISION. <span class="gloss">— ce avec quoi je travaille</span></h2>
