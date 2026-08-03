@@ -1,5 +1,5 @@
 # Projets - genere depuis DOSSIER-CONTENU.md section 4
-                                  
+[ITEM]                                  
 P_RANG                                  01
 P_TITRE                                 Solva
 P_ANNEE                                 2026 —
@@ -47,3 +47,99 @@ P_RESULTATS                             18 étoiles GitHub, 266 commits, 162 fic
 P_PERSPECTIVES                          Pas de CI configurée : les rapports de test sont pour l'instant conservés et vérifiés manuellement.
 P_LIENS                                 <a href="https://github.com/sanztheo/SeeYou">Code source</a> <a href="https://sanztheo.github.io/SeeYou/">Voir en ligne</a>
 P_VISUEL                                <img class="shot" src="img/seeyou.webp" width="960" height="600" loading="lazy" decoding="async" alt="Ecran d'accueil de SeeYou listant les sources suivies : vols ADS-B, orbites de satellites, cameras, prediction de trajectoire.">
+[ITEM]                                  
+P_RANG                                  04
+P_TITRE                                 Mon Vieux Grimoire — API REST de notation de livres
+P_ANNEE                                 2026
+P_CATEGORIE                             formation
+P_CATEGORIE_LABEL                       Formation
+P_RESUME                                API REST de notation de livres avec authentification JWT, upload et redimensionnement d'image, calcul de moyenne. L'autorisation est vérifiée côté serveur : le userId n'est jamais lu depuis le corps de la requête, pour rendre l'usurpation impossible.
+P_STACK                                 Node.js, Express, MongoDB, Mongoose, JWT, bcrypt, React
+P_CONTEXTE                              Construire l'API REST et le frontend d'une application de notation de livres, avec authentification, upload d'image et gestion des notes utilisateur, en respectant un starter fourni par OpenClassrooms.
+P_OBJECTIFS                             Mettre en place l'authentification, le CRUD complet des livres avec upload d'image, garantir une note par utilisateur et par livre, calculer la moyenne des notes et exposer un endpoint des trois meilleurs livres.
+P_STACK_DETAIL                          Backend : Node.js, Express 4, MongoDB avec Mongoose 8, bcrypt, JWT (24 h), multer, sharp pour le redimensionnement en 463 px et la conversion WebP, express-validator, express-rate-limit, helmet. Frontend : React 18, React Router 6, axios, react-hook-form.
+P_COMPETENCES                           Conception d'API REST avec séparation controllers/models/routes/middlewares, hash bcrypt et JWT, autorisation forcée côté serveur (userId jamais lu depuis le body), 401 générique anti-énumération, 403 sur action non autorisée, écoconception des images.
+P_RESULTATS                             API documentée de façon exhaustive dans le README. Sécurité renforcée au-delà du strict nécessaire : rate limiting, helmet et validation stricte, absents du starter OpenClassrooms de départ. 50 commits de développement.
+P_PERSPECTIVES                          Aucun test automatisé côté backend et aucune CI/CD mise en place à ce stade.
+P_LIENS                                 <a href="https://github.com/sanztheo/P7-Dev-Web-livres">Code source</a>
+P_VISUEL                                
+[ITEM]                                  
+P_RANG                                  05
+P_TITRE                                 Pennote
+P_ANNEE                                 2025 — 2026
+P_CATEGORIE                             perso
+P_CATEGORIE_LABEL                       Personnel
+P_RESUME                                SaaS de révision pour étudiants : éditeur type Notion, IA multi-provider, collaboration temps réel et quiz. Livré à une cinquantaine d'utilisateurs réels, arrêté faute de traction, puis proprement open-sourcé sous AGPLv3 plutôt qu'abandonné.
+P_STACK                                 Node.js, Express, Prisma, pgvector, Yjs, React, BlockNote
+P_CONTEXTE                              Construire un espace de travail combinant un éditeur collaboratif type Notion, une IA multi-provider et un système de quiz, pour aider les étudiants à réviser.
+P_OBJECTIFS                             Offrir une édition collaborative en temps réel, une génération de contenu assistée par IA avec recherche augmentée sur les notes de l'utilisateur, et une facturation fonctionnelle pour un produit destiné à de vrais utilisateurs.
+P_STACK_DETAIL                          Backend : Node.js 22 ESM, Express 4, Prisma 6 en double schéma dont pgvector pour le RAG, Vercel AI SDK v6 (6 providers), Yjs (CRDT) avec persistance Postgres, BullMQ/Redis, Paddle, Clerk, Jest. Frontend : React 18, Vite 6, BlockNote, TipTap 3, Mantine 8, i18n en 9 langues, Playwright et Vitest.
+P_COMPETENCES                           Collaboration temps réel par CRDT, recherche augmentée (RAG) avec embeddings pgvector, mise en place de la facturation, conception d'une API d'environ 200 endpoints répartis sur 31 fichiers de routes.
+P_RESULTATS                             Livré à environ 50 utilisateurs réels. Faute de traction, le produit a été arrêté puis proprement open-sourcé (CI, SECURITY.md, CONTRIBUTING.md) sous licence AGPLv3, plutôt que laissé à l'abandon en privé.
+P_PERSPECTIVES                          Le produit n'a pas trouvé son marché : limite assumée et documentée telle quelle dans le README plutôt que maquillée.
+P_LIENS                                 <a href="https://github.com/sanztheo/pennote-ai-notion-alternative">Code source</a> <a href="https://github.com/sanztheo/pen-backend">Backend</a> <a href="https://github.com/sanztheo/pen-frontend">Frontend</a>
+P_VISUEL                                
+[ITEM]                                  
+P_RANG                                  06
+P_TITRE                                 Kasa — application de location immobilière
+P_ANNEE                                 2026
+P_CATEGORIE                             formation
+P_CATEGORIE_LABEL                       Formation
+P_RESUME                                Refonte d'un site de location immobilière legacy vers React, à partir de maquettes Figma. Quatre routes, données JSON statiques, sans backend, avec gestion du cas d'un identifiant de logement inexistant.
+P_STACK                                 React, React Router, Vite, SCSS
+P_CONTEXTE                              Un site de location immobilière existant, en HTML/CSS/JS legacy, doit être reconstruit avec une stack JavaScript moderne à partir de maquettes Figma fournies.
+P_OBJECTIFS                             Construire un frontend React avec composants réutilisables et routing, consommer des données JSON statiques sans backend, et respecter fidèlement une maquette responsive desktop/tablette/mobile.
+P_STACK_DETAIL                          React 19, React Router DOM 7, Vite 8, SCSS avec un fichier par composant et des tokens partagés, ESLint 10, hook personnalisé useFetch pour la lecture des données JSON.
+P_COMPETENCES                           Composants réutilisables (Banner, Card, Gallery, Collapse, Rating), routing client à 4 routes avec 404 catch-all, gestion de cas limites (galerie circulaire, accordéon), respect strict d'une maquette responsive.
+P_RESULTATS                             Application à 4 routes fonctionnelle, avec gestion d'erreur propre sur un identifiant de logement inexistant. 26 commits.
+P_PERSPECTIVES                          Pas de tests automatisés et pas de déploiement public à ce stade.
+P_LIENS                                 <a href="https://github.com/sanztheo/kasa">Code source</a>
+P_VISUEL                                
+[ITEM]                                  
+P_RANG                                  07
+P_TITRE                                 taap.it — recherche de vulnérabilités
+P_ANNEE                                 2026
+P_CATEGORIE                             pro
+P_CATEGORIE_LABEL                       Professionnel
+P_RESUME                                Audit personnel de la plateforme Taap.it : identification de plusieurs failles critiques dans leur API pouvant compromettre l'ensemble des données utilisateurs. Documentation détaillée et divulgation responsable auprès de l'équipe technique.
+P_STACK                                 Audit d'API, reverse engineering, divulgation responsable
+P_CONTEXTE                              En marge de son activité, audit indépendant de la plateforme Taap.it pour évaluer la sécurité de son API.
+P_OBJECTIFS                             Identifier les vecteurs d'exploitation exposant les données utilisateurs et transmettre l'information à l'équipe technique avant toute divulgation publique.
+P_STACK_DETAIL                          Analyse manuelle de l'API de la plateforme, documentation de chaque vulnérabilité identifiée et de son vecteur d'exploitation.
+P_COMPETENCES                           Analyse de sécurité d'API, rédaction de rapports de vulnérabilité exploitables, divulgation responsable : contact direct de l'équipe technique, explication des vecteurs, accompagnement des correctifs.
+P_RESULTATS                             Plusieurs failles critiques identifiées et corrigées par l'équipe de Taap.it à la suite de la divulgation.
+P_PERSPECTIVES                          Audit ponctuel, non reconduit en programme de bug bounty formalisé.
+P_LIENS                                 <span class="p-nolink">Divulgation responsable, sans publication</span>
+P_VISUEL                                
+[ITEM]                                  
+P_RANG                                  08
+P_TITRE                                 UltraAgent — orchestrateur multi-agent
+P_ANNEE                                 2026
+P_CATEGORIE                             perso
+P_CATEGORIE_LABEL                       Personnel
+P_RESUME                                Orchestrateur multi-agent open source qui connecte Claude Code, Codex CLI et Gemini CLI en équipe, via tmux et un serveur MCP. Publié sur npm avec un CHANGELOG versionné.
+P_STACK                                 Node.js, TypeScript, MCP, tmux, Biome, Vitest
+P_CONTEXTE                              Faire travailler ensemble plusieurs CLI d'agents IA (Claude Code, Codex CLI, Gemini CLI) sur un même dépôt, chacun dans son propre worktree git, sans qu'ils se marchent dessus.
+P_OBJECTIFS                             Exposer un serveur MCP stdio avec des outils de coordination, gérer un layout tmux par équipe d'agents, et faire circuler un pipeline plan/exec/verify entre les workers.
+P_STACK_DETAIL                          Node.js ≥20, TypeScript, Biome pour le lint/format, Vitest pour les tests. Serveur MCP en stdio, IPC par pipe entre les process, gestion de worktree git par worker.
+P_COMPETENCES                           Conception d'un serveur MCP exposant des outils, gestion de layout tmux programmatique, IPC par pipe, isolation par worktree git, conception d'un pipeline plan/exec/verify multi-agent.
+P_RESULTATS                             Publié sur npm (npm install -g ultraagent) avec un CHANGELOG versionné et plus de 25 fichiers de tests unitaires.
+P_PERSPECTIVES                          Pas de CI en place malgré la maturité du code, à ajouter avant une prochaine version majeure.
+P_LIENS                                 <a href="https://github.com/sanztheo/UltraAgent">Code source</a>
+P_VISUEL                                
+[ITEM]                                  
+P_RANG                                  09
+P_TITRE                                 Ce portfolio — générateur de site en COBOL
+P_ANNEE                                 2026
+P_CATEGORIE                             perso
+P_CATEGORIE_LABEL                       Personnel
+P_RESUME                                Le site que vous lisez. Chaque octet de HTML est généré par un programme COBOL : le contenu vit dans des fichiers texte à colonnes fixes, un moteur COBOL les lit, échappe les valeurs et assemble les pages à partir de gabarits.
+P_STACK                                 COBOL, gabarits texte, génération statique
+P_CONTEXTE                              Projet final du parcours OpenClassrooms Développeur Web : produire un portfolio professionnel, avec la contrainte personnelle d'écrire le générateur en COBOL plutôt qu'avec un outil web classique.
+P_OBJECTIFS                             Séparer strictement le contenu (fichiers de données à colonnes fixes) du rendu (gabarits HTML), avec un moteur COBOL capable de lire, d'échapper et d'assembler l'ensemble sans framework JavaScript côté génération.
+P_STACK_DETAIL                          Moteur de génération écrit en COBOL, fichiers de contenu en colonnes fixes (clé sur 40 colonnes, valeur en fin de ligne), gabarits HTML avec placeholders remplacés à la génération, sortie HTML statique en UTF-8.
+P_COMPETENCES                           Parsing de fichiers à colonnes fixes en COBOL, échappement systématique des valeurs injectées dans le HTML, séparation contenu/gabarit sur un langage sans écosystème web moderne.
+P_RESULTATS                             Site statique généré intégralement par le programme COBOL, sans étape de build JavaScript.
+P_PERSPECTIVES                          Les scores de performance et d'accessibilité restent à mesurer sur la version finale déployée avant d'être affichés publiquement.
+P_LIENS                                 <a href="https://github.com/sanztheo/Portfolio-Open-Cobolt">Code source</a>
+P_VISUEL                                
