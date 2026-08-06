@@ -50,7 +50,11 @@ compiler build/buildsite src/buildsite.cbl $MODULES
 
 echo "==> Generation du site"
 mkdir -p dist
+# Le generateur ecrit dans un fichier de travail. On ne le promeut en page
+# finale qu'apres un succes complet : le rendu s'arrete au premier probleme,
+# et une page a moitie ecrite ne doit jamais remplacer une page valide.
 ./build/buildsite
+mv dist/index.html.part dist/index.html
 
 cp -R public/. dist/ 2>/dev/null || true
 

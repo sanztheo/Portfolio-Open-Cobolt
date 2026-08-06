@@ -18,7 +18,11 @@
       *    src/style.css            FEUILLE DE STYLE, INJECTEE TELLE   *
       *                             QUELLE DANS LE <head>              *
       *  SORTIE                                                        *
-      *    dist/index.html                                             *
+      *    dist/index.html.part, que build.sh renomme en               *
+      *    dist/index.html une fois le rendu termine sans erreur. LE    *
+      *    RENDU S ARRETANT AU PREMIER PROBLEME, ECRIRE DIRECTEMENT     *
+      *    DANS LA PAGE FINALE REMPLACAIT UN SITE VALIDE PAR UN HTML    *
+      *    TRONQUE, BALISES OUVERTES COMPRISES.                         *
       *                                                                *
       *  DIRECTIVES RECONNUES DANS UN GABARIT, SEULES SUR LEUR LIGNE : *
       *    {{@PROJETS}} {{@COMPETENCES}} {{@PARCOURS}}                 *
@@ -56,7 +60,7 @@
            SELECT F-CSS    ASSIGN TO "src/style.css"
                ORGANIZATION IS LINE SEQUENTIAL
                FILE STATUS  IS WS-ST-CSS.
-           SELECT F-SORTIE ASSIGN TO "dist/index.html"
+           SELECT F-SORTIE ASSIGN TO "dist/index.html.part"
                ORGANIZATION IS LINE SEQUENTIAL
                FILE STATUS  IS WS-ST-SORTIE.
       *    UN COUPLE GABARIT + DONNEES PAR LISTE. LES NOMS DE FICHIERS
