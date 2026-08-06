@@ -56,6 +56,9 @@ mkdir -p dist
 ./build/buildsite
 mv dist/index.html.part dist/index.html
 
+echo "==> Tests d'integration"
+./tests/integration.sh
+
 cp -R public/. dist/ 2>/dev/null || true
 
 echo "==> dist/index.html : $(wc -c < dist/index.html | tr -d ' ') octets"
