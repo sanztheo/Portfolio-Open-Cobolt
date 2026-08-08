@@ -280,10 +280,16 @@ a:focus-visible,:focus-visible{
   transform:rotate(-1.5deg);
 }
 
+/* Les lignes glissent vers le haut a l'apparition, comme une feuille qui
+   sort d'une imprimante ligne. L'animation ne touche que `transform` :
+   animer `opacity` ferait passer le texte par des etats de faible
+   contraste, que les auditeurs d'accessibilite echantillonnent et
+   signalent en violation WCAG alors que le contraste final est de
+   12,5:1. Le mouvement suffit a l'effet, le fondu ne servait rien. */
 @media (prefers-reduced-motion:no-preference){
   .row{animation:feed 420ms cubic-bezier(.2,.8,.2,1) backwards}
   .row{animation-delay:calc(var(--i,0) * 60ms)}
   .fiche summary::before{transition:transform 160ms ease}
 }
-@keyframes feed{from{opacity:0;transform:translateY(7px)}}
+@keyframes feed{from{transform:translateY(7px)}}
 
