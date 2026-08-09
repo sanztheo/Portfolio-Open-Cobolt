@@ -293,3 +293,14 @@ a:focus-visible,:focus-visible{
 }
 @keyframes feed{from{transform:translateY(7px)}}
 
+/* Capture du projet, rangee dans la fiche depliable. Les dimensions sont
+   inscrites dans le HTML pour que le navigateur reserve la place avant le
+   telechargement : sans elles, l'ouverture de la fiche ferait sauter la page.
+   Le chargement est differe, donc une fiche jamais ouverte ne coute rien. */
+.shot{
+  display:block;
+  width:100%;height:auto;
+  margin:0 0 1.1rem;
+  border:1px solid var(--rule);
+  background:var(--paper);
+}
