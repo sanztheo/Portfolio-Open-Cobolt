@@ -1,0 +1,35 @@
+name: Compiler le COBOL et deployer
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer GnuCOBOL
+        run: sudo apt-get update && sudo apt-get install -y gnucobol
+
+      - name: Generer le site
+        run: ./build.sh
+
+      # Option A, celle utilisee ici : Vercel recoit dist/ deja construit.
+      - name: Deployer sur Vercel
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npx vercel@latest deploy dist --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+
+      # Option B, si tu preferes garder l integration Git de Vercel :
+      # commente le bloc ci-dessus et decommente celui-ci.
+      # - name: Committer dist/
+      #   run: |
+      #     git config user.name  "buildsite"
+      #     git config user.email "build@users.noreply.github.com"
+      #     git add -f dist
+      #     git diff --staged --quiet || git commit -m "build: regeneration du site par COBOL"
+      #     git push
