@@ -5,63 +5,63 @@ P_TITRE                                 Solva
 P_ANNEE                                 2026 —
 P_CATEGORIE                             startup
 P_CATEGORIE_LABEL                       Startup
-P_RESUME                                Secrétariat téléphonique IA pour cabinets de santé : l'agent vocal décroche, vérifie l'identité du patient, détecte les urgences et gère les rendez-vous en français, anglais et allemand. Co-fondé et développé de bout en bout, en production.
+P_RESUME                                Solva, c'est ma boîte : un secrétariat téléphonique IA pour cabinets de santé. L'agent vocal décroche, vérifie l'identité du patient, détecte les urgences et gère les rendez-vous en français, anglais et allemand. En production, avec de vrais utilisateurs payants.
 P_STACK                                 Python, LiveKit Agents, Next.js, Prisma, Clerk, Vercel AI SDK, Twilio
-P_CONTEXTE                              Les cabinets et cliniques perdent un temps considérable au téléphone : rendez-vous, urgences, questions administratives. Solva décroche l'appel, qualifie le motif et prend en charge la demande sans humain derrière le combiné.
-P_OBJECTIFS                             Automatiser la prise de rendez-vous et la vérification d'identité patient, détecter les urgences pour les escalader, gérer le multilingue (français, anglais, allemand) et poser des garde-fous stricts sur les données personnelles.
-P_STACK_DETAIL                          Agent vocal : Python 3.12, LiveKit Agents SDK, STT Soniox v4, LLM Gemini 2.5 Flash ou GPT-5.4, TTS Cartesia Sonic/ElevenLabs/Google, VAD Silero, téléphonie Twilio SIP, secrets via Infisical. Dashboard : Next.js 16, React 18, Prisma, Clerk, Vercel AI SDK v6, Pusher, Resend, AWS S3, Radix UI. Déploiement Vercel et Railway.
-P_COMPETENCES                           Routing multi-agent (Triage vers Booking, Management, Patient, FAQ, Reminder), i18n FR/EN/DE, scrub des données personnelles, gestion DTMF, escalade d'urgence, observabilité par shadow judge post-appel, intégration multi-provider LLM interchangeable.
-P_RESULTATS                             En production sur LiveKit Cloud avec environnements dev et prod distincts, CI GitHub Actions, Dockerfile, typage strict (mypy), suite pytest, post-mortems et runbooks d'incident versionnés dans le repo.
-P_PERSPECTIVES                          La couverture de tests reste à élargir et les benchmarks de latence de la chaîne voix à industrialiser pour suivre la montée en charge.
-P_LIENS                                 <a href="https://getsolva.fr">Site du produit</a> <span class="p-nolink">dépôts privés</span>
+P_CONTEXTE                              J'ai co-fondé Solva parce que les cabinets et cliniques perdent un temps considérable au téléphone : rendez-vous, urgences, questions administratives. L'agent décroche l'appel, qualifie le motif et gère le planning à leur place.
+P_OBJECTIFS                             Automatiser la prise de rendez-vous et la vérification d'identité patient, détecter les urgences pour les escalader, gérer le multilingue (français, anglais, allemand) et garder des garde-fous stricts sur les données personnelles.
+P_STACK_DETAIL                          Agent vocal : Python 3.12, LiveKit Agents SDK, STT Soniox v4, LLM interchangeable (Gemini 2.5 Flash ou GPT-5.4), TTS Cartesia Sonic / ElevenLabs / Google, VAD Silero, téléphonie Twilio SIP. Dashboard : Next.js 16, Prisma, Clerk, Vercel AI SDK v6, LiveKit server SDK. Vercel + Railway.
+P_COMPETENCES                           Je route les appels entre agents spécialisés (triage, booking, urgence), je gère le scrub des données personnelles, l'escalade d'urgence et le DTMF. Pour l'observabilité, j'ai mis en place un shadow judge qui note chaque appel après coup, plus une CI GitHub Actions avec pytest et mypy strict.
+P_RESULTATS                             En production sur LiveKit Cloud, environnements dev et prod séparés, Dockerfile, suite pytest, post-mortems et runbooks d'incident versionnés dans le repo.
+P_PERSPECTIVES                          Je veux élargir la couverture de tests et industrialiser les benchmarks de latence de la chaîne voix avant de monter en charge.
+P_LIENS                                 <a href="https://getsolva.fr">Site du produit</a> <span class="p-nolink">Dépôt privé</span>
 P_VISUEL                                <img class="shot" src="img/solva.webp" width="960" height="600" loading="lazy" decoding="async" alt="Page d'accueil de Solva : un telephone affiche un appel patient en cours, pris en charge par l'agent vocal.">
 [ITEM]                                  
 P_RANG                                  02
-P_TITRE                                 Nina Carducci — audit SEO, accessibilité, performance
-P_ANNEE                                 2026
-P_CATEGORIE                             formation
-P_CATEGORIE_LABEL                       Formation
-P_RESUME                                Audit et refonte d'un site vitrine de photographe existant, documentés en deux phases datées avec hash de commit pour chaque correction. Performance, accessibilité et référencement mesurés avant/après avec Lighthouse et WAVE.
-P_STACK                                 HTML5, CSS3, Bootstrap allégé, JS vanilla, jQuery, WebP, Schema.org
-P_CONTEXTE                              Un site vitrine de photographe existant présentait des lacunes de référencement, d'accessibilité et de performance. Le projet consiste à l'auditer puis à corriger chaque point identifié, en traçant chaque correction par un commit daté.
-P_OBJECTIFS                             Faire remonter les scores Lighthouse sur les quatre axes, corriger les erreurs d'accessibilité relevées par WAVE, réduire le poids des ressources chargées et documenter chaque correction dans un rapport technique chiffré.
-P_STACK_DETAIL                          HTML5 sémantique, CSS3 avec Bootstrap allégé, JavaScript vanilla et jQuery pour la galerie interactive, polices auto-hébergées, images converties en WebP, données structurées Schema.org et balises Open Graph.
-P_COMPETENCES                           Audit avec Lighthouse et WAVE, sémantique HTML pour lecteurs d'écran, optimisation d'assets (polices, images), debug de composants interactifs tiers, rédaction d'un rapport technique traçable commit par commit.
-P_RESULTATS                             Performance 67 → 99, Accessibilité 87 → 100, Bonnes pratiques 96 → 100, SEO maintenu à 100. Erreurs WAVE 4 → 0, contraste 2,1:1 → 13,3:1, affichage 6,6 s → 2,0 s, poids de Bootstrap 160 Ko → 10 Ko. 38 commits.
-P_PERSPECTIVES                          jQuery (~59 Ko) reste nécessaire au fonctionnement de la galerie mauGallery et n'a pas pu être retiré. Une réécriture de la galerie sans jQuery est possible mais dépassait le périmètre de l'audit.
-P_LIENS                                 <a href="https://github.com/sanztheo/Nina-Carducci-Dev-master">Code source</a>
-P_VISUEL                                
-[ITEM]                                  
-P_RANG                                  03
 P_TITRE                                 SeeYou — renseignement géospatial temps réel
 P_ANNEE                                 2026
 P_CATEGORIE                             perso
 P_CATEGORIE_LABEL                       Personnel
-P_RESUME                                Globe 3D temps réel agrégeant avions ADS-B, satellites, séismes, feux de forêt, trafic maritime et météo spatiale depuis plus de 25 API publiques gratuites. Backend Rust de 24 crates, frontend React/CesiumJS, prédiction de trajectoire par filtre de Kalman.
+P_RESUME                                Globe 3D temps réel que j'agrège depuis plus de 25 API publiques gratuites : avions ADS-B, satellites, séismes, feux de forêt, trafic maritime, météo spatiale. Backend Rust en 24 crates, filtre de Kalman multi-modèle pour lisser les trajectoires. 18 étoiles, 266 commits.
 P_STACK                                 React, TypeScript, CesiumJS, Rust, Axum, Redis, WebSocket
-P_CONTEXTE                              Démontrer qu'une architecture temps réel complète — ingestion, cache, diffusion, rendu 3D — peut tenir sans backend tiers payant, en s'appuyant uniquement sur des API publiques gratuites.
-P_OBJECTIFS                             Agréger et normaliser plus de 25 sources de données géospatiales hétérogènes, diffuser les mises à jour en temps réel vers le frontend, et prédire la trajectoire des aéronefs pour lisser les données ADS-B bruitées.
-P_STACK_DETAIL                          Frontend : React 19.2, TypeScript, Vite 7.3, CesiumJS 1.138 via Resium, Tailwind 4.2, Vitest. Backend : workspace Rust de 24 crates (Axum, Tokio, Redis, SurrealDB, rdkafka, geojson), Redis pour le cache, Docker Compose, diffusion WebSocket.
-P_COMPETENCES                           Architecture poll-cache-broadcast pour tenir la charge des API publiques, filtre de Kalman multi-modèle (IMM-EKF) pour la prédiction de trajectoire, shaders GLSL personnalisés (vision nocturne, FLIR, effet CRT).
-P_RESULTATS                             18 étoiles GitHub, 266 commits, 162 fichiers Rust et 174 fichiers TypeScript, 29 fichiers de tests Vitest. Coût d'infrastructure nul, uniquement des API publiques gratuites.
-P_PERSPECTIVES                          Pas de CI configurée : les rapports de test sont pour l'instant conservés et vérifiés manuellement.
+P_CONTEXTE                              Je voulais vérifier qu'une architecture temps réel complète — ingestion, cache, diffusion, rendu 3D — tient sans backend tiers payant, seulement avec des API publiques gratuites.
+P_OBJECTIFS                             Agréger et normaliser plus de 25 sources de données géospatiales hétérogènes, diffuser les mises à jour en temps réel vers le frontend, et prédire la trajectoire des aéronefs suivis.
+P_STACK_DETAIL                          Frontend : React 19.2, TypeScript, Vite 7.3, CesiumJS 1.138 via Resium, Tailwind 4.2, Vitest. Backend : workspace Rust de 24 crates (Axum, Tokio, Redis, SurrealDB, rdkafka, geojson), Docker Compose, WebSocket.
+P_COMPETENCES                           J'ai implémenté une architecture poll-cache-broadcast pour tenir la charge des API publiques, et un filtre de Kalman multi-modèle (IMM-EKF) pour prédire la trajectoire des aéronefs. Les shaders GLSL (vision nocturne, FLIR, CRT) sont faits main.
+P_RESULTATS                             18 étoiles GitHub, 266 commits, 162 fichiers Rust et 174 fichiers TypeScript, 29 fichiers de tests Vitest. Coût d'infrastructure nul : uniquement des API publiques gratuites.
+P_PERSPECTIVES                          Je n'ai pas encore mis de CI en place ; je vérifie les rapports de test manuellement pour l'instant.
 P_LIENS                                 <a href="https://github.com/sanztheo/SeeYou">Code source</a> <a href="https://sanztheo.github.io/SeeYou/">Voir en ligne</a>
 P_VISUEL                                <img class="shot" src="img/seeyou.webp" width="960" height="600" loading="lazy" decoding="async" alt="Ecran d'accueil de SeeYou listant les sources suivies : vols ADS-B, orbites de satellites, cameras, prediction de trajectoire.">
 [ITEM]                                  
-P_RANG                                  04
-P_TITRE                                 Mon Vieux Grimoire — API REST de notation de livres
+P_RANG                                  03
+P_TITRE                                 MineSync
 P_ANNEE                                 2026
-P_CATEGORIE                             formation
-P_CATEGORIE_LABEL                       Formation
-P_RESUME                                API REST de notation de livres avec authentification JWT, upload et redimensionnement d'image, calcul de moyenne. L'autorisation est vérifiée côté serveur : le userId n'est jamais lu depuis le corps de la requête, pour rendre l'usurpation impossible.
-P_STACK                                 Node.js, Express, MongoDB, Mongoose, JWT, bcrypt, React
-P_CONTEXTE                              Construire l'API REST et le frontend d'une application de notation de livres, avec authentification, upload d'image et gestion des notes utilisateur, en respectant un starter fourni par OpenClassrooms.
-P_OBJECTIFS                             Mettre en place l'authentification, le CRUD complet des livres avec upload d'image, garantir une note par utilisateur et par livre, calculer la moyenne des notes et exposer un endpoint des trois meilleurs livres.
-P_STACK_DETAIL                          Backend : Node.js, Express 4, MongoDB avec Mongoose 8, bcrypt, JWT (24 h), multer, sharp pour le redimensionnement en 463 px et la conversion WebP, express-validator, express-rate-limit, helmet. Frontend : React 18, React Router 6, axios, react-hook-form.
-P_COMPETENCES                           Conception d'API REST avec séparation controllers/models/routes/middlewares, hash bcrypt et JWT, autorisation forcée côté serveur (userId jamais lu depuis le body), 401 générique anti-énumération, 403 sur action non autorisée, écoconception des images.
-P_RESULTATS                             API documentée de façon exhaustive dans le README. Sécurité renforcée au-delà du strict nécessaire : rate limiting, helmet et validation stricte, absents du starter OpenClassrooms de départ. 50 commits de développement.
-P_PERSPECTIVES                          Aucun test automatisé côté backend et aucune CI/CD mise en place à ce stade.
-P_LIENS                                 <a href="https://github.com/sanztheo/P7-Dev-Web-livres">Code source</a>
+P_CATEGORIE                             perso
+P_CATEGORIE_LABEL                       Personnel
+P_RESUME                                Launcher Minecraft desktop qui synchronise des modpacks entre amis en P2P, sans serveur central. Stack libp2p complète (noise, yamux, relay, dcutr, autonat) pour la découverte et le hole-punching NAT, plus un protocole de diff de manifeste de mods fait main.
+P_STACK                                 Rust, Tauri, libp2p, React, TypeScript, SQLite
+P_CONTEXTE                              Partager un modpack Minecraft avec des amis, jusque-là, ça veut dire renvoyer un ZIP de plusieurs gigas par Drive à chaque mise à jour. MineSync remplace ça par un code de partage et une synchronisation P2P directe.
+P_OBJECTIFS                             Découvrir les pairs et traverser les NAT sans serveur relais permanent, calculer un diff de manifeste (mods ajoutés, retirés, mis à jour) et laisser l'utilisateur confirmer avant toute installation.
+P_STACK_DETAIL                          Backend Rust (Tauri v2) : tokio, reqwest, rusqlite en WAL, libp2p 0.54 avec noise, yamux, relay, dcutr et autonat. Frontend : React 19, Tailwind CSS v4, React Router 7. Auth Microsoft en OAuth Device Code Flow, téléchargements parallèles vérifiés par SHA1.
+P_COMPETENCES                           J'ai construit la couche P2P avec dcutr pour le hole-punching NAT et autonat pour la découverte, sans dépendre d'un relais permanent. Le protocole de diff de manifeste (add/remove/update) et le swarm libp2p sont faits main, sans framework réseau tout fait.
+P_RESULTATS                             Launcher fonctionnel avec gestion multi-instances, support Fabric/Quilt/Forge/NeoForge, recherche unifiée CurseForge + Modrinth, et synchronisation P2P testée entre deux postes.
+P_PERSPECTIVES                          Le protocole reste jeune : pas encore de tests de charge sur des sessions P2P à plus de deux participants.
+P_LIENS                                 <a href="https://github.com/sanztheo/MineSync">Code source</a>
+P_VISUEL                                
+[ITEM]                                  
+P_RANG                                  04
+P_TITRE                                 PerformanceViewer
+P_ANNEE                                 2026
+P_CATEGORIE                             perso
+P_CATEGORIE_LABEL                       Personnel
+P_RESUME                                App de menu bar macOS qui affiche CPU, RAM, disque et batterie en temps réel, rafraîchis toutes les deux secondes via les API bas niveau du système. Zéro dépendance tierce, uniquement les frameworks Apple.
+P_STACK                                 Swift, SwiftUI, Mach kernel API, IOKit
+P_CONTEXTE                              Activity Monitor est complet mais lourd, et la plupart des moniteurs tiers ajoutent des fonctionnalités dont je n'ai pas besoin. PerformanceViewer se limite à l'essentiel, toujours visible dans la barre de menu.
+P_OBJECTIFS                             Lire les métriques système directement depuis les API bas niveau macOS plutôt que via des wrappers, et les afficher dans une popover compacte sans fenêtre principale ni icône dans le Dock.
+P_STACK_DETAIL                          SwiftUI avec le framework Observation (@Observable), zéro dépendance tierce. CPU via host_processor_info (Mach kernel) avec delta entre échantillons, mémoire via host_statistics64, disque via volumeAvailableCapacityForImportantUsage (même métrique que le Finder), batterie via IOPSCopyPowerSourcesInfo (IOKit), liste de process via proc_listallpids et proc_pidinfo (API BSD).
+P_COMPETENCES                           J'ai désactivé l'App Sandbox pour accéder à proc_pidinfo, IOKit et aux API Mach — un compromis assumé pour une app qui lit l'état système bas niveau. Le calcul du CPU par delta entre deux échantillons, plutôt qu'une lecture instantanée, évite les pics faux qu'on voit sur certains moniteurs tiers.
+P_RESULTATS                             App fonctionnelle en menu bar : résumé CPU/RAM/batterie/disque toujours visible, popover avec grille de cartes, détail par sous-catégorie (CPU user/system/idle/nice, mémoire active/wired/compressed/free), top 10 des process par mémoire résidente.
+P_PERSPECTIVES                          Le suivi CPU par process et le monitoring GPU (Metal Performance HUD) ne sont pas encore implémentés.
+P_LIENS                                 <a href="https://github.com/sanztheo/PerformanceViewer">Code source</a>
 P_VISUEL                                
 [ITEM]                                  
 P_RANG                                  05
@@ -69,31 +69,31 @@ P_TITRE                                 Pennote
 P_ANNEE                                 2025 — 2026
 P_CATEGORIE                             perso
 P_CATEGORIE_LABEL                       Personnel
-P_RESUME                                SaaS de révision pour étudiants : éditeur type Notion, IA multi-provider, collaboration temps réel et quiz. Livré à une cinquantaine d'utilisateurs réels, arrêté faute de traction, puis proprement open-sourcé sous AGPLv3 plutôt qu'abandonné.
+P_RESUME                                SaaS de révision pour étudiants que j'ai construit seul : éditeur type Notion, IA multi-provider, collaboration temps réel et quiz. Livré à une cinquantaine d'utilisateurs réels, arrêté faute de traction et proprement open-sourcé plutôt qu'abandonné.
 P_STACK                                 Node.js, Express, Prisma, pgvector, Yjs, React, BlockNote
-P_CONTEXTE                              Construire un espace de travail combinant un éditeur collaboratif type Notion, une IA multi-provider et un système de quiz, pour aider les étudiants à réviser.
-P_OBJECTIFS                             Offrir une édition collaborative en temps réel, une génération de contenu assistée par IA avec recherche augmentée sur les notes de l'utilisateur, et une facturation fonctionnelle pour un produit destiné à de vrais utilisateurs.
-P_STACK_DETAIL                          Backend : Node.js 22 ESM, Express 4, Prisma 6 en double schéma dont pgvector pour le RAG, Vercel AI SDK v6 (6 providers), Yjs (CRDT) avec persistance Postgres, BullMQ/Redis, Paddle, Clerk, Jest. Frontend : React 18, Vite 6, BlockNote, TipTap 3, Mantine 8, i18n en 9 langues, Playwright et Vitest.
-P_COMPETENCES                           Collaboration temps réel par CRDT, recherche augmentée (RAG) avec embeddings pgvector, mise en place de la facturation, conception d'une API d'environ 200 endpoints répartis sur 31 fichiers de routes.
-P_RESULTATS                             Livré à environ 50 utilisateurs réels. Faute de traction, le produit a été arrêté puis proprement open-sourcé (CI, SECURITY.md, CONTRIBUTING.md) sous licence AGPLv3, plutôt que laissé à l'abandon en privé.
-P_PERSPECTIVES                          Le produit n'a pas trouvé son marché : limite assumée et documentée telle quelle dans le README plutôt que maquillée.
+P_CONTEXTE                              Je voulais un espace de travail qui combine un éditeur collaboratif type Notion, une IA multi-provider et un système de quiz, pour aider les étudiants à réviser.
+P_OBJECTIFS                             Offrir une édition collaborative en temps réel, une génération de contenu assistée par IA avec recherche augmentée sur les notes de l'utilisateur, et une facturation fonctionnelle pour un vrai produit payant.
+P_STACK_DETAIL                          Backend : Node.js 22 ESM, Express 4, Prisma 6 en double schéma dont pgvector pour le RAG, Vercel AI SDK v6 (6 providers), Yjs (CRDT) avec persistance Postgres, BullMQ/Redis, Paddle, Clerk, Jest. Frontend : React 18, Vite 6, BlockNote (8 blocs custom), TipTap 3, Mantine 8, i18n 9 langues, Playwright + Vitest.
+P_COMPETENCES                           J'ai géré la collaboration temps réel par CRDT, le RAG avec embeddings pgvector, et conçu une API d'environ 200 endpoints. La facturation Paddle, je l'ai branchée et testée en conditions réelles, pas juste en sandbox.
+P_RESULTATS                             Livré à environ 50 utilisateurs réels. Faute de traction, j'ai arrêté le produit puis proprement open-sourcé le code (CI, SECURITY.md, CONTRIBUTING.md) sous licence AGPLv3.
+P_PERSPECTIVES                          Le produit n'a pas trouvé son marché. Je le dis tel quel dans le README plutôt que de le maquiller — c'est la limite du projet, pas un accident de parcours.
 P_LIENS                                 <a href="https://github.com/sanztheo/pennote-ai-notion-alternative">Code source</a> <a href="https://github.com/sanztheo/pen-backend">Backend</a> <a href="https://github.com/sanztheo/pen-frontend">Frontend</a>
 P_VISUEL                                
 [ITEM]                                  
 P_RANG                                  06
-P_TITRE                                 Kasa — application de location immobilière
+P_TITRE                                 UltraAgent — orchestrateur multi-agent
 P_ANNEE                                 2026
-P_CATEGORIE                             formation
-P_CATEGORIE_LABEL                       Formation
-P_RESUME                                Refonte d'un site de location immobilière legacy vers React, à partir de maquettes Figma. Quatre routes, données JSON statiques, sans backend, avec gestion du cas d'un identifiant de logement inexistant.
-P_STACK                                 React, React Router, Vite, SCSS
-P_CONTEXTE                              Un site de location immobilière existant, en HTML/CSS/JS legacy, doit être reconstruit avec une stack JavaScript moderne à partir de maquettes Figma fournies.
-P_OBJECTIFS                             Construire un frontend React avec composants réutilisables et routing, consommer des données JSON statiques sans backend, et respecter fidèlement une maquette responsive desktop/tablette/mobile.
-P_STACK_DETAIL                          React 19, React Router DOM 7, Vite 8, SCSS avec un fichier par composant et des tokens partagés, ESLint 10, hook personnalisé useFetch pour la lecture des données JSON.
-P_COMPETENCES                           Composants réutilisables (Banner, Card, Gallery, Collapse, Rating), routing client à 4 routes avec 404 catch-all, gestion de cas limites (galerie circulaire, accordéon), respect strict d'une maquette responsive.
-P_RESULTATS                             Application à 4 routes fonctionnelle, avec gestion d'erreur propre sur un identifiant de logement inexistant. 26 commits.
-P_PERSPECTIVES                          Pas de tests automatisés et pas de déploiement public à ce stade.
-P_LIENS                                 <a href="https://github.com/sanztheo/kasa">Code source</a>
+P_CATEGORIE                             perso
+P_CATEGORIE_LABEL                       Personnel
+P_RESUME                                Orchestrateur multi-agent open source que j'ai écrit pour connecter Claude Code, Codex CLI et Gemini CLI en équipe, via tmux et un serveur MCP. Publié sur npm avec un CHANGELOG versionné et plus de 25 fichiers de tests unitaires.
+P_STACK                                 Node.js, TypeScript, MCP, tmux, Biome, Vitest
+P_CONTEXTE                              Je voulais faire travailler ensemble plusieurs CLI d'agents IA (Claude Code, Codex CLI, Gemini CLI) sur un même dépôt, chacun dans son propre worktree git, sans qu'ils se marchent dessus.
+P_OBJECTIFS                             Exposer un serveur MCP stdio avec des outils de coordination, gérer un layout tmux par équipe d'agents, et faire circuler un pipeline plan/exec/verify entre les workers.
+P_STACK_DETAIL                          Node.js ≥20, TypeScript, Biome pour le lint/format, Vitest pour les tests. Serveur MCP en stdio, IPC par pipe entre les process, gestion de worktree git par worker.
+P_COMPETENCES                           J'ai conçu le pipeline plan/exec/verify avec checkpoint et resume par écriture atomique d'un état JSON — si un worker crashe, il repart du dernier checkpoint plutôt que de tout recommencer. L'isolation par worktree git évite que deux agents touchent le même fichier en parallèle.
+P_RESULTATS                             Publié sur npm (npm install -g ultraagent) avec un CHANGELOG versionné et plus de 25 fichiers de tests unitaires.
+P_PERSPECTIVES                          Pas de CI en place malgré la maturité du code ; je compte l'ajouter avant une prochaine version majeure.
+P_LIENS                                 <a href="https://github.com/sanztheo/UltraAgent">Code source</a>
 P_VISUEL                                
 [ITEM]                                  
 P_RANG                                  07
@@ -101,45 +101,61 @@ P_TITRE                                 taap.it — recherche de vulnérabilité
 P_ANNEE                                 2026
 P_CATEGORIE                             pro
 P_CATEGORIE_LABEL                       Professionnel
-P_RESUME                                Audit personnel de la plateforme Taap.it : identification de plusieurs failles critiques dans leur API pouvant compromettre l'ensemble des données utilisateurs. Documentation détaillée et divulgation responsable auprès de l'équipe technique.
+P_RESUME                                Audit indépendant que j'ai mené sur l'API de la plateforme Taap.it : plusieurs failles critiques identifiées, pouvant compromettre l'ensemble des données utilisateurs. Divulgation responsable à l'équipe technique, failles corrigées.
 P_STACK                                 Audit d'API, reverse engineering, divulgation responsable
-P_CONTEXTE                              En marge de son activité, audit indépendant de la plateforme Taap.it pour évaluer la sécurité de son API.
+P_CONTEXTE                              En marge de mon activité, j'ai audité la plateforme Taap.it pour évaluer la sécurité de son API.
 P_OBJECTIFS                             Identifier les vecteurs d'exploitation exposant les données utilisateurs et transmettre l'information à l'équipe technique avant toute divulgation publique.
 P_STACK_DETAIL                          Analyse manuelle de l'API de la plateforme, documentation de chaque vulnérabilité identifiée et de son vecteur d'exploitation.
-P_COMPETENCES                           Analyse de sécurité d'API, rédaction de rapports de vulnérabilité exploitables, divulgation responsable : contact direct de l'équipe technique, explication des vecteurs, accompagnement des correctifs.
+P_COMPETENCES                           J'ai identifié les failles par analyse manuelle plutôt qu'avec un scanner automatisé, rédigé un rapport exploitable pour l'équipe technique, et suivi la divulgation responsable jusqu'au correctif : contact direct, explication des vecteurs, accompagnement.
 P_RESULTATS                             Plusieurs failles critiques identifiées et corrigées par l'équipe de Taap.it à la suite de la divulgation.
-P_PERSPECTIVES                          Audit ponctuel, non reconduit en programme de bug bounty formalisé.
+P_PERSPECTIVES                          Audit ponctuel, que je n'ai pas reconduit en programme de bug bounty formalisé.
 P_LIENS                                 <span class="p-nolink">Divulgation responsable, sans publication</span>
 P_VISUEL                                
 [ITEM]                                  
 P_RANG                                  08
-P_TITRE                                 UltraAgent — orchestrateur multi-agent
-P_ANNEE                                 2026
-P_CATEGORIE                             perso
-P_CATEGORIE_LABEL                       Personnel
-P_RESUME                                Orchestrateur multi-agent open source qui connecte Claude Code, Codex CLI et Gemini CLI en équipe, via tmux et un serveur MCP. Publié sur npm avec un CHANGELOG versionné.
-P_STACK                                 Node.js, TypeScript, MCP, tmux, Biome, Vitest
-P_CONTEXTE                              Faire travailler ensemble plusieurs CLI d'agents IA (Claude Code, Codex CLI, Gemini CLI) sur un même dépôt, chacun dans son propre worktree git, sans qu'ils se marchent dessus.
-P_OBJECTIFS                             Exposer un serveur MCP stdio avec des outils de coordination, gérer un layout tmux par équipe d'agents, et faire circuler un pipeline plan/exec/verify entre les workers.
-P_STACK_DETAIL                          Node.js ≥20, TypeScript, Biome pour le lint/format, Vitest pour les tests. Serveur MCP en stdio, IPC par pipe entre les process, gestion de worktree git par worker.
-P_COMPETENCES                           Conception d'un serveur MCP exposant des outils, gestion de layout tmux programmatique, IPC par pipe, isolation par worktree git, conception d'un pipeline plan/exec/verify multi-agent.
-P_RESULTATS                             Publié sur npm (npm install -g ultraagent) avec un CHANGELOG versionné et plus de 25 fichiers de tests unitaires.
-P_PERSPECTIVES                          Pas de CI en place malgré la maturité du code, à ajouter avant une prochaine version majeure.
-P_LIENS                                 <a href="https://github.com/sanztheo/UltraAgent">Code source</a>
-P_VISUEL                                
-[ITEM]                                  
-P_RANG                                  09
 P_TITRE                                 Ce portfolio — générateur de site en COBOL
 P_ANNEE                                 2026
 P_CATEGORIE                             perso
 P_CATEGORIE_LABEL                       Personnel
-P_RESUME                                Le site que vous lisez. Chaque octet de HTML est généré par un programme COBOL : le contenu vit dans des fichiers texte à colonnes fixes, un moteur COBOL les lit, échappe les valeurs et assemble les pages à partir de gabarits.
+P_RESUME                                Le site que vous lisez. J'ai écrit chaque octet de HTML avec un programme COBOL : le contenu vit dans des fichiers texte à colonnes fixes, un moteur COBOL les lit, les échappe et assemble le HTML final, sans framework JS de génération.
 P_STACK                                 COBOL, gabarits texte, génération statique
-P_CONTEXTE                              Projet final du parcours OpenClassrooms Développeur Web : produire un portfolio professionnel, avec la contrainte personnelle d'écrire le générateur en COBOL plutôt qu'avec un outil web classique.
-P_OBJECTIFS                             Séparer strictement le contenu (fichiers de données à colonnes fixes) du rendu (gabarits HTML), avec un moteur COBOL capable de lire, d'échapper et d'assembler l'ensemble sans framework JavaScript côté génération.
-P_STACK_DETAIL                          Moteur de génération écrit en COBOL, fichiers de contenu en colonnes fixes (clé sur 40 colonnes, valeur en fin de ligne), gabarits HTML avec placeholders remplacés à la génération, sortie HTML statique en UTF-8.
-P_COMPETENCES                           Parsing de fichiers à colonnes fixes en COBOL, échappement systématique des valeurs injectées dans le HTML, séparation contenu/gabarit sur un langage sans écosystème web moderne.
+P_CONTEXTE                              Projet final du parcours OpenClassrooms Développeur Web : produire un portfolio professionnel, avec la contrainte personnelle d'écrire le générateur en COBOL plutôt qu'avec un framework front classique.
+P_OBJECTIFS                             Séparer strictement le contenu (fichiers de données à colonnes fixes) du rendu (gabarits HTML), avec un moteur COBOL capable de lire, d'échapper et d'assembler ces fichiers sans dépendance externe.
+P_STACK_DETAIL                          Moteur de génération écrit en COBOL, fichiers de contenu en colonnes fixes (clé sur 40 colonnes, valeur en fin de ligne), gabarits HTML avec placeholders remplacés à la génération.
+P_COMPETENCES                           J'ai écrit le parsing des fichiers à colonnes fixes moi-même, sans bibliothèque, et j'échappe systématiquement chaque valeur injectée dans le HTML pour éviter l'injection depuis le contenu. Séparer contenu et gabarit sur un langage sans écosystème web m'a forcé à repenser des mécanismes que je tiens pour acquis en JS.
 P_RESULTATS                             Site statique généré intégralement par le programme COBOL, sans étape de build JavaScript.
-P_PERSPECTIVES                          Les scores de performance et d'accessibilité restent à mesurer sur la version finale déployée avant d'être affichés publiquement.
+P_PERSPECTIVES                          Les scores de performance et d'accessibilité restent à mesurer sur la version finale déployée avant que je les affiche publiquement.
 P_LIENS                                 <a href="https://github.com/sanztheo/Portfolio-Open-Cobolt">Code source</a>
+P_VISUEL                                
+[ITEM]                                  
+P_RANG                                  09
+P_TITRE                                 Nina Carducci — audit SEO, accessibilité, performance
+P_ANNEE                                 2026
+P_CATEGORIE                             formation
+P_CATEGORIE_LABEL                       Formation
+P_RESUME                                Audit et refonte d'un site vitrine de photographe existant, que j'ai documentés en deux phases datées avec un hash de commit pour chaque correction. Performance, accessibilité et poids des ressources, avant/après chiffrés.
+P_STACK                                 HTML5, CSS3, Bootstrap allégé, JS vanilla, jQuery, WebP, Schema.org
+P_CONTEXTE                              Un site vitrine de photographe existant présentait des lacunes de référencement, d'accessibilité et de performance. Le projet consiste à l'auditer puis à corriger ce qui peut l'être sans refonte complète.
+P_OBJECTIFS                             Faire remonter les scores Lighthouse sur les quatre axes, corriger les erreurs d'accessibilité relevées par WAVE, réduire le poids des ressources chargées et documenter chaque correction avec preuve à l'appui.
+P_STACK_DETAIL                          HTML5 sémantique, CSS3 avec Bootstrap allégé, JavaScript vanilla et jQuery pour la galerie interactive, polices auto-hébergées, images converties en WebP, données structurées Schema.org et Open Graph.
+P_COMPETENCES                           J'ai audité le site avec Lighthouse et WAVE, corrigé la sémantique HTML pour les lecteurs d'écran, optimisé les assets (polices, images) et débogué des composants interactifs tiers que je n'avais pas écrits moi-même. Chaque correction est documentée avec son hash de commit.
+P_RESULTATS                             Performance 67 → 99, Accessibilité 87 → 100, Bonnes pratiques 96 → 100, SEO maintenu à 100. Erreurs WAVE 4 → 0, contraste 2,1:1 → 13,3:1, affichage 6,6 s → 2,0 s, poids Bootstrap 160 Ko → 10 Ko.
+P_PERSPECTIVES                          jQuery (~59 Ko) reste nécessaire au fonctionnement de la galerie mauGallery, je n'ai pas pu le retirer. Une réécriture sans jQuery est possible, mais je l'ai laissée hors périmètre de cet audit.
+P_LIENS                                 <a href="https://github.com/sanztheo/Nina-Carducci-Dev-master">Code source</a>
+P_VISUEL                                
+[ITEM]                                  
+P_RANG                                  10
+P_TITRE                                 Mon Vieux Grimoire — API REST de notation de livres
+P_ANNEE                                 2026
+P_CATEGORIE                             formation
+P_CATEGORIE_LABEL                       Formation
+P_RESUME                                API REST de notation de livres que j'ai construite avec authentification JWT, upload et redimensionnement d'image, calcul de moyenne. L'autorisation est vérifiée côté serveur : le userId n'est jamais lu depuis le corps de la requête, l'usurpation est impossible.
+P_STACK                                 Node.js, Express, MongoDB, Mongoose, JWT, bcrypt, React
+P_CONTEXTE                              Construire l'API REST et le frontend d'une application de notation de livres, avec authentification, upload d'image et gestion des notes utilisateur, en respectant le starter backend fourni par OpenClassrooms.
+P_OBJECTIFS                             Mettre en place l'authentification, le CRUD complet des livres avec upload d'image, garantir une note par utilisateur et par livre, calculer la moyenne des notes et exposer les 3 meilleurs livres.
+P_STACK_DETAIL                          Backend : Node.js, Express 4, MongoDB avec Mongoose 8, bcrypt, JWT (24 h), multer, sharp pour le redimensionnement en 463 px et la conversion WebP, express-validator, express-rate-limit, helmet. Frontend : React 18, React Router 6, axios, react-hook-form.
+P_COMPETENCES                           J'ai conçu l'API avec une séparation controllers/models/routes/middlewares, et forcé l'autorisation côté serveur : le userId n'est jamais lu depuis le body de la requête. Je renvoie un 401 générique pour éviter l'énumération de comptes, un 403 sur toute action non autorisée.
+P_RESULTATS                             API documentée de façon exhaustive dans le README. J'ai renforcé la sécurité au-delà du strict nécessaire : rate limiting, helmet et validation stricte, absents du starter OpenClassrooms.
+P_PERSPECTIVES                          Aucun test automatisé côté backend et aucune CI/CD mise en place à ce stade — la prochaine chose que j'ajouterais.
+P_LIENS                                 <a href="https://github.com/sanztheo/P7-Dev-Web-livres">Code source</a>
 P_VISUEL                                
