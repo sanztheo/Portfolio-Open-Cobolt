@@ -175,7 +175,7 @@ Le COBOL tourne à la construction, pas au service : l'hébergeur ne sert que de
 fichiers statiques et n'a jamais besoin d'un compilateur.
 
 Le site est en ligne ici :
-**<https://sanztheo.github.io/Portfolio-Open-Cobolt/>**
+**<https://sanztheo.github.io/portfolio-cobol/>**
 
 `.github/workflows/deploy.yml` installe GnuCOBOL sur un runner Ubuntu neuf,
 compile, lance les deux suites de tests, génère la page et publie sur GitHub

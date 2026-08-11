@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sanztheo.github.io/Portfolio-Open-Cobolt/sitemap.xml
+Sitemap: https://sanztheo.github.io/portfolio-cobol/sitemap.xml

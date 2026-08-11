@@ -125,7 +125,7 @@ P_STACK_DETAIL                          Moteur de génération écrit en COBOL, 
 P_COMPETENCES                           J'ai écrit le parsing des fichiers à colonnes fixes moi-même, sans bibliothèque, et j'échappe systématiquement chaque valeur injectée dans le HTML pour éviter l'injection depuis le contenu. Séparer contenu et gabarit sur un langage sans écosystème web m'a forcé à repenser des mécanismes que je tiens pour acquis en JS.
 P_RESULTATS                             Site statique généré intégralement par le programme COBOL, sans étape de build JavaScript.
 P_PERSPECTIVES                          Les scores de performance et d'accessibilité restent à mesurer sur la version finale déployée avant que je les affiche publiquement.
-P_LIENS                                 <a target="_blank" rel="noopener" href="https://github.com/sanztheo/Portfolio-Open-Cobolt">Code source</a>
+P_LIENS                                 <a target="_blank" rel="noopener" href="https://github.com/sanztheo/portfolio-cobol">Code source</a>
 P_VISUEL                                
 [ITEM]                                  
 P_RANG                                  09
