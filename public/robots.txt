@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio-open.vercel.app/sitemap.xml
+Sitemap: https://sanztheo.github.io/Portfolio-Open-Cobolt/sitemap.xml

@@ -1,7 +1,7 @@
 # site.dat - cles globales du site, colonnes fixes 1-40 = cle, 41+ = valeur
 SITE_TITRE                              Theo Sanz — Développeur web & agents IA, Montpellier
 SITE_DESCRIPTION                        Theo Sanz, développeur à Montpellier. Co-fondateur de Solva, agent vocal IA pour la santé, alternant chez Dernier Cri. Projets vérifiés, code en production.
-SITE_URL                                https://portfolio-open.vercel.app/
+SITE_URL                                https://sanztheo.github.io/Portfolio-Open-Cobolt/
 NOM                                     Theo Sanz
 ROLE_COURT                              Développeur web & agents IA
 ACCROCHE                                Développeur à Montpellier, co-fondateur de <strong>Solva</strong>, un secrétariat téléphonique IA pour établissements de santé. En alternance chez <strong>Dernier Cri</strong> comme Generative AI Engineer, formé au développement web via OpenClassrooms.

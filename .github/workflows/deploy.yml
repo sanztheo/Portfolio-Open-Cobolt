@@ -1,12 +1,27 @@
-name: Compiler le COBOL et deployer
+name: Compiler le COBOL et publier le site
+
+# Le COBOL tourne à la construction, pas au service : l'hébergeur ne reçoit que
+# des fichiers statiques et n'a jamais besoin d'un compilateur. Ce workflow
+# installe GnuCOBOL sur un runner neuf, compile, lance les tests, génère la
+# page, puis publie — ce qui vérifie au passage que le projet se reconstruit
+# depuis zéro sur une machine qui ne connaît rien de mon poste.
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  build:
+  construire:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,22 +29,23 @@ jobs:
       - name: Installer GnuCOBOL
         run: sudo apt-get update && sudo apt-get install -y gnucobol
 
-      - name: Generer le site
+      - name: Version du compilateur
+        run: cobc --version | head -2
+
+      - name: Compiler, tester, générer
         run: ./build.sh
 
-      # Option A, celle utilisee ici : Vercel recoit dist/ deja construit.
-      - name: Deployer sur Vercel
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: npx vercel@latest deploy dist --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
-      # Option B, si tu preferes garder l integration Git de Vercel :
-      # commente le bloc ci-dessus et decommente celui-ci.
-      # - name: Committer dist/
-      #   run: |
-      #     git config user.name  "buildsite"
-      #     git config user.email "build@users.noreply.github.com"
-      #     git add -f dist
-      #     git diff --staged --quiet || git commit -m "build: regeneration du site par COBOL"
-      #     git push
+  publier:
+    needs: construire
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - id: deploiement
+        uses: actions/deploy-pages@v4
