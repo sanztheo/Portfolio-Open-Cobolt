@@ -1,5 +1,11 @@
+buildsite
 build/
-dist/index.html.part
 *.o
 *.so
 .vercel
+
+# QA artefacts
+.playwright-mcp/
+*.png
+!public/**/*.png
+dist/index.html.part

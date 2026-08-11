@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Theo Sanz — Développeur web &amp; agents IA, Montpellier</title>
+<meta name="description" content="Theo Sanz, développeur à Montpellier. Co-fondateur de Solva, agent vocal IA pour la santé, alternant chez Dernier Cri. Projets vérifiés, code en production.">
+<meta name="author" content="Theo Sanz">
+<link rel="canonical" href="https://portfolio-open.vercel.app/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Theo Sanz — Développeur web &amp; agents IA, Montpellier">
+<meta property="og:description" content="Theo Sanz, développeur à Montpellier. Co-fondateur de Solva, agent vocal IA pour la santé, alternant chez Dernier Cri. Projets vérifiés, code en production.">
+<meta property="og:url" content="https://portfolio-open.vercel.app/">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#EFEFE8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2016%2016%22%3E%3Crect%20width=%2216%22%20height=%2216%22%20fill=%22%23EFEFE8%22/%3E%3Crect%20y=%224%22%20width=%2216%22%20height=%224%22%20fill=%22%23D6E3D1%22/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Theo Sanz","jobTitle":"Développeur web","url":"https://portfolio-open.vercel.app/","sameAs":["https://github.com/sanztheo","https://www.linkedin.com/in/theo-sanz/"],"address":{"@type":"PostalAddress","addressLocality":"Montpellier","addressCountry":"FR"},"knowsAbout":["TypeScript","Python","Rust","React","Node.js","PostgreSQL","LiveKit","Model Context Protocol"]}</script>
+<style>
+:root{
+  --paper:#EFEFE8;
+  --bar:#D6E3D1;
+  --ink:#1B1F1A;
+  --ink-soft:#4E5A53;
+  --rule:#AEBAA9;
+  --hole:#C6CCC2;
+  --stamp:#A3341F;
+  --pad:1.25rem;
+  --mono:ui-monospace,"SFMono-Regular","SF Mono",Menlo,
+    Consolas,"Liberation Mono",monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font:400 0.9375rem/1.65 var(--mono);
+  font-variant-ligatures:none;
+}
+.sheet{
+  position:relative;
+  max-width:62rem;
+  margin:0 auto;
+  padding:3.5rem var(--pad) 0;
+}
+.sheet::before,.sheet::after{
+  content:"";
+  position:absolute;
+  top:0;bottom:0;width:26px;
+  background-image:radial-gradient(circle at 50% 50%,
+    var(--hole) 0 3px,transparent 3.5px);
+  background-size:26px 26px;
+  pointer-events:none;
+}
+.sheet::before{left:0;border-right:1px dashed var(--rule)}
+.sheet::after{right:0;border-left:1px dashed var(--rule)}
+@media (max-width:800px){
+  .sheet::before,.sheet::after{display:none}
+  .sheet{padding-top:2.25rem}
+}
+@media (min-width:801px){:root{--pad:3.5rem}}
+
+.division{
+  margin:0 0 1.5rem;
+  font-size:0.8125rem;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.division .gloss{
+  letter-spacing:0.04em;
+  font-weight:400;
+  text-transform:none;
+  color:var(--ink-soft);
+}
+.block{padding-bottom:3.25rem}
+.block+.block{border-top:1px solid var(--rule);padding-top:2.5rem}
+
+.skip{
+  position:absolute;left:-999px;top:auto;
+  width:1px;height:1px;overflow:hidden;
+}
+.skip:focus{
+  position:fixed;left:1rem;top:1rem;z-index:100;
+  width:auto;height:auto;
+  padding:0.6rem 1rem;
+  background:var(--paper);color:var(--ink);
+  border:2px solid var(--stamp);
+  font-weight:700;
+}
+
+.nav{
+  display:flex;flex-wrap:wrap;
+  align-items:baseline;justify-content:space-between;
+  gap:0.5rem 1.5rem;
+  margin:0 0 0.5rem;
+  padding:0.9rem 0;
+  border-bottom:2px solid var(--ink);
+  font-size:0.8125rem;
+}
+.nav-id{margin:0;display:flex;flex-wrap:wrap;gap:0.6rem;align-items:baseline;font-weight:700}
+.nav-id-name{text-transform:uppercase;letter-spacing:0.04em}
+.nav-id-role{color:var(--ink-soft);font-weight:400}
+.nav-list{
+  display:flex;flex-wrap:wrap;gap:0 1.25rem;
+  margin:0;padding:0;list-style:none;
+}
+.nav-list a{
+  display:inline-flex;align-items:center;min-height:44px;
+  color:var(--ink);text-decoration-color:var(--rule);
+  text-underline-offset:3px;
+}
+.nav-list a:hover{color:var(--stamp);text-decoration-color:var(--stamp)}
+
+.pitch{margin:0;padding:0;list-style:none;counter-reset:pitch;display:grid;gap:1.75rem}
+.pitch li{counter-increment:pitch;position:relative;padding-left:3rem}
+.pitch li::before{
+  content:counter(pitch,decimal-leading-zero);
+  position:absolute;left:0;top:0.1rem;
+  font-weight:700;font-size:0.8125rem;color:var(--ink-soft);
+}
+.pitch h3{margin:0 0 0.35rem;font-size:1rem;font-weight:700;letter-spacing:-0.01em}
+.pitch p{margin:0;max-width:62ch}
+
+.lead{margin:0 0 1.5rem;max-width:62ch;color:var(--ink-soft)}
+.note{margin:1.25rem 0 0;font-size:0.8125rem;color:var(--ink-soft)}
+
+.skills{
+  margin:0;padding:0;
+  display:grid;gap:1.5rem 3rem;
+  grid-template-columns:repeat(auto-fit,minmax(min(20rem,100%),1fr));
+}
+.skill-group dt{margin:0 0 0.35rem;font-weight:700;font-size:0.9375rem;letter-spacing:0.02em}
+.skill-group dd{margin:0;color:var(--ink-soft);line-height:1.6}
+.skill-note{display:inline-block;margin-left:0.5rem;font-size:0.8125rem;font-style:italic;color:var(--ink-soft)}
+
+.name{
+  margin:0.5rem 0 0.75rem;
+  font-size:clamp(2.75rem,10vw,5.5rem);
+  font-weight:700;
+  letter-spacing:-0.02em;
+  line-height:1;
+  text-transform:uppercase;
+}
+.tagline{
+  margin:0 0 1.9rem;
+  max-width:56ch;
+  font-size:1.0625rem;
+  line-height:1.55;
+}
+.tagline strong{font-weight:700}
+.facts{
+  margin:0;padding:0;list-style:none;
+  display:grid;gap:0.45rem 3rem;
+  grid-template-columns:repeat(auto-fit,minmax(min(21rem,100%),1fr));
+  font-size:0.875rem;
+  color:var(--ink-soft);
+}
+.facts li{
+  display:grid;
+  grid-template-columns:8.5rem 1fr;
+  gap:0 0.75rem;
+  align-items:baseline;
+}
+.facts b{
+  font-weight:700;color:var(--ink);
+  letter-spacing:0.04em;
+}
+.facts b::after{content:" ....";color:var(--rule);font-weight:400}
+
+.row{
+  display:grid;
+  grid-template-columns:2.75rem 1fr;
+  gap:0 0.9rem;
+  padding:0.85rem var(--pad);
+}
+.rows{margin:0 calc(-1 * var(--pad));padding:0;list-style:none}
+.row+.row{border-top:1px solid rgba(174,186,169,0.5)}
+.row:nth-child(odd){background:var(--bar)}
+.lvl{
+  font-weight:700;color:var(--ink-soft);
+  font-size:0.8125rem;padding-top:0.2rem;
+}
+.title-line{display:flex;align-items:baseline;gap:0.6rem}
+.p-name{font-weight:700;font-size:1.0625rem;letter-spacing:-0.01em}
+.leader{
+  flex:1 1 auto;min-width:1.5rem;
+  border-bottom:1px dotted var(--rule);
+  transform:translateY(-0.3em);
+}
+.p-year{font-size:0.8125rem;color:var(--ink-soft);white-space:nowrap}
+.row-body{min-width:0}
+.p-cat{margin:0.4rem 0}
+.tag{
+  display:inline-block;
+  padding:0.15rem 0.5rem;
+  border:1.5px solid currentColor;
+  font-size:0.6875rem;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+}
+.tag-startup{color:#8A3F1F}
+.tag-pro{color:#2C5578}
+.tag-formation{color:#6B5A12}
+.tag-perso{color:#5C3A73}
+.p-desc{margin:0.3rem 0 0.55rem;max-width:62ch}
+.p-tech{
+  margin:0;font-size:0.8125rem;color:var(--ink-soft);
+  letter-spacing:0.02em;
+}
+.p-tech::before{content:"PIC  ";font-weight:700}
+.row a{
+  color:var(--ink);text-decoration-color:var(--rule);
+  text-underline-offset:3px;
+}
+.row a:hover{text-decoration-color:var(--stamp)}
+
+.fiche{margin-top:0.75rem;border-top:1px dotted var(--rule);padding-top:0.6rem}
+.fiche summary{
+  cursor:pointer;list-style:none;
+  display:flex;align-items:center;gap:0.5rem;
+  min-height:44px;
+  font-weight:700;font-size:0.8125rem;
+  letter-spacing:0.04em;text-transform:uppercase;
+  color:var(--ink);
+}
+.fiche summary::-webkit-details-marker{display:none}
+.fiche summary::before{content:"▸";display:inline-block;color:var(--stamp)}
+.fiche[open] summary::before{transform:rotate(90deg)}
+.fiche summary:hover{color:var(--stamp)}
+.fiche-dl{margin:0.6rem 0 0}
+.fiche-dl dt{
+  margin:0.75rem 0 0.2rem;font-weight:700;font-size:0.8125rem;
+  text-transform:uppercase;letter-spacing:0.03em;color:var(--ink);
+}
+.fiche-dl dt:first-child{margin-top:0}
+.fiche-dl dd{margin:0 0 0 1rem;color:var(--ink-soft);font-size:0.875rem}
+
+.p-links{
+  margin:0.9rem 0 0;
+  display:flex;flex-wrap:wrap;gap:0.4rem 1.25rem;
+  font-size:0.8125rem;font-weight:700;
+}
+.p-links a{display:inline-flex;align-items:center;min-height:44px}
+.p-nolink{
+  display:inline-flex;align-items:center;min-height:44px;
+  color:var(--ink-soft);font-weight:400;font-style:italic;
+}
+
+.contact{
+  display:flex;flex-wrap:wrap;gap:0.75rem 2rem;
+  margin:0;padding:0;list-style:none;
+}
+.contact a{
+  display:inline-flex;align-items:center;min-height:48px;
+  font-size:1.0625rem;font-weight:700;
+  color:var(--ink);text-decoration-color:var(--rule);
+  text-underline-offset:4px;
+}
+.contact a:hover{color:var(--stamp);text-decoration-color:var(--stamp)}
+
+.timeline{margin:0;padding:0;list-style:none}
+.step{display:grid;grid-template-columns:7rem 1fr;gap:0 1.5rem}
+.step+.step{padding-top:1.75rem;border-top:1px dotted var(--rule);margin-top:1.75rem}
+.step-date{font-weight:700;font-size:0.8125rem;color:var(--ink-soft);white-space:nowrap;padding-top:0.1rem}
+.step-body{border-left:2px solid var(--rule);padding-left:1.25rem;min-width:0}
+.step-titre{margin:0 0 0.15rem;font-size:1.0625rem;font-weight:700;letter-spacing:-0.01em}
+.step-lieu{margin:0 0 0.4rem;font-size:0.8125rem;color:var(--ink-soft)}
+.step-desc{margin:0;max-width:62ch}
+@media (max-width:560px){
+  .step{display:block}
+  .step-date{display:block;margin-bottom:0.35rem}
+  .step-body{border-left:2px solid var(--rule);padding-left:1rem}
+}
+
+a:focus-visible,:focus-visible{
+  outline:2px solid var(--stamp);
+  outline-offset:3px;
+}
+
+.colophon{
+  border-top:1px solid var(--rule);
+  padding:1.5rem 0 4rem;
+  font-size:0.8125rem;
+  color:var(--ink-soft);
+}
+.colophon p{max-width:62ch}
+.colophon a{color:var(--ink)}
+.build{margin-top:0.5rem;font-size:0.75rem;color:var(--ink-soft);letter-spacing:0.02em}
+.stamp{
+  display:inline-block;
+  margin-bottom:0.75rem;
+  padding:0.3rem 0.6rem;
+  border:2px solid var(--stamp);
+  color:var(--stamp);
+  font-size:0.6875rem;font-weight:700;
+  letter-spacing:0.16em;text-transform:uppercase;
+  transform:rotate(-1.5deg);
+}
+
+/* Les lignes glissent vers le haut a l'apparition, comme une feuille qui
+   sort d'une imprimante ligne. L'animation ne touche que `transform` :
+   animer `opacity` ferait passer le texte par des etats de faible
+   contraste, que les auditeurs d'accessibilite echantillonnent et
+   signalent en violation WCAG alors que le contraste final est de
+   12,5:1. Le mouvement suffit a l'effet, le fondu ne servait rien. */
+@media (prefers-reduced-motion:no-preference){
+  .row{animation:feed 420ms cubic-bezier(.2,.8,.2,1) backwards}
+  .row{animation-delay:calc(var(--i,0) * 60ms)}
+  .fiche summary::before{transition:transform 160ms ease}
+}
+@keyframes feed{from{transform:translateY(7px)}}
+
+/* Capture du projet, rangee dans la fiche depliable. Les dimensions sont
+   inscrites dans le HTML pour que le navigateur reserve la place avant le
+   telechargement : sans elles, l'ouverture de la fiche ferait sauter la page.
+   Le chargement est differe, donc une fiche jamais ouverte ne coute rien. */
+.shot{
+  display:block;
+  width:100%;height:auto;
+  margin:0 0 1.1rem;
+  border:1px solid var(--rule);
+  background:var(--paper);
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="sheet">
+
+<nav class="nav" aria-label="Navigation principale">
+<p class="nav-id"><span class="nav-id-name">Theo Sanz</span><span class="nav-id-role">Développeur web &amp; agents IA</span></p>
+<ul class="nav-list">
+<li><a href="#profil">Profil</a></li>
+<li><a href="#apropos">À propos</a></li>
+<li><a href="#competences">Compétences</a></li>
+<li><a href="#projets">Projets</a></li>
+<li><a href="#parcours">Parcours</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<main id="contenu">
+
+<header class="block" id="profil">
+<p class="division">IDENTIFICATION DIVISION.</p>
+<h1 class="name">Theo Sanz</h1>
+<p class="tagline">Développeur à Montpellier, co-fondateur de <strong>Solva</strong>, un secrétariat téléphonique IA pour établissements de santé. En alternance chez <strong>Dernier Cri</strong> comme Generative AI Engineer, formé au développement web via OpenClassrooms.</p>
+<ul class="facts">
+<li><b>Poste</b> Co-fondateur, Solva</li>
+<li><b>Alternance</b> Dernier Cri, Montpellier</li>
+<li><b>Formation</b> Développeur web, OpenClassrooms</li>
+<li><b>Terrain</b> Agents IA, voix temps réel, sécurité</li>
+</ul>
+</header>
+
+<section class="block" id="apropos" aria-labelledby="t-apropos">
+<h2 class="division" id="t-apropos">01 &nbsp;À propos <span class="gloss">— qui je suis, en six temps</span></h2>
+<ol class="pitch">
+<li><h3>Développeur à Montpellier</h3><p>Theo Sanz, développeur à Montpellier. Il construit des systèmes agentiques et des produits IA de bout en bout — du backend Rust temps réel à l'agent vocal qui décroche vraiment le téléphone.</p></li>
+<li><h3>Parcours et légitimité</h3><p>Il code sans discontinuer depuis fin 2024. D'abord des sites clients en freelance sous SANZ CLOUD, puis des produits de plus en plus ambitieux : un SaaS de révision pour étudiants, une plateforme de renseignement géospatial temps réel, un agent vocal pour cabinets de santé. La formation OpenClassrooms est venue après le code, pas avant : elle valide un socle déjà en production.</p></li>
+<li><h3>Stack technique</h3><p>TypeScript et Python au quotidien, Rust quand la brique doit tenir la charge. Sur SeeYou, projet personnel de renseignement géospatial, il a écrit un backend Rust/Axum de 24 crates qui interroge plus de 25 API publiques, met en cache dans Redis et diffuse en WebSocket vers un frontend React/CesiumJS, avec prédiction de trajectoire par filtre de Kalman multi-modèle. Sur Solva, il assemble une chaîne voix complète en production : LiveKit Agents, STT Soniox, LLM interchangeable, TTS Cartesia ou ElevenLabs.</p></li>
+<li><h3>Projets et impact</h3><p>Solva est son projet central : un secrétariat téléphonique IA pour établissements de santé, en production, avec un dashboard SaaS et un agent vocal capable de vérifier une identité patient, détecter une urgence et basculer entre français, anglais et allemand. À côté, SeeYou démontre une architecture temps réel complète pour zéro euro d'infrastructure, uniquement avec des API publiques gratuites.</p></li>
+<li><h3>Approche et sécurité</h3><p>La sécurité n'attend pas le contexte réglementé. Sur son projet de formation Mon Vieux Grimoire, le userId n'est jamais lu depuis le corps de la requête, précisément pour rendre l'usurpation impossible — un réflexe qu'on retrouve sur ses projets professionnels. Quand Pennote n'a pas trouvé son marché, il l'a écrit noir sur blanc dans le README et a ouvert le code sous AGPLv3 plutôt que de le laisser mourir en privé. Il préfère la preuve au storytelling.</p></li>
+<li><h3>Projection et ambitions</h3><p>Consolider Solva comme produit de santé en production, et continuer à construire l'outillage autour des agents IA. Il cherche les environnements où l'on écrit du code qui part réellement en production, avec des contraintes réelles de fiabilité et de sécurité.</p></li>
+</ol>
+</section>
+
+<section class="block" id="competences" aria-labelledby="t-competences">
+<h2 class="division" id="t-competences">ENVIRONMENT DIVISION. <span class="gloss">— ce avec quoi je travaille</span></h2>
+<p class="lead">Les outils et langages utilisés au quotidien, du frontend à l'infrastructure.</p>
+<dl class="skills">
+<div class="skill-group">
+<dt>Langages</dt>
+<dd>TypeScript · Python · Rust · JavaScript · HTML5/CSS3 · SQL · Swift · COBOL<span class="skill-note">(TypeScript et Python au quotidien, Rust sur les briques exigeantes, Swift et COBOL plus ponctuels)</span></dd>
+</div>
+<div class="skill-group">
+<dt>Frontend</dt>
+<dd>React · Next.js · Vite · Tailwind CSS · SCSS · Radix UI / shadcn · CesiumJS · Astro<span class="skill-note">(React et Next.js en production quotidienne, CesiumJS sur le projet SeeYou)</span></dd>
+</div>
+<div class="skill-group">
+<dt>Backend</dt>
+<dd>Node.js / Express · API REST · Prisma · PostgreSQL · MongoDB / Mongoose · Redis · Rust / Axum · WebSocket · JWT / bcrypt<span class="skill-note">(Node.js/Express et API REST au quotidien, Rust/Axum sur le backend temps réel de SeeYou)</span></dd>
+</div>
+<div class="skill-group">
+<dt>Data et IA</dt>
+<dd>LiveKit Agents · Vercel AI SDK · Model Context Protocol (MCP) · RAG avec embeddings pgvector · filtre de Kalman IMM-EKF<span class="skill-note">(LiveKit Agents et Vercel AI SDK en production sur Solva, RAG et Kalman sur des projets dédiés)</span></dd>
+</div>
+<div class="skill-group">
+<dt>Infra et DevOps</dt>
+<dd>Docker / Compose · GitHub Actions · Vercel · Railway · Twilio · Infisical · monorepo et submodules git<span class="skill-note">(Docker, GitHub Actions et Vercel en production sur Solva et les projets de formation)</span></dd>
+</div>
+<div class="skill-group">
+<dt>Méthodes</dt>
+<dd>Tests automatisés (Vitest, Jest, pytest, Playwright) · autorisation stricte côté serveur · audit Lighthouse / WAVE · post-mortems et runbooks · divulgation responsable de vulnérabilités<span class="skill-note">(pratiques appliquées sur plusieurs projets, dont un audit de vulnérabilités mené en autonomie)</span></dd>
+</div>
+</dl>
+<p class="note">Les niveaux affichés sont déduits du code réellement poussé sur GitHub, pas déclarés.</p>
+</section>
+
+<section class="block" id="projets" aria-labelledby="t-projets">
+<h2 class="division" id="t-projets">DATA DIVISION. <span class="gloss">— ce que j&#39;ai construit</span></h2>
+<p class="lead">Trois projets de formation, deux projets professionnels, quatre projets personnels — chacun vérifié par lecture du code, pas par déclaration.</p>
+<ol class="rows">
+<li class="row" style="--i:01">
+<span class="lvl" aria-hidden="true">01</span>
+<div class="row-body">
+<p class="title-line"><span class="p-name">Solva</span><span class="leader" aria-hidden="true"></span><span class="p-year">2026 —</span></p>
+<p class="p-cat"><span class="tag tag-startup">Startup</span></p>
+<p class="p-desc">Secrétariat téléphonique IA pour cabinets de santé : l'agent vocal décroche, vérifie l'identité du patient, détecte les urgences et gère les rendez-vous en français, anglais et allemand. Co-fondé et développé de bout en bout, en production.</p>
+<p class="p-tech">Python, LiveKit Agents, Next.js, Prisma, Clerk, Vercel AI SDK, Twilio</p>
+<details class="fiche">
+<summary>Fiche détaillée</summary>
+<img class="shot" src="img/solva.webp" width="960" height="600" loading="lazy" decoding="async" alt="Page d'accueil de Solva : un telephone affiche un appel patient en cours, pris en charge par l'agent vocal.">
+<dl class="fiche-dl">
+<dt>Contexte</dt><dd>Les cabinets et cliniques perdent un temps considérable au téléphone : rendez-vous, urgences, questions administratives. Solva décroche l'appel, qualifie le motif et prend en charge la demande sans humain derrière le combiné.</dd>
+<dt>Objectifs</dt><dd>Automatiser la prise de rendez-vous et la vérification d'identité patient, détecter les urgences pour les escalader, gérer le multilingue (français, anglais, allemand) et poser des garde-fous stricts sur les données personnelles.</dd>
+<dt>Stack technique</dt><dd>Agent vocal : Python 3.12, LiveKit Agents SDK, STT Soniox v4, LLM Gemini 2.5 Flash ou GPT-5.4, TTS Cartesia Sonic/ElevenLabs/Google, VAD Silero, téléphonie Twilio SIP, secrets via Infisical. Dashboard : Next.js 16, React 18, Prisma, Clerk, Vercel AI SDK v6, Pusher, Resend, AWS S3, Radix UI. Déploiement Vercel et Railway.</dd>
+<dt>Compétences développées</dt><dd>Routing multi-agent (Triage vers Booking, Management, Patient, FAQ, Reminder), i18n FR/EN/DE, scrub des données personnelles, gestion DTMF, escalade d'urgence, observabilité par shadow judge post-appel, intégration multi-provider LLM interchangeable.</dd>
+<dt>Résultats et impact</dt><dd>En production sur LiveKit Cloud avec environnements dev et prod distincts, CI GitHub Actions, Dockerfile, typage strict (mypy), suite pytest, post-mortems et runbooks d'incident versionnés dans le repo.</dd>
+<dt>Perspectives d&#39;amélioration</dt><dd>La couverture de tests reste à élargir et les benchmarks de latence de la chaîne voix à industrialiser pour suivre la montée en charge.</dd>
+</dl>
+</details>
+<p class="p-links"><a href="https://getsolva.fr">Site du produit</a> <span class="p-nolink">dépôts privés</span></p>
+</div>
+</li>
+<li class="row" style="--i:02">
+<span class="lvl" aria-hidden="true">02</span>
+<div class="row-body">
+<p class="title-line"><span class="p-name">Nina Carducci — audit SEO, accessibilité, performance</span><span class="leader" aria-hidden="true"></span><span class="p-year">2026</span></p>
+<p class="p-cat"><span class="tag tag-formation">Formation</span></p>
+<p class="p-desc">Audit et refonte d'un site vitrine de photographe existant, documentés en deux phases datées avec hash de commit pour chaque correction. Performance, accessibilité et référencement mesurés avant/après avec Lighthouse et WAVE.</p>
+<p class="p-tech">HTML5, CSS3, Bootstrap allégé, JS vanilla, jQuery, WebP, Schema.org</p>
+<details class="fiche">
+<summary>Fiche détaillée</summary>
+
+<dl class="fiche-dl">
+<dt>Contexte</dt><dd>Un site vitrine de photographe existant présentait des lacunes de référencement, d'accessibilité et de performance. Le projet consiste à l'auditer puis à corriger chaque point identifié, en traçant chaque correction par un commit daté.</dd>
+<dt>Objectifs</dt><dd>Faire remonter les scores Lighthouse sur les quatre axes, corriger les erreurs d'accessibilité relevées par WAVE, réduire le poids des ressources chargées et documenter chaque correction dans un rapport technique chiffré.</dd>
+<dt>Stack technique</dt><dd>HTML5 sémantique, CSS3 avec Bootstrap allégé, JavaScript vanilla et jQuery pour la galerie interactive, polices auto-hébergées, images converties en WebP, données structurées Schema.org et balises Open Graph.</dd>
+<dt>Compétences développées</dt><dd>Audit avec Lighthouse et WAVE, sémantique HTML pour lecteurs d'écran, optimisation d'assets (polices, images), debug de composants interactifs tiers, rédaction d'un rapport technique traçable commit par commit.</dd>
+<dt>Résultats et impact</dt><dd>Performance 67 → 99, Accessibilité 87 → 100, Bonnes pratiques 96 → 100, SEO maintenu à 100. Erreurs WAVE 4 → 0, contraste 2,1:1 → 13,3:1, affichage 6,6 s → 2,0 s, poids de Bootstrap 160 Ko → 10 Ko. 38 commits.</dd>
+<dt>Perspectives d&#39;amélioration</dt><dd>jQuery (~59 Ko) reste nécessaire au fonctionnement de la galerie mauGallery et n'a pas pu être retiré. Une réécriture de la galerie sans jQuery est possible mais dépassait le périmètre de l'audit.</dd>
+</dl>
+</details>
+<p class="p-links"><a href="https://github.com/sanztheo/Nina-Carducci-Dev-master">Code source</a></p>
+</div>
+</li>
+<li class="row" style="--i:03">
+<span class="lvl" aria-hidden="true">03</span>
+<div class="row-body">
+<p class="title-line"><span class="p-name">SeeYou — renseignement géospatial temps réel</span><span class="leader" aria-hidden="true"></span><span class="p-year">2026</span></p>
+<p class="p-cat"><span class="tag tag-perso">Personnel</span></p>
+<p class="p-desc">Globe 3D temps réel agrégeant avions ADS-B, satellites, séismes, feux de forêt, trafic maritime et météo spatiale depuis plus de 25 API publiques gratuites. Backend Rust de 24 crates, frontend React/CesiumJS, prédiction de trajectoire par filtre de Kalman.</p>
+<p class="p-tech">React, TypeScript, CesiumJS, Rust, Axum, Redis, WebSocket</p>
+<details class="fiche">
+<summary>Fiche détaillée</summary>
+<img class="shot" src="img/seeyou.webp" width="960" height="600" loading="lazy" decoding="async" alt="Ecran d'accueil de SeeYou listant les sources suivies : vols ADS-B, orbites de satellites, cameras, prediction de trajectoire.">
+<dl class="fiche-dl">
+<dt>Contexte</dt><dd>Démontrer qu'une architecture temps réel complète — ingestion, cache, diffusion, rendu 3D — peut tenir sans backend tiers payant, en s'appuyant uniquement sur des API publiques gratuites.</dd>
+<dt>Objectifs</dt><dd>Agréger et normaliser plus de 25 sources de données géospatiales hétérogènes, diffuser les mises à jour en temps réel vers le frontend, et prédire la trajectoire des aéronefs pour lisser les données ADS-B bruitées.</dd>
+<dt>Stack technique</dt><dd>Frontend : React 19.2, TypeScript, Vite 7.3, CesiumJS 1.138 via Resium, Tailwind 4.2, Vitest. Backend : workspace Rust de 24 crates (Axum, Tokio, Redis, SurrealDB, rdkafka, geojson), Redis pour le cache, Docker Compose, diffusion WebSocket.</dd>
+<dt>Compétences développées</dt><dd>Architecture poll-cache-broadcast pour tenir la charge des API publiques, filtre de Kalman multi-modèle (IMM-EKF) pour la prédiction de trajectoire, shaders GLSL personnalisés (vision nocturne, FLIR, effet CRT).</dd>
+<dt>Résultats et impact</dt><dd>18 étoiles GitHub, 266 commits, 162 fichiers Rust et 174 fichiers TypeScript, 29 fichiers de tests Vitest. Coût d'infrastructure nul, uniquement des API publiques gratuites.</dd>
+<dt>Perspectives d&#39;amélioration</dt><dd>Pas de CI configurée : les rapports de test sont pour l'instant conservés et vérifiés manuellement.</dd>
+</dl>
+</details>
+<p class="p-links"><a href="https://github.com/sanztheo/SeeYou">Code source</a> <a href="https://sanztheo.github.io/SeeYou/">Voir en ligne</a></p>
+</div>
+</li>
+<li class="row" style="--i:04">
+<span class="lvl" aria-hidden="true">04</span>
+<div class="row-body">
+<p class="title-line"><span class="p-name">Mon Vieux Grimoire — API REST de notation de livres</span><span class="leader" aria-hidden="true"></span><span class="p-year">2026</span></p>
+<p class="p-cat"><span class="tag tag-formation">Formation</span></p>
+<p class="p-desc">API REST de notation de livres avec authentification JWT, upload et redimensionnement d'image, calcul de moyenne. L'autorisation est vérifiée côté serveur : le userId n'est jamais lu depuis le corps de la requête, pour rendre l'usurpation impossible.</p>
+<p class="p-tech">Node.js, Express, MongoDB, Mongoose, JWT, bcrypt, React</p>
+<details class="fiche">
+<summary>Fiche détaillée</summary>
+
+<dl class="fiche-dl">
+<dt>Contexte</dt><dd>Construire l'API REST et le frontend d'une application de notation de livres, avec authentification, upload d'image et gestion des notes utilisateur, en respectant un starter fourni par OpenClassrooms.</dd>
+<dt>Objectifs</dt><dd>Mettre en place l'authentification, le CRUD complet des livres avec upload d'image, garantir une note par utilisateur et par livre, calculer la moyenne des notes et exposer un endpoint des trois meilleurs livres.</dd>
+<dt>Stack technique</dt><dd>Backend : Node.js, Express 4, MongoDB avec Mongoose 8, bcrypt, JWT (24 h), multer, sharp pour le redimensionnement en 463 px et la conversion WebP, express-validator, express-rate-limit, helmet. Frontend : React 18, React Router 6, axios, react-hook-form.</dd>
+<dt>Compétences développées</dt><dd>Conception d'API REST avec séparation controllers/models/routes/middlewares, hash bcrypt et JWT, autorisation forcée côté serveur (userId jamais lu depuis le body), 401 générique anti-énumération, 403 sur action non autorisée, écoconception des images.</dd>
+<dt>Résultats et impact</dt><dd>API documentée de façon exhaustive dans le README. Sécurité renforcée au-delà du strict nécessaire : rate limiting, helmet et validation stricte, absents du starter OpenClassrooms de départ. 50 commits de développement.</dd>
+<dt>Perspectives d&#39;amélioration</dt><dd>Aucun test automatisé côté backend et aucune CI/CD mise en place à ce stade.</dd>
+</dl>
+</details>
+<p class="p-links"><a href="https://github.com/sanztheo/P7-Dev-Web-livres">Code source</a></p>
+</div>
+</li>
+<li class="row" style="--i:05">
+<span class="lvl" aria-hidden="true">05</span>
+<div class="row-body">
+<p class="title-line"><span class="p-name">Pennote</span><span class="leader" aria-hidden="true"></span><span class="p-year">2025 — 2026</span></p>
+<p class="p-cat"><span class="tag tag-perso">Personnel</span></p>
+<p class="p-desc">SaaS de révision pour étudiants : éditeur type Notion, IA multi-provider, collaboration temps réel et quiz. Livré à une cinquantaine d'utilisateurs réels, arrêté faute de traction, puis proprement open-sourcé sous AGPLv3 plutôt qu'abandonné.</p>
+<p class="p-tech">Node.js, Express, Prisma, pgvector, Yjs, React, BlockNote</p>
+<details class="fiche">
+<summary>Fiche détaillée</summary>
+
+<dl class="fiche-dl">
+<dt>Contexte</dt><dd>Construire un espace de travail combinant un éditeur collaboratif type Notion, une IA multi-provider et un système de quiz, pour aider les étudiants à réviser.</dd>
+<dt>Objectifs</dt><dd>Offrir une édition collaborative en temps réel, une génération de contenu assistée par IA avec recherche augmentée sur les notes de l'utilisateur, et une facturation fonctionnelle pour un produit destiné à de vrais utilisateurs.</dd>
+<dt>Stack technique</dt><dd>Backend : Node.js 22 ESM, Express 4, Prisma 6 en double schéma dont pgvector pour le RAG, Vercel AI SDK v6 (6 providers), Yjs (CRDT) avec persistance Postgres, BullMQ/Redis, Paddle, Clerk, Jest. Frontend : React 18, Vite 6, BlockNote, TipTap 3, Mantine 8, i18n en 9 langues, Playwright et Vitest.</dd>
+<dt>Compétences développées</dt><dd>Collaboration temps réel par CRDT, recherche augmentée (RAG) avec embeddings pgvector, mise en place de la facturation, conception d'une API d'environ 200 endpoints répartis sur 31 fichiers de routes.</dd>
+<dt>Résultats et impact</dt><dd>Livré à environ 50 utilisateurs réels. Faute de traction, le produit a été arrêté puis proprement open-sourcé (CI, SECURITY.md, CONTRIBUTING.md) sous licence AGPLv3, plutôt que laissé à l'abandon en privé.</dd>
+<dt>Perspectives d&#39;amélioration</dt><dd>Le produit n'a pas trouvé son marché : limite assumée et documentée telle quelle dans le README plutôt que maquillée.</dd>
+</dl>
+</details>
+<p class="p-links"><a href="https://github.com/sanztheo/pennote-ai-notion-alternative">Code source</a> <a href="https://github.com/sanztheo/pen-backend">Backend</a> <a href="https://github.com/sanztheo/pen-frontend">Frontend</a></p>
+</div>
+</li>
+<li class="row" style="--i:06">
+<span class="lvl" aria-hidden="true">06</span>
+<div class="row-body">
+<p class="title-line"><span class="p-name">Kasa — application de location immobilière</span><span class="leader" aria-hidden="true"></span><span class="p-year">2026</span></p>
+<p class="p-cat"><span class="tag tag-formation">Formation</span></p>
+<p class="p-desc">Refonte d'un site de location immobilière legacy vers React, à partir de maquettes Figma. Quatre routes, données JSON statiques, sans backend, avec gestion du cas d'un identifiant de logement inexistant.</p>
+<p class="p-tech">React, React Router, Vite, SCSS</p>
+<details class="fiche">
+<summary>Fiche détaillée</summary>
+
+<dl class="fiche-dl">
+<dt>Contexte</dt><dd>Un site de location immobilière existant, en HTML/CSS/JS legacy, doit être reconstruit avec une stack JavaScript moderne à partir de maquettes Figma fournies.</dd>
+<dt>Objectifs</dt><dd>Construire un frontend React avec composants réutilisables et routing, consommer des données JSON statiques sans backend, et respecter fidèlement une maquette responsive desktop/tablette/mobile.</dd>
+<dt>Stack technique</dt><dd>React 19, React Router DOM 7, Vite 8, SCSS avec un fichier par composant et des tokens partagés, ESLint 10, hook personnalisé useFetch pour la lecture des données JSON.</dd>
+<dt>Compétences développées</dt><dd>Composants réutilisables (Banner, Card, Gallery, Collapse, Rating), routing client à 4 routes avec 404 catch-all, gestion de cas limites (galerie circulaire, accordéon), respect strict d'une maquette responsive.</dd>
+<dt>Résultats et impact</dt><dd>Application à 4 routes fonctionnelle, avec gestion d'erreur propre sur un identifiant de logement inexistant. 26 commits.</dd>
+<dt>Perspectives d&#39;amélioration</dt><dd>Pas de tests automatisés et pas de déploiement public à ce stade.</dd>
+</dl>
+</details>
+<p class="p-links"><a href="https://github.com/sanztheo/kasa">Code source</a></p>
+</div>
+</li>
+<li class="row" style="--i:07">
+<span class="lvl" aria-hidden="true">07</span>
+<div class="row-body">
+<p class="title-line"><span class="p-name">taap.it — recherche de vulnérabilités</span><span class="leader" aria-hidden="true"></span><span class="p-year">2026</span></p>
+<p class="p-cat"><span class="tag tag-pro">Professionnel</span></p>
+<p class="p-desc">Audit personnel de la plateforme Taap.it : identification de plusieurs failles critiques dans leur API pouvant compromettre l'ensemble des données utilisateurs. Documentation détaillée et divulgation responsable auprès de l'équipe technique.</p>
+<p class="p-tech">Audit d'API, reverse engineering, divulgation responsable</p>
+<details class="fiche">
+<summary>Fiche détaillée</summary>
+
+<dl class="fiche-dl">
+<dt>Contexte</dt><dd>En marge de son activité, audit indépendant de la plateforme Taap.it pour évaluer la sécurité de son API.</dd>
+<dt>Objectifs</dt><dd>Identifier les vecteurs d'exploitation exposant les données utilisateurs et transmettre l'information à l'équipe technique avant toute divulgation publique.</dd>
+<dt>Stack technique</dt><dd>Analyse manuelle de l'API de la plateforme, documentation de chaque vulnérabilité identifiée et de son vecteur d'exploitation.</dd>
+<dt>Compétences développées</dt><dd>Analyse de sécurité d'API, rédaction de rapports de vulnérabilité exploitables, divulgation responsable : contact direct de l'équipe technique, explication des vecteurs, accompagnement des correctifs.</dd>
+<dt>Résultats et impact</dt><dd>Plusieurs failles critiques identifiées et corrigées par l'équipe de Taap.it à la suite de la divulgation.</dd>
+<dt>Perspectives d&#39;amélioration</dt><dd>Audit ponctuel, non reconduit en programme de bug bounty formalisé.</dd>
+</dl>
+</details>
+<p class="p-links"><span class="p-nolink">Divulgation responsable, sans publication</span></p>
+</div>
+</li>
+<li class="row" style="--i:08">
+<span class="lvl" aria-hidden="true">08</span>
+<div class="row-body">
+<p class="title-line"><span class="p-name">UltraAgent — orchestrateur multi-agent</span><span class="leader" aria-hidden="true"></span><span class="p-year">2026</span></p>
+<p class="p-cat"><span class="tag tag-perso">Personnel</span></p>
+<p class="p-desc">Orchestrateur multi-agent open source qui connecte Claude Code, Codex CLI et Gemini CLI en équipe, via tmux et un serveur MCP. Publié sur npm avec un CHANGELOG versionné.</p>
+<p class="p-tech">Node.js, TypeScript, MCP, tmux, Biome, Vitest</p>
+<details class="fiche">
+<summary>Fiche détaillée</summary>
+
+<dl class="fiche-dl">
+<dt>Contexte</dt><dd>Faire travailler ensemble plusieurs CLI d'agents IA (Claude Code, Codex CLI, Gemini CLI) sur un même dépôt, chacun dans son propre worktree git, sans qu'ils se marchent dessus.</dd>
+<dt>Objectifs</dt><dd>Exposer un serveur MCP stdio avec des outils de coordination, gérer un layout tmux par équipe d'agents, et faire circuler un pipeline plan/exec/verify entre les workers.</dd>
+<dt>Stack technique</dt><dd>Node.js ≥20, TypeScript, Biome pour le lint/format, Vitest pour les tests. Serveur MCP en stdio, IPC par pipe entre les process, gestion de worktree git par worker.</dd>
+<dt>Compétences développées</dt><dd>Conception d'un serveur MCP exposant des outils, gestion de layout tmux programmatique, IPC par pipe, isolation par worktree git, conception d'un pipeline plan/exec/verify multi-agent.</dd>
+<dt>Résultats et impact</dt><dd>Publié sur npm (npm install -g ultraagent) avec un CHANGELOG versionné et plus de 25 fichiers de tests unitaires.</dd>
+<dt>Perspectives d&#39;amélioration</dt><dd>Pas de CI en place malgré la maturité du code, à ajouter avant une prochaine version majeure.</dd>
+</dl>
+</details>
+<p class="p-links"><a href="https://github.com/sanztheo/UltraAgent">Code source</a></p>
+</div>
+</li>
+<li class="row" style="--i:09">
+<span class="lvl" aria-hidden="true">09</span>
+<div class="row-body">
+<p class="title-line"><span class="p-name">Ce portfolio — générateur de site en COBOL</span><span class="leader" aria-hidden="true"></span><span class="p-year">2026</span></p>
+<p class="p-cat"><span class="tag tag-perso">Personnel</span></p>
+<p class="p-desc">Le site que vous lisez. Chaque octet de HTML est généré par un programme COBOL : le contenu vit dans des fichiers texte à colonnes fixes, un moteur COBOL les lit, échappe les valeurs et assemble les pages à partir de gabarits.</p>
+<p class="p-tech">COBOL, gabarits texte, génération statique</p>
+<details class="fiche">
+<summary>Fiche détaillée</summary>
+
+<dl class="fiche-dl">
+<dt>Contexte</dt><dd>Projet final du parcours OpenClassrooms Développeur Web : produire un portfolio professionnel, avec la contrainte personnelle d'écrire le générateur en COBOL plutôt qu'avec un outil web classique.</dd>
+<dt>Objectifs</dt><dd>Séparer strictement le contenu (fichiers de données à colonnes fixes) du rendu (gabarits HTML), avec un moteur COBOL capable de lire, d'échapper et d'assembler l'ensemble sans framework JavaScript côté génération.</dd>
+<dt>Stack technique</dt><dd>Moteur de génération écrit en COBOL, fichiers de contenu en colonnes fixes (clé sur 40 colonnes, valeur en fin de ligne), gabarits HTML avec placeholders remplacés à la génération, sortie HTML statique en UTF-8.</dd>
+<dt>Compétences développées</dt><dd>Parsing de fichiers à colonnes fixes en COBOL, échappement systématique des valeurs injectées dans le HTML, séparation contenu/gabarit sur un langage sans écosystème web moderne.</dd>
+<dt>Résultats et impact</dt><dd>Site statique généré intégralement par le programme COBOL, sans étape de build JavaScript.</dd>
+<dt>Perspectives d&#39;amélioration</dt><dd>Les scores de performance et d'accessibilité restent à mesurer sur la version finale déployée avant d'être affichés publiquement.</dd>
+</dl>
+</details>
+<p class="p-links"><a href="https://github.com/sanztheo/Portfolio-Open-Cobolt">Code source</a></p>
+</div>
+</li>
+</ol>
+</section>
+
+<section class="block" id="parcours" aria-labelledby="t-parcours">
+<h2 class="division" id="t-parcours">PROCEDURE DIVISION. <span class="gloss">— comment j&#39;en suis arrivé là</span></h2>
+<ol class="timeline">
+<li class="step">
+<span class="step-date">avr. 2026</span>
+<div class="step-body">
+<h3 class="step-titre">Canopy 2026 — Founders, Inc.</h3>
+<p class="step-lieu">San Francisco · à distance</p>
+<p class="step-desc">Programme Canopy 2026 chez Founders, Inc., autour de la conception logicielle et de l'intelligence artificielle.</p>
+</div>
+</li>
+<li class="step">
+<span class="step-date">avr. 2026</span>
+<div class="step-body">
+<h3 class="step-titre">Chercheur en sécurité — taap.it</h3>
+<p class="step-lieu">Montpellier · à distance</p>
+<p class="step-desc">Audit personnel de la plateforme Taap.it : plusieurs failles critiques identifiées dans leur API, documentées et corrigées après divulgation responsable à l'équipe technique.</p>
+</div>
+</li>
+<li class="step">
+<span class="step-date">mars 2026</span>
+<div class="step-body">
+<h3 class="step-titre">Co-fondateur — Solva</h3>
+<p class="step-lieu">France · à distance</p>
+<p class="step-desc">Secrétariat téléphonique IA pour établissements de santé : agent vocal, prise de rendez-vous, dashboard SaaS, en production.</p>
+</div>
+</li>
+<li class="step">
+<span class="step-date">janv. 2026</span>
+<div class="step-body">
+<h3 class="step-titre">Generative AI Engineer — Dernier Cri</h3>
+<p class="step-lieu">Montpellier · alternance à distance</p>
+<p class="step-desc">Alternance : conception en autonomie d'une plateforme IA agentique pour automatiser les process internes, et solutions logicielles pour les grands comptes APRIL et Renault.</p>
+</div>
+</li>
+<li class="step">
+<span class="step-date">janv. 2026</span>
+<div class="step-body">
+<h3 class="step-titre">Développeur web — OpenClassrooms</h3>
+<p class="step-lieu">France · à distance</p>
+<p class="step-desc">Formation Bac+2 Développeur web, menée en parallèle de l'alternance chez Dernier Cri.</p>
+</div>
+</li>
+<li class="step">
+<span class="step-date">janv. 2025</span>
+<div class="step-body">
+<h3 class="step-titre">Fondateur — PenNote</h3>
+<p class="step-lieu">Montpellier · sur site</p>
+<p class="step-desc">Espace de travail pour étudiants combinant éditeur, IA et quiz. Livré à une cinquantaine d'utilisateurs, puis arrêté et open-sourcé sous AGPLv3.</p>
+</div>
+</li>
+<li class="step">
+<span class="step-date">nov. 2024</span>
+<div class="step-body">
+<h3 class="step-titre">Fondateur — SANZ CLOUD</h3>
+<p class="step-lieu">Montpellier · hybride</p>
+<p class="step-desc">Solutions web sur mesure pour entreprises et indépendants : conception de sites et gestion continue (maintenance, hébergement, sécurité, référencement).</p>
+</div>
+</li>
+<li class="step">
+<span class="step-date">sept. 2024</span>
+<div class="step-body">
+<h3 class="step-titre">BTS Gestion PME — Pigier</h3>
+<p class="step-lieu">France</p>
+<p class="step-desc">BTS Gestion PME (Business Administration and Management), jusqu'en septembre 2025.</p>
+</div>
+</li>
+<li class="step">
+<span class="step-date">janv. 2024</span>
+<div class="step-body">
+<h3 class="step-titre">Fondateur — SANZ IMMO</h3>
+<p class="step-lieu">Montpellier · à distance</p>
+<p class="step-desc">Plateforme gratuite d'estimation de biens immobiliers en ligne.</p>
+</div>
+</li>
+</ol>
+</section>
+
+<section class="block" id="contact" aria-labelledby="t-contact">
+<h2 class="division" id="t-contact">STOP RUN. <span class="gloss">— me joindre</span></h2>
+<p class="lead">Disponible pour échanger sur un poste de développeur, en alternance ou après. Réponse par email ou LinkedIn.</p>
+<ul class="contact">
+<li><a href="mailto:sanztheopro@gmail.com">sanztheopro@gmail.com</a></li>
+<li><a href="https://github.com/sanztheo" rel="me noopener">GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/theo-sanz/" rel="me noopener">LinkedIn</a></li>
+<li><a href="https://getsolva.fr" rel="noopener">Solva</a></li>
+</ul>
+</section>
+
+</main>
+
+<footer class="colophon">
+<p class="stamp">Généré par COBOL</p>
+<p>Cette page est produite par un programme <strong>COBOL</strong> qui lit des fichiers de contenu à colonnes fixes et les injecte dans un gabarit HTML — aucun JavaScript, aucun framework côté client. Le moteur de gabarits, le compilateur GnuCOBOL et le contenu source sont dans le dépôt <a href="https://github.com/sanztheo/Portfolio-Open-Cobolt" rel="noopener">Portfolio-Open-Cobolt</a>.</p>
+<p class="build">GnuCOBOL 3.2 — format fixe, colonnes 8 à 72 — aucune dépendance.</p>
+</footer>
+
+</div>
+</body>
+</html>
