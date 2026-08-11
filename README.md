@@ -168,8 +168,16 @@ La structure de la page : `templates/page.tpl`.
 Le COBOL tourne à la construction, pas au service : l'hébergeur ne sert que des
 fichiers statiques et n'a jamais besoin d'un compilateur.
 
-Lancer `./build.sh`, livrer `dist/`. Sur Vercel, préréglage `Other`, commande de
-construction vide, répertoire de sortie `dist`.
+Le site est en ligne ici :
+**<https://sanztheo.github.io/Portfolio-Open-Cobolt/>**
+
+`.github/workflows/deploy.yml` installe GnuCOBOL sur un runner Ubuntu neuf,
+compile, lance les deux suites de tests, génère la page et publie sur GitHub
+Pages à chaque poussée sur `main`. Il vérifie donc aussi que le projet se
+reconstruit depuis zéro sur une machine qui ne connaît rien de mon poste —
+avec GnuCOBOL 3.1.2 côté Ubuntu là où je développe en 3.2 sur macOS.
+
+Pour un autre hébergeur : lancer `./build.sh` et livrer `dist/`.
 
 ## Le parti pris visuel
 
