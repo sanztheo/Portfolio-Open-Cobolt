@@ -38,13 +38,19 @@ dist/index.html       la sortie
 brew install gnucobol          # macOS
 sudo apt install gnucobol      # Debian, Ubuntu
 
-./build.sh
-open dist/index.html
+./build.sh          # compile, teste, génère dist/
+./serve.sh          # construit puis ouvre le site dans le navigateur
 ```
 
 `build.sh` compile, lance les tests unitaires, génère le site, lance les tests
 d'intégration. Il s'arrête au premier problème — y compris sur un simple
 avertissement du compilateur.
+
+`serve.sh` construit puis sert `dist/` en local. Sans argument il prend le
+premier port libre à partir de 8000 et ouvre le navigateur ; `./serve.sh 3000`
+impose un port, `./serve.sh --sans-build` sert la sortie existante sans
+reconstruire. Un vrai serveur plutôt qu'un `file://` : les types MIME sont
+corrects et le comportement est celui qu'aura le site en ligne.
 
 ## Le moteur
 
