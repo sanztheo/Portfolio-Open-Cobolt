@@ -304,3 +304,18 @@ a:focus-visible,:focus-visible{
   border:1px solid var(--rule);
   background:var(--paper);
 }
+
+/* Les liens qui ouvrent un onglet le signalent. Ouvrir une nouvelle fenetre
+   sans prevenir prend l'utilisateur au depourvu et casse le bouton retour ;
+   WCAG en fait un critere (3.2.5). La fleche est un pseudo-element, donc
+   decorative et ignoree des lecteurs d'ecran, qui annoncent deja le lien. */
+a[target="_blank"]::after{
+  content:"\2197";           /* ↗ */
+  display:inline-block;
+  margin-left:0.25em;
+  font-size:0.8em;
+  line-height:1;
+  color:var(--ink-soft);
+  vertical-align:baseline;
+}
+a[target="_blank"]:hover::after{color:var(--stamp)}

@@ -13,7 +13,7 @@ P_STACK_DETAIL                          Agent vocal : Python 3.12, LiveKit Agent
 P_COMPETENCES                           Je route les appels entre agents spécialisés (triage, booking, urgence), je gère le scrub des données personnelles, l'escalade d'urgence et le DTMF. Pour l'observabilité, j'ai mis en place un shadow judge qui note chaque appel après coup, plus une CI GitHub Actions avec pytest et mypy strict.
 P_RESULTATS                             En production sur LiveKit Cloud, environnements dev et prod séparés, Dockerfile, suite pytest, post-mortems et runbooks d'incident versionnés dans le repo.
 P_PERSPECTIVES                          Je veux élargir la couverture de tests et industrialiser les benchmarks de latence de la chaîne voix avant de monter en charge.
-P_LIENS                                 <a href="https://getsolva.fr">Site du produit</a> <span class="p-nolink">Dépôt privé</span>
+P_LIENS                                 <a target="_blank" rel="noopener" href="https://getsolva.fr">Site du produit</a> <span class="p-nolink">Dépôt privé</span>
 P_VISUEL                                <img class="shot" src="img/solva.webp" width="960" height="600" loading="lazy" decoding="async" alt="Page d'accueil de Solva : un telephone affiche un appel patient en cours, pris en charge par l'agent vocal.">
 [ITEM]                                  
 P_RANG                                  02
@@ -29,7 +29,7 @@ P_STACK_DETAIL                          Frontend : React 19.2, TypeScript, Vite 
 P_COMPETENCES                           J'ai implémenté une architecture poll-cache-broadcast pour tenir la charge des API publiques, et un filtre de Kalman multi-modèle (IMM-EKF) pour prédire la trajectoire des aéronefs. Les shaders GLSL (vision nocturne, FLIR, CRT) sont faits main.
 P_RESULTATS                             18 étoiles GitHub, 266 commits, 162 fichiers Rust et 174 fichiers TypeScript, 29 fichiers de tests Vitest. Coût d'infrastructure nul : uniquement des API publiques gratuites.
 P_PERSPECTIVES                          Je n'ai pas encore mis de CI en place ; je vérifie les rapports de test manuellement pour l'instant.
-P_LIENS                                 <a href="https://github.com/sanztheo/SeeYou">Code source</a> <a href="https://sanztheo.github.io/SeeYou/">Voir en ligne</a>
+P_LIENS                                 <a target="_blank" rel="noopener" href="https://github.com/sanztheo/SeeYou">Code source</a> <a target="_blank" rel="noopener" href="https://sanztheo.github.io/SeeYou/">Voir en ligne</a>
 P_VISUEL                                <img class="shot" src="img/seeyou.webp" width="960" height="600" loading="lazy" decoding="async" alt="Ecran d'accueil de SeeYou listant les sources suivies : vols ADS-B, orbites de satellites, cameras, prediction de trajectoire.">
 [ITEM]                                  
 P_RANG                                  03
@@ -45,7 +45,7 @@ P_STACK_DETAIL                          Backend Rust (Tauri v2) : tokio, reqwest
 P_COMPETENCES                           J'ai construit la couche P2P avec dcutr pour le hole-punching NAT et autonat pour la découverte, sans dépendre d'un relais permanent. Le protocole de diff de manifeste (add/remove/update) et le swarm libp2p sont faits main, sans framework réseau tout fait.
 P_RESULTATS                             Launcher fonctionnel avec gestion multi-instances, support Fabric/Quilt/Forge/NeoForge, recherche unifiée CurseForge + Modrinth, et synchronisation P2P testée entre deux postes.
 P_PERSPECTIVES                          Le protocole reste jeune : pas encore de tests de charge sur des sessions P2P à plus de deux participants.
-P_LIENS                                 <a href="https://github.com/sanztheo/MineSync">Code source</a>
+P_LIENS                                 <a target="_blank" rel="noopener" href="https://github.com/sanztheo/MineSync">Code source</a>
 P_VISUEL                                
 [ITEM]                                  
 P_RANG                                  04
@@ -61,7 +61,7 @@ P_STACK_DETAIL                          SwiftUI avec le framework Observation (@
 P_COMPETENCES                           J'ai désactivé l'App Sandbox pour accéder à proc_pidinfo, IOKit et aux API Mach — un compromis assumé pour une app qui lit l'état système bas niveau. Le calcul du CPU par delta entre deux échantillons, plutôt qu'une lecture instantanée, évite les pics faux qu'on voit sur certains moniteurs tiers.
 P_RESULTATS                             App fonctionnelle en menu bar : résumé CPU/RAM/batterie/disque toujours visible, popover avec grille de cartes, détail par sous-catégorie (CPU user/system/idle/nice, mémoire active/wired/compressed/free), top 10 des process par mémoire résidente.
 P_PERSPECTIVES                          Le suivi CPU par process et le monitoring GPU (Metal Performance HUD) ne sont pas encore implémentés.
-P_LIENS                                 <a href="https://github.com/sanztheo/PerformanceViewer">Code source</a>
+P_LIENS                                 <a target="_blank" rel="noopener" href="https://github.com/sanztheo/PerformanceViewer">Code source</a>
 P_VISUEL                                
 [ITEM]                                  
 P_RANG                                  05
@@ -77,7 +77,7 @@ P_STACK_DETAIL                          Backend : Node.js 22 ESM, Express 4, Pri
 P_COMPETENCES                           J'ai géré la collaboration temps réel par CRDT, le RAG avec embeddings pgvector, et conçu une API d'environ 200 endpoints. La facturation Paddle, je l'ai branchée et testée en conditions réelles, pas juste en sandbox.
 P_RESULTATS                             Livré à environ 50 utilisateurs réels. Faute de traction, j'ai arrêté le produit puis proprement open-sourcé le code (CI, SECURITY.md, CONTRIBUTING.md) sous licence AGPLv3.
 P_PERSPECTIVES                          Le produit n'a pas trouvé son marché. Je le dis tel quel dans le README plutôt que de le maquiller — c'est la limite du projet, pas un accident de parcours.
-P_LIENS                                 <a href="https://github.com/sanztheo/pennote-ai-notion-alternative">Code source</a> <a href="https://github.com/sanztheo/pen-backend">Backend</a> <a href="https://github.com/sanztheo/pen-frontend">Frontend</a>
+P_LIENS                                 <a target="_blank" rel="noopener" href="https://github.com/sanztheo/pennote-ai-notion-alternative">Code source</a> <a target="_blank" rel="noopener" href="https://github.com/sanztheo/pen-backend">Backend</a> <a target="_blank" rel="noopener" href="https://github.com/sanztheo/pen-frontend">Frontend</a>
 P_VISUEL                                
 [ITEM]                                  
 P_RANG                                  06
@@ -93,7 +93,7 @@ P_STACK_DETAIL                          Node.js ≥20, TypeScript, Biome pour le
 P_COMPETENCES                           J'ai conçu le pipeline plan/exec/verify avec checkpoint et resume par écriture atomique d'un état JSON — si un worker crashe, il repart du dernier checkpoint plutôt que de tout recommencer. L'isolation par worktree git évite que deux agents touchent le même fichier en parallèle.
 P_RESULTATS                             Publié sur npm (npm install -g ultraagent) avec un CHANGELOG versionné et plus de 25 fichiers de tests unitaires.
 P_PERSPECTIVES                          Pas de CI en place malgré la maturité du code ; je compte l'ajouter avant une prochaine version majeure.
-P_LIENS                                 <a href="https://github.com/sanztheo/UltraAgent">Code source</a>
+P_LIENS                                 <a target="_blank" rel="noopener" href="https://github.com/sanztheo/UltraAgent">Code source</a>
 P_VISUEL                                
 [ITEM]                                  
 P_RANG                                  07
@@ -125,7 +125,7 @@ P_STACK_DETAIL                          Moteur de génération écrit en COBOL, 
 P_COMPETENCES                           J'ai écrit le parsing des fichiers à colonnes fixes moi-même, sans bibliothèque, et j'échappe systématiquement chaque valeur injectée dans le HTML pour éviter l'injection depuis le contenu. Séparer contenu et gabarit sur un langage sans écosystème web m'a forcé à repenser des mécanismes que je tiens pour acquis en JS.
 P_RESULTATS                             Site statique généré intégralement par le programme COBOL, sans étape de build JavaScript.
 P_PERSPECTIVES                          Les scores de performance et d'accessibilité restent à mesurer sur la version finale déployée avant que je les affiche publiquement.
-P_LIENS                                 <a href="https://github.com/sanztheo/Portfolio-Open-Cobolt">Code source</a>
+P_LIENS                                 <a target="_blank" rel="noopener" href="https://github.com/sanztheo/Portfolio-Open-Cobolt">Code source</a>
 P_VISUEL                                
 [ITEM]                                  
 P_RANG                                  09
@@ -141,7 +141,7 @@ P_STACK_DETAIL                          HTML5 sémantique, CSS3 avec Bootstrap a
 P_COMPETENCES                           J'ai audité le site avec Lighthouse et WAVE, corrigé la sémantique HTML pour les lecteurs d'écran, optimisé les assets (polices, images) et débogué des composants interactifs tiers que je n'avais pas écrits moi-même. Chaque correction est documentée avec son hash de commit.
 P_RESULTATS                             Performance 67 → 99, Accessibilité 87 → 100, Bonnes pratiques 96 → 100, SEO maintenu à 100. Erreurs WAVE 4 → 0, contraste 2,1:1 → 13,3:1, affichage 6,6 s → 2,0 s, poids Bootstrap 160 Ko → 10 Ko.
 P_PERSPECTIVES                          jQuery (~59 Ko) reste nécessaire au fonctionnement de la galerie mauGallery, je n'ai pas pu le retirer. Une réécriture sans jQuery est possible, mais je l'ai laissée hors périmètre de cet audit.
-P_LIENS                                 <a href="https://github.com/sanztheo/Nina-Carducci-Dev-master">Code source</a>
+P_LIENS                                 <a target="_blank" rel="noopener" href="https://github.com/sanztheo/Nina-Carducci-Dev-master">Code source</a>
 P_VISUEL                                
 [ITEM]                                  
 P_RANG                                  10
@@ -157,5 +157,5 @@ P_STACK_DETAIL                          Backend : Node.js, Express 4, MongoDB av
 P_COMPETENCES                           J'ai conçu l'API avec une séparation controllers/models/routes/middlewares, et forcé l'autorisation côté serveur : le userId n'est jamais lu depuis le body de la requête. Je renvoie un 401 générique pour éviter l'énumération de comptes, un 403 sur toute action non autorisée.
 P_RESULTATS                             API documentée de façon exhaustive dans le README. J'ai renforcé la sécurité au-delà du strict nécessaire : rate limiting, helmet et validation stricte, absents du starter OpenClassrooms.
 P_PERSPECTIVES                          Aucun test automatisé côté backend et aucune CI/CD mise en place à ce stade — la prochaine chose que j'ajouterais.
-P_LIENS                                 <a href="https://github.com/sanztheo/P7-Dev-Web-livres">Code source</a>
+P_LIENS                                 <a target="_blank" rel="noopener" href="https://github.com/sanztheo/P7-Dev-Web-livres">Code source</a>
 P_VISUEL                                

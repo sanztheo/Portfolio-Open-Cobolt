@@ -91,9 +91,9 @@
 <p class="lead">{{CONTACT_CHAPO}}</p>
 <ul class="contact">
 <li><a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a></li>
-<li><a href="{{CONTACT_GITHUB}}" rel="me noopener">GitHub</a></li>
-<li><a href="{{CONTACT_LINKEDIN}}" rel="me noopener">LinkedIn</a></li>
-<li><a href="{{CONTACT_SOLVA}}" rel="noopener">Solva</a></li>
+<li><a href="{{CONTACT_GITHUB}}" target="_blank" rel="me noopener">GitHub</a></li>
+<li><a href="{{CONTACT_LINKEDIN}}" target="_blank" rel="me noopener">LinkedIn</a></li>
+<li><a href="{{CONTACT_SOLVA}}" target="_blank" rel="noopener">Solva</a></li>
 </ul>
 </section>
 

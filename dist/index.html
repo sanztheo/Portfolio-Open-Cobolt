@@ -323,6 +323,21 @@ a:focus-visible,:focus-visible{
   border:1px solid var(--rule);
   background:var(--paper);
 }
+
+/* Les liens qui ouvrent un onglet le signalent. Ouvrir une nouvelle fenetre
+   sans prevenir prend l'utilisateur au depourvu et casse le bouton retour ;
+   WCAG en fait un critere (3.2.5). La fleche est un pseudo-element, donc
+   decorative et ignoree des lecteurs d'ecran, qui annoncent deja le lien. */
+a[target="_blank"]::after{
+  content:"\2197";           /* ↗ */
+  display:inline-block;
+  margin-left:0.25em;
+  font-size:0.8em;
+  line-height:1;
+  color:var(--ink-soft);
+  vertical-align:baseline;
+}
+a[target="_blank"]:hover::after{color:var(--stamp)}
 </style>
 </head>
 <body>
@@ -422,7 +437,7 @@ a:focus-visible,:focus-visible{
 <dt>Perspectives d&#39;amélioration</dt><dd>Je veux élargir la couverture de tests et industrialiser les benchmarks de latence de la chaîne voix avant de monter en charge.</dd>
 </dl>
 </details>
-<p class="p-links"><a href="https://getsolva.fr">Site du produit</a> <span class="p-nolink">Dépôt privé</span></p>
+<p class="p-links"><a target="_blank" rel="noopener" href="https://getsolva.fr">Site du produit</a> <span class="p-nolink">Dépôt privé</span></p>
 </div>
 </li>
 <li class="row" style="--i:02">
@@ -444,7 +459,7 @@ a:focus-visible,:focus-visible{
 <dt>Perspectives d&#39;amélioration</dt><dd>Je n'ai pas encore mis de CI en place ; je vérifie les rapports de test manuellement pour l'instant.</dd>
 </dl>
 </details>
-<p class="p-links"><a href="https://github.com/sanztheo/SeeYou">Code source</a> <a href="https://sanztheo.github.io/SeeYou/">Voir en ligne</a></p>
+<p class="p-links"><a target="_blank" rel="noopener" href="https://github.com/sanztheo/SeeYou">Code source</a> <a target="_blank" rel="noopener" href="https://sanztheo.github.io/SeeYou/">Voir en ligne</a></p>
 </div>
 </li>
 <li class="row" style="--i:03">
@@ -466,7 +481,7 @@ a:focus-visible,:focus-visible{
 <dt>Perspectives d&#39;amélioration</dt><dd>Le protocole reste jeune : pas encore de tests de charge sur des sessions P2P à plus de deux participants.</dd>
 </dl>
 </details>
-<p class="p-links"><a href="https://github.com/sanztheo/MineSync">Code source</a></p>
+<p class="p-links"><a target="_blank" rel="noopener" href="https://github.com/sanztheo/MineSync">Code source</a></p>
 </div>
 </li>
 <li class="row" style="--i:04">
@@ -488,7 +503,7 @@ a:focus-visible,:focus-visible{
 <dt>Perspectives d&#39;amélioration</dt><dd>Le suivi CPU par process et le monitoring GPU (Metal Performance HUD) ne sont pas encore implémentés.</dd>
 </dl>
 </details>
-<p class="p-links"><a href="https://github.com/sanztheo/PerformanceViewer">Code source</a></p>
+<p class="p-links"><a target="_blank" rel="noopener" href="https://github.com/sanztheo/PerformanceViewer">Code source</a></p>
 </div>
 </li>
 <li class="row" style="--i:05">
@@ -510,7 +525,7 @@ a:focus-visible,:focus-visible{
 <dt>Perspectives d&#39;amélioration</dt><dd>Le produit n'a pas trouvé son marché. Je le dis tel quel dans le README plutôt que de le maquiller — c'est la limite du projet, pas un accident de parcours.</dd>
 </dl>
 </details>
-<p class="p-links"><a href="https://github.com/sanztheo/pennote-ai-notion-alternative">Code source</a> <a href="https://github.com/sanztheo/pen-backend">Backend</a> <a href="https://github.com/sanztheo/pen-frontend">Frontend</a></p>
+<p class="p-links"><a target="_blank" rel="noopener" href="https://github.com/sanztheo/pennote-ai-notion-alternative">Code source</a> <a target="_blank" rel="noopener" href="https://github.com/sanztheo/pen-backend">Backend</a> <a target="_blank" rel="noopener" href="https://github.com/sanztheo/pen-frontend">Frontend</a></p>
 </div>
 </li>
 <li class="row" style="--i:06">
@@ -532,7 +547,7 @@ a:focus-visible,:focus-visible{
 <dt>Perspectives d&#39;amélioration</dt><dd>Pas de CI en place malgré la maturité du code ; je compte l'ajouter avant une prochaine version majeure.</dd>
 </dl>
 </details>
-<p class="p-links"><a href="https://github.com/sanztheo/UltraAgent">Code source</a></p>
+<p class="p-links"><a target="_blank" rel="noopener" href="https://github.com/sanztheo/UltraAgent">Code source</a></p>
 </div>
 </li>
 <li class="row" style="--i:07">
@@ -576,7 +591,7 @@ a:focus-visible,:focus-visible{
 <dt>Perspectives d&#39;amélioration</dt><dd>Les scores de performance et d'accessibilité restent à mesurer sur la version finale déployée avant que je les affiche publiquement.</dd>
 </dl>
 </details>
-<p class="p-links"><a href="https://github.com/sanztheo/Portfolio-Open-Cobolt">Code source</a></p>
+<p class="p-links"><a target="_blank" rel="noopener" href="https://github.com/sanztheo/Portfolio-Open-Cobolt">Code source</a></p>
 </div>
 </li>
 <li class="row" style="--i:09">
@@ -598,7 +613,7 @@ a:focus-visible,:focus-visible{
 <dt>Perspectives d&#39;amélioration</dt><dd>jQuery (~59 Ko) reste nécessaire au fonctionnement de la galerie mauGallery, je n'ai pas pu le retirer. Une réécriture sans jQuery est possible, mais je l'ai laissée hors périmètre de cet audit.</dd>
 </dl>
 </details>
-<p class="p-links"><a href="https://github.com/sanztheo/Nina-Carducci-Dev-master">Code source</a></p>
+<p class="p-links"><a target="_blank" rel="noopener" href="https://github.com/sanztheo/Nina-Carducci-Dev-master">Code source</a></p>
 </div>
 </li>
 <li class="row" style="--i:10">
@@ -620,7 +635,7 @@ a:focus-visible,:focus-visible{
 <dt>Perspectives d&#39;amélioration</dt><dd>Aucun test automatisé côté backend et aucune CI/CD mise en place à ce stade — la prochaine chose que j'ajouterais.</dd>
 </dl>
 </details>
-<p class="p-links"><a href="https://github.com/sanztheo/P7-Dev-Web-livres">Code source</a></p>
+<p class="p-links"><a target="_blank" rel="noopener" href="https://github.com/sanztheo/P7-Dev-Web-livres">Code source</a></p>
 </div>
 </li>
 </ol>
@@ -717,9 +732,9 @@ a:focus-visible,:focus-visible{
 <p class="lead">Disponible pour échanger sur un poste de développeur, en alternance ou après. Réponse par email ou LinkedIn.</p>
 <ul class="contact">
 <li><a href="mailto:sanztheopro@gmail.com">sanztheopro@gmail.com</a></li>
-<li><a href="https://github.com/sanztheo" rel="me noopener">GitHub</a></li>
-<li><a href="https://www.linkedin.com/in/theo-sanz/" rel="me noopener">LinkedIn</a></li>
-<li><a href="https://getsolva.fr" rel="noopener">Solva</a></li>
+<li><a href="https://github.com/sanztheo" target="_blank" rel="me noopener">GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/theo-sanz/" target="_blank" rel="me noopener">LinkedIn</a></li>
+<li><a href="https://getsolva.fr" target="_blank" rel="noopener">Solva</a></li>
 </ul>
 </section>
 
@@ -727,7 +742,7 @@ a:focus-visible,:focus-visible{
 
 <footer class="colophon">
 <p class="stamp">Généré par COBOL</p>
-<p>Cette page est produite par un programme <strong>COBOL</strong> qui lit des fichiers de contenu à colonnes fixes et les injecte dans un gabarit HTML — aucun JavaScript, aucun framework côté client. Le moteur de gabarits, le compilateur GnuCOBOL et le contenu source sont dans le dépôt <a href="https://github.com/sanztheo/Portfolio-Open-Cobolt" rel="noopener">Portfolio-Open-Cobolt</a>.</p>
+<p>Cette page est produite par un programme <strong>COBOL</strong> qui lit des fichiers de contenu à colonnes fixes et les injecte dans un gabarit HTML — aucun JavaScript, aucun framework côté client. Le moteur de gabarits, le compilateur GnuCOBOL et le contenu source sont dans le dépôt <a target="_blank" rel="noopener" href="https://github.com/sanztheo/Portfolio-Open-Cobolt" rel="noopener">Portfolio-Open-Cobolt</a>.</p>
 <p class="build">GnuCOBOL 3.2 — format fixe, colonnes 8 à 72 — aucune dépendance.</p>
 </footer>
 
