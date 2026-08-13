@@ -29,6 +29,13 @@ CONTACT_EMAIL                           sanztheopro@gmail.com
 CONTACT_GITHUB                          https://github.com/sanztheo
 CONTACT_LINKEDIN                        https://www.linkedin.com/in/theo-sanz/
 CONTACT_SOLVA                           https://getsolva.fr
+# Section fabrication
+FABRICATION                             Les autres portfolios de la promotion sont en React. Celui-ci est imprimé par un programme <strong>COBOL</strong>, un langage de 1959 conçu pour les états de gestion. Le paragraphe ci-dessous est celui qui a produit la page que vous lisez : le générateur ouvre son propre fichier source à chaque construction et en recopie un extrait ici. Ce n'est donc pas un collage décoratif.
+BUILD_COMPILATEUR                       GnuCOBOL, format fixe colonnes 8 à 72
+BUILD_MODULES                           4 programmes, communiquant par LINKAGE SECTION
+BUILD_TESTS                             13 tests unitaires COBOL, 8 tests d'intégration
+BUILD_JS                                aucune ligne, aucune dépendance
+
 COLOPHON                                Cette page est produite par un programme <strong>COBOL</strong> qui lit des fichiers de contenu à colonnes fixes et les injecte dans un gabarit HTML — aucun JavaScript, aucun framework côté client. Le moteur de gabarits, le compilateur GnuCOBOL et le contenu source sont dans le dépôt <a target="_blank" rel="noopener" href="https://github.com/sanztheo/portfolio-cobol" rel="noopener">portfolio-cobol</a>.
 COLOPHON_BUILD                          GnuCOBOL 3.2 — format fixe, colonnes 8 à 72 — aucune dépendance.
 FAVICON                                 data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2016%2016%22%3E%3Crect%20width=%2216%22%20height=%2216%22%20fill=%22%23EFEFE8%22/%3E%3Crect%20y=%224%22%20width=%2216%22%20height=%224%22%20fill=%22%23D6E3D1%22/%3E%3C/svg%3E

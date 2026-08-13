@@ -183,8 +183,12 @@ body{
   font-weight:700;color:var(--ink-soft);
   font-size:0.8125rem;padding-top:0.2rem;
 }
-.title-line{display:flex;align-items:baseline;gap:0.6rem}
-.p-name{font-weight:700;font-size:1.0625rem;letter-spacing:-0.01em}
+/* Un titre long poussait l'annee hors de l'ecran en dessous de 360px, et
+   c'est toute la page qui debordait alors horizontalement. La ligne peut
+   maintenant se replier, et le titre se couper en dernier recours. */
+.title-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 0.6rem}
+.p-name{font-weight:700;font-size:1.0625rem;letter-spacing:-0.01em;
+  min-width:0;overflow-wrap:anywhere}
 .leader{
   flex:1 1 auto;min-width:1.5rem;
   border-bottom:1px dotted var(--rule);
@@ -338,6 +342,75 @@ a[target="_blank"]::after{
   vertical-align:baseline;
 }
 a[target="_blank"]:hover::after{color:var(--stamp)}
+
+/* Petits glyphes dessines a la main plutot qu'une bibliotheque d'icones :
+   dix traces valent quelques centaines d'octets, une dependance en couterait
+   des dizaines de milliers et une requete reseau. Ils heritent de la couleur
+   du texte et sont decoratifs — le libelle a cote dit deja de quoi il s'agit. */
+.ico{
+  width:1em;height:1em;
+  flex:0 0 auto;
+  margin-right:0.55em;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vertical-align:-0.13em;
+}
+.skill-group dt{display:flex;align-items:center}
+.skill-group .ico{color:var(--ink-soft)}
+
+/* Le listing du code source imprime par le programme lui-meme. */
+.listing{
+  margin:0 0 1.75rem;
+  border:1px solid var(--rule);
+  background:var(--bar);
+}
+.listing figcaption{
+  padding:0.5rem 0.9rem;
+  border-bottom:1px solid var(--rule);
+  font-size:0.75rem;font-weight:700;
+  letter-spacing:0.04em;
+  color:var(--ink);
+}
+.listing-note{
+  font-weight:400;letter-spacing:0.02em;text-transform:none;
+  color:var(--ink-soft);
+}
+.listing pre{
+  margin:0;
+  padding:0.9rem;
+  overflow-x:auto;          /* le code deborde plutot que la page */
+  font-size:0.8125rem;
+  line-height:1.5;
+  tab-size:4;
+}
+.facts-build{margin-top:0.5rem}
+/* Les libelles de cette liste sont plus longs qu'ailleurs : sans colonne
+   elargie, "Compilateur" et ses points de conduite passent a la ligne. */
+.facts-build li{grid-template-columns:10.5rem 1fr}
+
+/* Le site est un listing : il doit sortir juste sur une imprimante. On retire
+   la navigation et les fonds, on ouvre les fiches repliees, et on fait suivre
+   l'adresse des liens puisqu'un lien n'est pas cliquable sur du papier. */
+@media print{
+  .skip,.nav{display:none}
+  .sheet{max-width:none;padding:0}
+  .sheet::before,.sheet::after{display:none}
+  body{background:#fff;color:#000;font-size:10.5pt}
+  .row:nth-child(odd),.listing{background:transparent}
+  .fiche summary{display:none}
+  .fiche[open] .fiche-dl,.fiche .fiche-dl{display:block}
+  .block{break-inside:avoid}
+  .row,.step{break-inside:avoid}
+  a[target="_blank"]::after{content:""}
+  .p-links a::after,.contact a::after{
+    content:" (" attr(href) ")";
+    font-weight:400;font-size:0.85em;color:#444;
+  }
+  .shot{display:none}
+}
 </style>
 </head>
 <body>
@@ -352,6 +425,7 @@ a[target="_blank"]:hover::after{color:var(--stamp)}
 <li><a href="#competences">Compétences</a></li>
 <li><a href="#projets">Projets</a></li>
 <li><a href="#parcours">Parcours</a></li>
+<li><a href="#fabrication">Fabrication</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
@@ -387,27 +461,27 @@ a[target="_blank"]:hover::after{color:var(--stamp)}
 <p class="lead">Les outils et langages utilisés au quotidien, du frontend à l'infrastructure.</p>
 <dl class="skills">
 <div class="skill-group">
-<dt>Langages</dt>
+<dt><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5.5 4 2 8l3.5 4M10.5 4 14 8l-3.5 4"/></svg>Langages</dt>
 <dd>TypeScript · Python · Rust · JavaScript · HTML5/CSS3 · SQL · Swift · COBOL<span class="skill-note">(TypeScript et Python au quotidien, Rust sur les briques exigeantes, Swift et COBOL plus ponctuels)</span></dd>
 </div>
 <div class="skill-group">
-<dt>Frontend</dt>
+<dt><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="1"/><path d="M1.75 6h12.5M4 4.4h.01M6 4.4h.01"/></svg>Frontend</dt>
 <dd>React · Next.js · Vite · Tailwind CSS · SCSS · Radix UI / shadcn · CesiumJS · Astro<span class="skill-note">(React et Next.js en production quotidienne, CesiumJS sur le projet SeeYou)</span></dd>
 </div>
 <div class="skill-group">
-<dt>Backend</dt>
+<dt><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.75" y="2.75" width="12.5" height="4.5" rx="1"/><rect x="1.75" y="8.75" width="12.5" height="4.5" rx="1"/><path d="M4.25 5h.01M4.25 11h.01"/></svg>Backend</dt>
 <dd>Node.js / Express · API REST · Prisma · PostgreSQL · MongoDB / Mongoose · Redis · Rust / Axum · WebSocket · JWT / bcrypt<span class="skill-note">(Node.js/Express et API REST au quotidien, Rust/Axum sur le backend temps réel de SeeYou)</span></dd>
 </div>
 <div class="skill-group">
-<dt>Data et IA</dt>
+<dt><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="3.5" cy="4" r="1.6"/><circle cx="12.5" cy="4" r="1.6"/><circle cx="8" cy="12" r="1.6"/><path d="M4.9 5.1 7 10.6M11.1 5.1 9 10.6M5.1 4h5.8"/></svg>Data et IA</dt>
 <dd>LiveKit Agents · Vercel AI SDK · Model Context Protocol (MCP) · RAG avec embeddings pgvector · filtre de Kalman IMM-EKF<span class="skill-note">(LiveKit Agents et Vercel AI SDK en production sur Solva, RAG et Kalman sur des projets dédiés)</span></dd>
 </div>
 <div class="skill-group">
-<dt>Infra et DevOps</dt>
+<dt><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 1.9 14 5v6l-6 3.1L2 11V5z"/><path d="M2 5l6 3 6-3M8 8v6.1"/></svg>Infra et DevOps</dt>
 <dd>Docker / Compose · GitHub Actions · Vercel · Railway · Twilio · Infisical · monorepo et submodules git<span class="skill-note">(Docker, GitHub Actions et Vercel en production sur Solva et les projets de formation)</span></dd>
 </div>
 <div class="skill-group">
-<dt>Méthodes</dt>
+<dt><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="2" y="2.5" width="12" height="11" rx="1"/><path d="M5 8.2l2 2 4-4.4"/></svg>Méthodes</dt>
 <dd>Tests automatisés (Vitest, Jest, pytest, Playwright) · autorisation stricte côté serveur · audit Lighthouse / WAVE · post-mortems et runbooks · divulgation responsable de vulnérabilités<span class="skill-note">(pratiques appliquées sur plusieurs projets, dont un audit de vulnérabilités mené en autonomie)</span></dd>
 </div>
 </dl>
@@ -727,14 +801,39 @@ a[target="_blank"]:hover::after{color:var(--stamp)}
 </ol>
 </section>
 
+<section class="block" id="fabrication" aria-labelledby="t-fabrication">
+<h2 class="division" id="t-fabrication">SOURCE. <span class="gloss">— le programme qui a imprimé cette page</span></h2>
+<p class="lead">Les autres portfolios de la promotion sont en React. Celui-ci est imprimé par un programme <strong>COBOL</strong>, un langage de 1959 conçu pour les états de gestion. Le paragraphe ci-dessous est celui qui a produit la page que vous lisez : le générateur ouvre son propre fichier source à chaque construction et en recopie un extrait ici. Ce n'est donc pas un collage décoratif.</p>
+<figure class="listing">
+<figcaption>src/buildsite.cbl <span class="listing-note">— relu à chaque construction, ce n'est pas une copie</span></figcaption>
+<pre>
+      *
+      *    Ce paragraphe a produit la page que vous lisez. Le programme
+      *    ouvre son propre fichier source et recopie ces lignes ici.
+      *
+       PRINCIPAL.
+           PERFORM CHARGER-CLES-GLOBALES
+           PERFORM GENERER-PAGE
+           PERFORM AFFICHER-BILAN
+           STOP RUN.
+</pre>
+</figure>
+<ul class="facts facts-build">
+<li><b>Compilateur</b> GnuCOBOL, format fixe colonnes 8 à 72</li>
+<li><b>Modules</b> 4 programmes, communiquant par LINKAGE SECTION</li>
+<li><b>Tests</b> 13 tests unitaires COBOL, 8 tests d'intégration</li>
+<li><b>JavaScript</b> aucune ligne, aucune dépendance</li>
+</ul>
+</section>
+
 <section class="block" id="contact" aria-labelledby="t-contact">
 <h2 class="division" id="t-contact">STOP RUN. <span class="gloss">— me joindre</span></h2>
 <p class="lead">Disponible pour échanger sur un poste de développeur, en alternance ou après. Réponse par email ou LinkedIn.</p>
 <ul class="contact">
-<li><a href="mailto:sanztheopro@gmail.com">sanztheopro@gmail.com</a></li>
-<li><a href="https://github.com/sanztheo" target="_blank" rel="me noopener">GitHub</a></li>
-<li><a href="https://www.linkedin.com/in/theo-sanz/" target="_blank" rel="me noopener">LinkedIn</a></li>
-<li><a href="https://getsolva.fr" target="_blank" rel="noopener">Solva</a></li>
+<li><a href="mailto:sanztheopro@gmail.com"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.5" y="3.25" width="13" height="9.5" rx="1"/><path d="m2 4.5 6 4 6-4"/></svg>sanztheopro@gmail.com</a></li>
+<li><a href="https://github.com/sanztheo" target="_blank" rel="me noopener"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="4.5" cy="3.5" r="1.7"/><circle cx="4.5" cy="12.5" r="1.7"/><circle cx="11.5" cy="4.5" r="1.7"/><path d="M4.5 5.2v5.6M11.5 6.2c0 2.4-2 3-4 3.4"/></svg>GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/theo-sanz/" target="_blank" rel="me noopener"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="1"/><circle cx="5" cy="6" r="1"/><path d="M5 8.5v3M8.5 11.5v-3c1.5-1.2 3 0 3 1.2v1.8"/></svg>LinkedIn</a></li>
+<li><a href="https://getsolva.fr" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.25"/><path d="M1.9 8h12.2M8 1.75c3 3.4 3 9.1 0 12.5-3-3.4-3-9.1 0-12.5"/></svg>Solva</a></li>
 </ul>
 </section>
 

@@ -29,6 +29,9 @@
       *        DEROULENT LA LISTE CORRESPONDANTE.                      *
       *    {{@STYLE}}                                                  *
       *        RECOPIE LA FEUILLE DE STYLE OCTET POUR OCTET.           *
+      *    {{@SOURCE}}                                                 *
+      *        IMPRIME L EXTRAIT DE CE PROGRAMME SITUE ENTRE LES       *
+      *        MARQUEURS EXTRAIT-DEBUT ET EXTRAIT-FIN.                 *
       *                                                                *
       *  FORMAT DES FICHIERS DE CONTENU                                *
       *    UNE LIGNE "[ITEM]" OUVRE UN NOUVEL ENREGISTREMENT.          *
@@ -60,6 +63,13 @@
            SELECT F-CSS    ASSIGN TO "src/style.css"
                ORGANIZATION IS LINE SEQUENTIAL
                FILE STATUS  IS WS-ST-CSS.
+      *    LE GENERATEUR LIT SON PROPRE FICHIER SOURCE POUR EN IMPRIMER
+      *    UN EXTRAIT DANS LA PAGE. LE CODE MONTRE N EST DONC PAS UNE
+      *    COPIE COLLEE A LA MAIN, QUI POURRAIT MENTIR : C EST CELUI QUI
+      *    TOURNE, RELU A CHAQUE CONSTRUCTION.
+           SELECT F-SOURCE ASSIGN TO "src/buildsite.cbl"
+               ORGANIZATION IS LINE SEQUENTIAL
+               FILE STATUS  IS WS-ST-SRC.
            SELECT F-SORTIE ASSIGN TO "dist/index.html.part"
                ORGANIZATION IS LINE SEQUENTIAL
                FILE STATUS  IS WS-ST-SORTIE.
@@ -97,6 +107,8 @@
        01  PAGE-LIGNE        PIC X(2000).
        FD  F-CSS.
        01  CSS-LIGNE         PIC X(400).
+       FD  F-SOURCE.
+       01  SRC-LIGNE         PIC X(80).
        FD  F-SORTIE.
        01  SORTIE-LIGNE      PIC X(6000).
        FD  F-TPL-PRJ.
@@ -134,6 +146,7 @@
        01  WS-ST-SITE        PIC XX VALUE SPACES.
        01  WS-ST-PAGE        PIC XX VALUE SPACES.
        01  WS-ST-CSS         PIC XX VALUE SPACES.
+       01  WS-ST-SRC         PIC XX VALUE SPACES.
        01  WS-ST-SORTIE      PIC XX VALUE SPACES.
        01  WS-ST-TPL         PIC XX VALUE SPACES.
        01  WS-ST-DAT         PIC XX VALUE SPACES.
@@ -165,6 +178,10 @@
       *    ----- DIVERS -----
        01  WS-DIRECTIVE      PIC X(40) VALUE SPACES.
        01  WS-CLE-COURANTE   PIC X(40)  VALUE SPACES.
+       01  WS-DANS-EXTRAIT   PIC X      VALUE "N".
+           88  WS-EXTRAIT-OUVERT VALUE "Y".
+       01  WS-SRC-BRUTE      PIC X(700)  VALUE SPACES.
+       01  WS-SRC-ECHAPPEE   PIC X(4200) VALUE SPACES.
        01  WS-VALEUR-COURANTE PIC X(700) VALUE SPACES.
        01  WS-ENR-OUVERT     PIC X VALUE "N".
            88  WS-DANS-ENR    VALUE "Y".
@@ -173,12 +190,17 @@
        01  WS-NB-ETAPES      PIC 9(4) VALUE ZERO.
       *
        PROCEDURE DIVISION.
+      *EXTRAIT-DEBUT
+      *
+      *    Ce paragraphe a produit la page que vous lisez. Le programme
+      *    ouvre son propre fichier source et recopie ces lignes ici.
       *
        PRINCIPAL.
            PERFORM CHARGER-CLES-GLOBALES
            PERFORM GENERER-PAGE
            PERFORM AFFICHER-BILAN
            STOP RUN.
+      *EXTRAIT-FIN
       *
       ******************************************************************
       *  CHARGEMENT DES CLES GLOBALES                                  *
@@ -286,6 +308,8 @@
            EVALUATE WS-DIRECTIVE
                WHEN "{{@STYLE}}"
                    PERFORM INJECTER-FEUILLE-DE-STYLE
+               WHEN "{{@SOURCE}}"
+                   PERFORM INJECTER-SOURCE
                WHEN "{{@PROJETS}}"
                    PERFORM DEROULER-PROJETS
                WHEN "{{@COMPETENCES}}"
@@ -319,6 +343,56 @@
            END-PERFORM
            CLOSE F-CSS
            MOVE "N" TO WS-FIN-DAT.
+      *
+      ******************************************************************
+      *  IMPRESSION D UN EXTRAIT DU PROGRAMME LUI-MEME                 *
+      *                                                                *
+      *  LE PROGRAMME OUVRE SON PROPRE FICHIER SOURCE ET RECOPIE LES   *
+      *  LIGNES COMPRISES ENTRE DEUX MARQUEURS. LE CODE AFFICHE SUR LE *
+      *  SITE EST DONC TOUJOURS CELUI QUI VIENT DE S EXECUTER.         *
+      *                                                                *
+      *  CHAQUE LIGNE PASSE PAR HTMLESC : UN SOURCE COBOL CONTIENT DES *
+      *  CHEVRONS DANS SES COMMENTAIRES, QUI SERAIENT PRIS POUR DES    *
+      *  BALISES UNE FOIS DANS LA PAGE.                                *
+      ******************************************************************
+       INJECTER-SOURCE.
+           MOVE "N" TO WS-FIN-DAT
+           MOVE "N" TO WS-DANS-EXTRAIT
+           OPEN INPUT F-SOURCE
+           IF WS-ST-SRC NOT = "00"
+               MOVE "src/buildsite.cbl" TO WS-DIRECTIVE
+               PERFORM ARRET-FICHIER-INTROUVABLE
+           END-IF
+           PERFORM UNTIL WS-DAT-FINI
+               READ F-SOURCE
+                   AT END
+                       MOVE "Y" TO WS-FIN-DAT
+                   NOT AT END
+                       PERFORM FILTRER-LIGNE-SOURCE
+               END-READ
+           END-PERFORM
+           CLOSE F-SOURCE
+           MOVE "N" TO WS-FIN-DAT.
+      *
+      *    LES MARQUEURS SONT DES COMMENTAIRES COBOL ORDINAIRES : UNE
+      *    ETOILE EN COLONNE 7. ILS NE GENENT DONC PAS LA COMPILATION,
+      *    ET NE SONT PAS RECOPIES DANS LA PAGE.
+       FILTRER-LIGNE-SOURCE.
+           IF SRC-LIGNE(7:14) = "*EXTRAIT-DEBUT"
+               MOVE "Y" TO WS-DANS-EXTRAIT
+               EXIT PARAGRAPH
+           END-IF
+           IF SRC-LIGNE(7:12) = "*EXTRAIT-FIN"
+               MOVE "N" TO WS-DANS-EXTRAIT
+               EXIT PARAGRAPH
+           END-IF
+           IF NOT WS-EXTRAIT-OUVERT
+               EXIT PARAGRAPH
+           END-IF
+           MOVE SRC-LIGNE TO WS-SRC-BRUTE
+           CALL "HTMLESC" USING WS-SRC-BRUTE WS-SRC-ECHAPPEE
+           MOVE WS-SRC-ECHAPPEE TO SORTIE-LIGNE
+           WRITE SORTIE-LIGNE.
       *
       ******************************************************************
       *  RENDU D UNE LIGNE ET ECRITURE                                 *

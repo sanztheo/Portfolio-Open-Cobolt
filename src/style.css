@@ -164,8 +164,12 @@ body{
   font-weight:700;color:var(--ink-soft);
   font-size:0.8125rem;padding-top:0.2rem;
 }
-.title-line{display:flex;align-items:baseline;gap:0.6rem}
-.p-name{font-weight:700;font-size:1.0625rem;letter-spacing:-0.01em}
+/* Un titre long poussait l'annee hors de l'ecran en dessous de 360px, et
+   c'est toute la page qui debordait alors horizontalement. La ligne peut
+   maintenant se replier, et le titre se couper en dernier recours. */
+.title-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 0.6rem}
+.p-name{font-weight:700;font-size:1.0625rem;letter-spacing:-0.01em;
+  min-width:0;overflow-wrap:anywhere}
 .leader{
   flex:1 1 auto;min-width:1.5rem;
   border-bottom:1px dotted var(--rule);
@@ -319,3 +323,72 @@ a[target="_blank"]::after{
   vertical-align:baseline;
 }
 a[target="_blank"]:hover::after{color:var(--stamp)}
+
+/* Petits glyphes dessines a la main plutot qu'une bibliotheque d'icones :
+   dix traces valent quelques centaines d'octets, une dependance en couterait
+   des dizaines de milliers et une requete reseau. Ils heritent de la couleur
+   du texte et sont decoratifs — le libelle a cote dit deja de quoi il s'agit. */
+.ico{
+  width:1em;height:1em;
+  flex:0 0 auto;
+  margin-right:0.55em;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vertical-align:-0.13em;
+}
+.skill-group dt{display:flex;align-items:center}
+.skill-group .ico{color:var(--ink-soft)}
+
+/* Le listing du code source imprime par le programme lui-meme. */
+.listing{
+  margin:0 0 1.75rem;
+  border:1px solid var(--rule);
+  background:var(--bar);
+}
+.listing figcaption{
+  padding:0.5rem 0.9rem;
+  border-bottom:1px solid var(--rule);
+  font-size:0.75rem;font-weight:700;
+  letter-spacing:0.04em;
+  color:var(--ink);
+}
+.listing-note{
+  font-weight:400;letter-spacing:0.02em;text-transform:none;
+  color:var(--ink-soft);
+}
+.listing pre{
+  margin:0;
+  padding:0.9rem;
+  overflow-x:auto;          /* le code deborde plutot que la page */
+  font-size:0.8125rem;
+  line-height:1.5;
+  tab-size:4;
+}
+.facts-build{margin-top:0.5rem}
+/* Les libelles de cette liste sont plus longs qu'ailleurs : sans colonne
+   elargie, "Compilateur" et ses points de conduite passent a la ligne. */
+.facts-build li{grid-template-columns:10.5rem 1fr}
+
+/* Le site est un listing : il doit sortir juste sur une imprimante. On retire
+   la navigation et les fonds, on ouvre les fiches repliees, et on fait suivre
+   l'adresse des liens puisqu'un lien n'est pas cliquable sur du papier. */
+@media print{
+  .skip,.nav{display:none}
+  .sheet{max-width:none;padding:0}
+  .sheet::before,.sheet::after{display:none}
+  body{background:#fff;color:#000;font-size:10.5pt}
+  .row:nth-child(odd),.listing{background:transparent}
+  .fiche summary{display:none}
+  .fiche[open] .fiche-dl,.fiche .fiche-dl{display:block}
+  .block{break-inside:avoid}
+  .row,.step{break-inside:avoid}
+  a[target="_blank"]::after{content:""}
+  .p-links a::after,.contact a::after{
+    content:" (" attr(href) ")";
+    font-weight:400;font-size:0.85em;color:#444;
+  }
+  .shot{display:none}
+}

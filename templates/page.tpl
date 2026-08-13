@@ -32,6 +32,7 @@
 <li><a href="#competences">Compétences</a></li>
 <li><a href="#projets">Projets</a></li>
 <li><a href="#parcours">Parcours</a></li>
+<li><a href="#fabrication">Fabrication</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
@@ -86,14 +87,31 @@
 </ol>
 </section>
 
+<section class="block" id="fabrication" aria-labelledby="t-fabrication">
+<h2 class="division" id="t-fabrication">SOURCE. <span class="gloss">— le programme qui a imprimé cette page</span></h2>
+<p class="lead">{{&FABRICATION}}</p>
+<figure class="listing">
+<figcaption>src/buildsite.cbl <span class="listing-note">— relu à chaque construction, ce n'est pas une copie</span></figcaption>
+<pre>
+{{@SOURCE}}
+</pre>
+</figure>
+<ul class="facts facts-build">
+<li><b>Compilateur</b> {{BUILD_COMPILATEUR}}</li>
+<li><b>Modules</b> {{BUILD_MODULES}}</li>
+<li><b>Tests</b> {{BUILD_TESTS}}</li>
+<li><b>JavaScript</b> {{BUILD_JS}}</li>
+</ul>
+</section>
+
 <section class="block" id="contact" aria-labelledby="t-contact">
 <h2 class="division" id="t-contact">STOP RUN. <span class="gloss">— me joindre</span></h2>
 <p class="lead">{{CONTACT_CHAPO}}</p>
 <ul class="contact">
-<li><a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a></li>
-<li><a href="{{CONTACT_GITHUB}}" target="_blank" rel="me noopener">GitHub</a></li>
-<li><a href="{{CONTACT_LINKEDIN}}" target="_blank" rel="me noopener">LinkedIn</a></li>
-<li><a href="{{CONTACT_SOLVA}}" target="_blank" rel="noopener">Solva</a></li>
+<li><a href="mailto:{{CONTACT_EMAIL}}"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.5" y="3.25" width="13" height="9.5" rx="1"/><path d="m2 4.5 6 4 6-4"/></svg>{{CONTACT_EMAIL}}</a></li>
+<li><a href="{{CONTACT_GITHUB}}" target="_blank" rel="me noopener"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="4.5" cy="3.5" r="1.7"/><circle cx="4.5" cy="12.5" r="1.7"/><circle cx="11.5" cy="4.5" r="1.7"/><path d="M4.5 5.2v5.6M11.5 6.2c0 2.4-2 3-4 3.4"/></svg>GitHub</a></li>
+<li><a href="{{CONTACT_LINKEDIN}}" target="_blank" rel="me noopener"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="1"/><circle cx="5" cy="6" r="1"/><path d="M5 8.5v3M8.5 11.5v-3c1.5-1.2 3 0 3 1.2v1.8"/></svg>LinkedIn</a></li>
+<li><a href="{{CONTACT_SOLVA}}" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.25"/><path d="M1.9 8h12.2M8 1.75c3 3.4 3 9.1 0 12.5-3-3.4-3-9.1 0-12.5"/></svg>Solva</a></li>
 </ul>
 </section>
 
