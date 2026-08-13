@@ -9,3 +9,6 @@ build/
 *.png
 !public/**/*.png
 dist/index.html.part
+
+# rapports d audit locaux
+lighthouse.json

@@ -1,5 +1,7 @@
 # Portfolio généré en COBOL
 
+**En ligne : <https://sanztheo.github.io/portfolio-cobol/>**
+
 Un portfolio dont **chaque octet de HTML est écrit par un programme COBOL**.
 Pas de framework, pas de JavaScript, pas une dépendance à installer.
 
