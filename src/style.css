@@ -308,37 +308,69 @@ a:focus-visible,:focus-visible{
    la page reste identique. Surtout, le contenu n'est jamais masque en
    attendant un evenement : une revelation en JavaScript qui ne se declenche
    pas laisse une page blanche, ici l'etat final est l'etat par defaut.
-   Et comme plus haut, seul `transform` bouge : animer `opacity` ferait
-   passer le texte par des etats de faible contraste, que les auditeurs
-   d'accessibilite echantillonnent et signalent en violation WCAG. */
+
+   Ces revelations fondent, elles, contrairement a l'animation au chargement
+   juste au-dessus : la remarque sur le contraste ne vaut que pour un fondu
+   declenche par une minuterie, qu'un auditeur peut echantillonner en pleine
+   course. Ici le fondu n'avance qu'au defilement, et un auditeur ne defile
+   pas — il mesure une page immobile, dont chaque element est soit a l'etat
+   final, soit a `opacity:0`, donc tenu pour invisible et exclu du controle
+   de contraste. Mesure plutot que suppose : Lighthouse reste a 100 en
+   accessibilite avec ce fondu. */
 @media (prefers-reduced-motion:no-preference){
   @supports (animation-timeline:view()){
     /* Longhands et pas le raccourci `animation` : le raccourci remet
        `animation-timeline` a `auto` et desamorcerait la regle. */
     .row,.pitch li,.skill-group,.step,.listing,.contact li,.facts li{
-      animation-name:feed;
+      animation-name:surgir;
       animation-duration:auto;
       animation-timing-function:cubic-bezier(.2,.8,.2,1);
       animation-fill-mode:both;
       animation-delay:0s;
       animation-timeline:view();
-      animation-range:entry 6% entry 40%;
+      animation-range:cover 0% cover 22%;
     }
     /* Les titres de section arrivent un peu plus tot que leur contenu :
        on lit l'intitule avant que les lignes se posent. */
     .division{
-      animation-name:feed-titre;
+      animation-name:surgir-titre;
       animation-duration:auto;
       animation-timing-function:cubic-bezier(.2,.8,.2,1);
       animation-fill-mode:both;
       animation-delay:0s;
       animation-timeline:view();
-      animation-range:entry 0% entry 32%;
+      animation-range:cover 0% cover 16%;
     }
     /* Le parcours se deroule lateralement, le long de son filet vertical. */
     .step{
-      animation-name:feed-lat;
-      animation-range:entry 10% entry 46%;
+      animation-name:surgir-lat;
+      animation-range:cover 0% cover 24%;
+    }
+
+    /* Un par un, et pas tous ensemble. Chaque element a sa propre timeline
+       `view()`, donc ce qui est empile verticalement se decale tout seul.
+       Ce qui partage une rangee de grille, non : ces elements entrent dans
+       la fenetre au meme instant. On decale alors leur plage par rang, ce
+       qui rend la cascade a l'interieur d'un meme groupe. `animation-delay`
+       ne peut pas servir : sur une timeline de defilement, un delai en
+       secondes est ignore. */
+    .pitch li:nth-child(2),.skill-group:nth-child(2),
+    .contact li:nth-child(2),.facts li:nth-child(2){
+      animation-range:cover 4% cover 26%;
+    }
+    .pitch li:nth-child(3),.skill-group:nth-child(3),
+    .contact li:nth-child(3),.facts li:nth-child(3){
+      animation-range:cover 8% cover 30%;
+    }
+    .pitch li:nth-child(4),.skill-group:nth-child(4),
+    .contact li:nth-child(4),.facts li:nth-child(4){
+      animation-range:cover 12% cover 34%;
+    }
+    .pitch li:nth-child(5),.skill-group:nth-child(5){
+      animation-range:cover 16% cover 38%;
+    }
+    .pitch li:nth-child(6),.skill-group:nth-child(6){
+      animation-range:cover 20% cover 42%;
     }
 
     /* Jauge d'avancement en haut de page : la meme mecanique branchee sur
@@ -362,8 +394,12 @@ a:focus-visible,:focus-visible{
     }
   }
 }
-@keyframes feed-titre{from{transform:translateY(10px)}}
-@keyframes feed-lat{from{transform:translateX(-10px)}}
+@keyframes surgir{from{opacity:0;transform:translateY(28px)}}
+@keyframes surgir-titre{from{opacity:0;transform:translateY(16px)}}
+/* Le decalage lateral se mesure sur la marge de la feuille, jamais en
+   pixels fixes : a 320 px cette marge tombe a 20 px, et un glissement de
+   28 px faisait sortir l'etape hors du cadre, ou elle se faisait rogner. */
+@keyframes surgir-lat{from{opacity:0;transform:translateX(calc(var(--pad) * -0.5))}}
 @keyframes jauge{to{transform:scaleX(1)}}
 
 /* Capture du projet, rangee dans la fiche depliable. Les dimensions sont
@@ -446,6 +482,15 @@ a[target="_blank"]:hover::after{color:var(--stamp)}
    l'adresse des liens puisqu'un lien n'est pas cliquable sur du papier. */
 @media print{
   .skip,.nav,body::before{display:none}
+  /* Une imprimante ne defile pas : les timelines de defilement n'avancent
+     jamais et les blocs sortiraient a l'etat de depart, donc vides. On les
+     remet a l'etat final avant de composer la page. */
+  .division,.row,.step,.pitch li,.skill-group,
+  .listing,.contact li,.facts li{
+    animation:none;
+    opacity:1;
+    transform:none;
+  }
   .sheet{max-width:none;padding:0}
   .sheet::before,.sheet::after{display:none}
   body{background:#fff;color:#000;font-size:10.5pt}

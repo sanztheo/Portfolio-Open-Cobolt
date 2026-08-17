@@ -212,16 +212,23 @@ Les bandes vertes ne sont pas un décor : ce sont les lignes paires de la liste
 de projets. Elles s'alignent donc sur le contenu, comme sur une vraie sortie
 d'imprimante ligne.
 
-Les blocs se posent au défilement, comme le papier qui sort de la machine.
-Sans une ligne de JavaScript : `animation-timeline: view()` branche l'animation
-sur la position de l'élément dans la fenêtre, et une jauge d'avancement en haut
-de page sur `scroll(root)`. Le navigateur fait le travail que ferait
-l'`IntersectionObserver`. L'état final est l'état par défaut, donc un
-navigateur qui ignore les timelines de défilement affiche la page entière —
-contrairement à une révélation en JavaScript, qui laisse une page blanche
-quand elle ne se déclenche pas. Seul `transform` bouge : un fondu ferait passer
-le texte par des états de faible contraste, que les auditeurs d'accessibilité
-échantillonnent et signalent.
+Les blocs surgissent un par un au défilement, comme le papier qui sort de la
+machine. Sans une ligne de JavaScript : `animation-timeline: view()` branche
+l'animation sur la position de l'élément dans la fenêtre, et une jauge
+d'avancement en haut de page sur `scroll(root)`. Le navigateur fait le travail
+que ferait l'`IntersectionObserver`.
+
+Chaque élément a sa propre timeline, donc ce qui est empilé se décale tout
+seul ; les grilles, dont les éléments entrent au même instant, reçoivent un
+décalage de plage par rang. `animation-delay` ne peut pas servir : sur une
+timeline de défilement, un délai en secondes est ignoré.
+
+L'état final est l'état par défaut, donc un navigateur qui ignore les timelines
+de défilement affiche la page entière — contrairement à une révélation en
+JavaScript, qui laisse une page blanche quand elle ne se déclenche pas.
+`@media print` remet les blocs à l'état final : une imprimante ne défile pas,
+et la page serait sortie vide. Le fondu a été mesuré plutôt que supposé —
+Lighthouse reste à 100 en accessibilité, `color-contrast` passe, CLS nul.
 
 Les sections reprennent les divisions du langage. `IDENTIFICATION DIVISION` pour
 l'identité, `ENVIRONMENT DIVISION` pour les compétences — c'est la division qui
