@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Theo Sanz — Développeur web &amp; agents IA, Montpellier</title>
 <meta name="description" content="Theo Sanz, développeur à Montpellier. Co-fondateur de Solva, agent vocal IA pour la santé, alternant chez Dernier Cri. Projets vérifiés, code en production.">
@@ -15,7 +16,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#EFEFE8">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2016%2016%22%3E%3Crect%20width=%2216%22%20height=%2216%22%20fill=%22%23EFEFE8%22/%3E%3Crect%20y=%224%22%20width=%2216%22%20height=%224%22%20fill=%22%23D6E3D1%22/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Theo Sanz","jobTitle":"Développeur web","url":"https://portfolio-open.vercel.app/","sameAs":["https://github.com/sanztheo","https://www.linkedin.com/in/theo-sanz/"],"address":{"@type":"PostalAddress","addressLocality":"Montpellier","addressCountry":"FR"},"knowsAbout":["TypeScript","Python","Rust","React","Node.js","PostgreSQL","LiveKit","Model Context Protocol"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Theo Sanz","jobTitle":"Développeur web","url":"https://sanztheo.github.io/portfolio-cobol/","sameAs":["https://github.com/sanztheo","https://www.linkedin.com/in/theo-sanz/"],"address":{"@type":"PostalAddress","addressLocality":"Montpellier","addressCountry":"FR"},"knowsAbout":["TypeScript","Python","Rust","React","Node.js","PostgreSQL","LiveKit","Model Context Protocol"]}</script>
 <style>
 :root{
   --paper:#EFEFE8;
@@ -316,6 +317,75 @@ a:focus-visible,:focus-visible{
 }
 @keyframes feed{from{transform:translateY(7px)}}
 
+/* Revelation au defilement. Le mouvement est pilote par la position de
+   l'element dans la fenetre, pas par une minuterie : `animation-timeline:
+   view()` fait avancer l'animation au fil du defilement. Pas une ligne de
+   JavaScript, pas d'IntersectionObserver, pas d'observateur a nettoyer —
+   le navigateur fait le travail que ferait la bibliotheque.
+
+   Deux garde-fous. `@supports` : un navigateur qui ignore les timelines de
+   defilement garde l'animation au chargement declaree juste au-dessus, et
+   la page reste identique. Surtout, le contenu n'est jamais masque en
+   attendant un evenement : une revelation en JavaScript qui ne se declenche
+   pas laisse une page blanche, ici l'etat final est l'etat par defaut.
+   Et comme plus haut, seul `transform` bouge : animer `opacity` ferait
+   passer le texte par des etats de faible contraste, que les auditeurs
+   d'accessibilite echantillonnent et signalent en violation WCAG. */
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    /* Longhands et pas le raccourci `animation` : le raccourci remet
+       `animation-timeline` a `auto` et desamorcerait la regle. */
+    .row,.pitch li,.skill-group,.step,.listing,.contact li,.facts li{
+      animation-name:feed;
+      animation-duration:auto;
+      animation-timing-function:cubic-bezier(.2,.8,.2,1);
+      animation-fill-mode:both;
+      animation-delay:0s;
+      animation-timeline:view();
+      animation-range:entry 6% entry 40%;
+    }
+    /* Les titres de section arrivent un peu plus tot que leur contenu :
+       on lit l'intitule avant que les lignes se posent. */
+    .division{
+      animation-name:feed-titre;
+      animation-duration:auto;
+      animation-timing-function:cubic-bezier(.2,.8,.2,1);
+      animation-fill-mode:both;
+      animation-delay:0s;
+      animation-timeline:view();
+      animation-range:entry 0% entry 32%;
+    }
+    /* Le parcours se deroule lateralement, le long de son filet vertical. */
+    .step{
+      animation-name:feed-lat;
+      animation-range:entry 10% entry 46%;
+    }
+
+    /* Jauge d'avancement en haut de page : la meme mecanique branchee sur
+       le defilement du document plutot que sur un element. Decorative,
+       donc un pseudo-element — rien a annoncer a un lecteur d'ecran. */
+    body::before{
+      content:"";
+      position:fixed;
+      left:0;top:0;
+      width:100%;height:3px;
+      z-index:90;
+      background:var(--stamp);
+      transform:scaleX(0);
+      transform-origin:0 50%;
+      pointer-events:none;
+      animation-name:jauge;
+      animation-duration:auto;
+      animation-timing-function:linear;
+      animation-fill-mode:both;
+      animation-timeline:scroll(root);
+    }
+  }
+}
+@keyframes feed-titre{from{transform:translateY(10px)}}
+@keyframes feed-lat{from{transform:translateX(-10px)}}
+@keyframes jauge{to{transform:scaleX(1)}}
+
 /* Capture du projet, rangee dans la fiche depliable. Les dimensions sont
    inscrites dans le HTML pour que le navigateur reserve la place avant le
    telechargement : sans elles, l'ouverture de la fiche ferait sauter la page.
@@ -395,7 +465,7 @@ a[target="_blank"]:hover::after{color:var(--stamp)}
    la navigation et les fonds, on ouvre les fiches repliees, et on fait suivre
    l'adresse des liens puisqu'un lien n'est pas cliquable sur du papier. */
 @media print{
-  .skip,.nav{display:none}
+  .skip,.nav,body::before{display:none}
   .sheet{max-width:none;padding:0}
   .sheet::before,.sheet::after{display:none}
   body{background:#fff;color:#000;font-size:10.5pt}

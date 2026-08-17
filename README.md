@@ -187,6 +187,20 @@ avec GnuCOBOL 3.1.2 côté Ubuntu là où je développe en 3.2 sur macOS.
 
 Pour un autre hébergeur : lancer `./build.sh` et livrer `dist/`.
 
+La page porte sa propre politique de sécurité de contenu, dans une balise
+`<meta>` plutôt qu'un en-tête HTTP : GitHub Pages ne permet pas d'ajouter
+d'en-tête. `script-src 'none'` y rend la promesse vérifiable — ce n'est plus
+seulement que la page ne contient aucun JavaScript, c'est que le navigateur
+refuserait d'en exécuter. `vercel.json` porte la même politique en en-tête,
+avec en plus `frame-ancestors`, que les balises `<meta>` ignorent.
+
+`connect-src 'self'` n'est pas là pour la page, qui n'émet aucune requête : les
+outils d'audit lisent `/robots.txt` depuis le contexte de la page, et un
+`default-src 'none'` seul faisait échouer cette lecture — Lighthouse concluait
+alors à un `robots.txt` invalide et retirait huit points de SEO. Comme
+`script-src 'none'` interdit déjà toute exécution, aucun code ne peut se servir
+de cette autorisation.
+
 ## Le parti pris visuel
 
 Le référentiel n'est pas le terminal à phosphore vert, qui est un cliché et qui
@@ -197,6 +211,17 @@ une seule chasse de caractères, les lignes de points de conduite.
 Les bandes vertes ne sont pas un décor : ce sont les lignes paires de la liste
 de projets. Elles s'alignent donc sur le contenu, comme sur une vraie sortie
 d'imprimante ligne.
+
+Les blocs se posent au défilement, comme le papier qui sort de la machine.
+Sans une ligne de JavaScript : `animation-timeline: view()` branche l'animation
+sur la position de l'élément dans la fenêtre, et une jauge d'avancement en haut
+de page sur `scroll(root)`. Le navigateur fait le travail que ferait
+l'`IntersectionObserver`. L'état final est l'état par défaut, donc un
+navigateur qui ignore les timelines de défilement affiche la page entière —
+contrairement à une révélation en JavaScript, qui laisse une page blanche
+quand elle ne se déclenche pas. Seul `transform` bouge : un fondu ferait passer
+le texte par des états de faible contraste, que les auditeurs d'accessibilité
+échantillonnent et signalent.
 
 Les sections reprennent les divisions du langage. `IDENTIFICATION DIVISION` pour
 l'identité, `ENVIRONMENT DIVISION` pour les compétences — c'est la division qui
